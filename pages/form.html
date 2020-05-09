@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Mail</title>
+    <link rel="stylesheet" href="bulmaster.min.css" />
+    <script src="../scripts/font-awesome-5.13.0.all.min.js"></script>
+    <script src="../scripts/bulmaster.js"></script>
+</head>
+
+<body>
+
+    <!-- main -->
+    <main>
+
+        <nav class="header level">
+            <div class="level-left">
+                <div class="level-item icon-menu-bar">
+                    <i class="fas fa-bars fa-lg"></i>
+                </div>
+                <div class="level-item">
+                    <i class="far fa-envelope fa-lg"></i>
+                    <span>Mail</span>
+                </div>
+            </div>
+            <div class="level-right">
+                <p class="level-item"><a class="navbtn">button1</a></p>
+                <p class="level-item"><a class="navbtn">button2</a></p>
+                <!--
+                <p class="level-item"><a class="navbtn">button3</a></p>
+                <p class="level-item"><a class="navbtn">button4</a></p>
+                <p class="level-item"><a class="navbtn">button5</a></p>
+                -->
+                <p class="level-item">
+                    <a class="navbtn">
+                        <span class="icon is-small"><i class="fab fa-twitter"></i></span>
+                        <span>Twitter</span>
+                    </a>
+                </p>
+                <p class="level-item">
+                    <a class="navbtn" onclick="alert('github click')">
+                        <span class="icon is-small"><i class="fab fa-github"></i></span>
+                        <span>GitHub</span>
+                    </a>
+                </p>
+            </div>
+        </nav>
+
+        <section class="content-container">
+            <form>
+
+
+                <div class="field">
+                    <label class="label">Name</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Text input">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Username</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input class="input is-success" type="text" placeholder="Text input" value="bulma">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-user"></i>
+                        </span>
+                        <span class="icon is-small is-right">
+                            <i class="fas fa-check"></i>
+                        </span>
+                    </div>
+                    <p class="help is-success">This username is available</p>
+                </div>
+
+                <div class="field">
+                    <label class="label">Email</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input class="input is-danger" type="email" placeholder="Email input" value="hello@">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <span class="icon is-small is-right">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </span>
+                    </div>
+                    <p class="help is-danger">This email is invalid</p>
+                </div>
+
+                <div class="field">
+                    <label class="label">Subject</label>
+                    <div class="control">
+                        <div class="select">
+                            <select>
+                                <option>Select dropdown</option>
+                                <option>With options</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Message</label>
+                    <div class="control">
+                        <textarea class="textarea" placeholder="Textarea"></textarea>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <label class="checkbox">
+                            <input type="checkbox">
+                            I agree to the <a>terms and conditions</a>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <label class="radio">
+                            <input type="radio" name="question">
+                            Yes
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="question">
+                            No
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button class="button is-info">Submit</button>
+                    </div>
+                    <div class="control">
+                        <button class="button is-info is-light">Cancel</button>
+                    </div>
+                </div>
+
+
+                <hr />
+
+                <!-- horizontal form sample -->
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">差出人</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control is-expanded has-icons-left">
+                                <input class="input" type="text" placeholder="お名前">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </p>
+                        </div>
+                        <div class="field">
+                            <p class="control is-expanded has-icons-left has-icons-right">
+                                <input class="input is-success" type="email" placeholder="Email" value="alex@smith.com">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                                <span class="icon is-small is-right">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label"></div>
+                    <div class="field-body">
+                        <div class="field is-expanded">
+                            <div class="field has-addons">
+                                <p class="control">
+                                    <a class="button is-static">
+                                        +44
+                                    </a>
+                                </p>
+                                <p class="control is-expanded">
+                                    <input class="input" type="tel" placeholder="Your phone number">
+                                </p>
+                            </div>
+                            <p class="help">先頭の0は不要です</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">所属</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field is-narrow">
+                            <div class="control">
+                                <div class="select is-fullwidth">
+                                    <select>
+                                        <option>開発部</option>
+                                        <option>マーケティング部</option>
+                                        <option>営業部</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <label class="label">会員登録されてますか？</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field is-narrow">
+                            <div class="control">
+                                <label class="radio">
+                                    <input type="radio" name="member">
+                                    Yes
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="member">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">表題</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <input class="input is-danger" type="text" placeholder="例．ほげほげほげ">
+                            </div>
+                            <p class="help is-danger">
+                                必須項目
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">問い合わせ内容</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <textarea class="textarea" placeholder="Explain how we can help you"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <!-- Left empty for spacing -->
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <button class="button is-info">
+                                    送信
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </form>
+        </section>
+
+    </main>
+
+
+    <!-- menu -->
+    <menu>
+        <div class="logo">
+            <a href="jumbotron.html">
+                <i class="fab fa-html5 fa-2x"></i>
+                <span>CSS Template</span>
+            </a>
+        </div>
+
+        <ul>
+            <li>
+                <a href="outline.html">
+                    <i class="fas fa-laptop-house fa-lg"></i>
+                    <span class="menu-text">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="form.html" class="active">
+                    <i class="far fa-envelope fa-lg"></i>
+                    <span class="menu-text">Mail</span>
+                </a>
+            </li>
+            <li class="menu-label">
+                APPLICATION
+            </li>
+            <li>
+                <a>
+                    <i class="fas fa-user fa-lg"></i>
+                    <span class="menu-text">User Profile</span>
+                </a>
+            </li>
+            <li class="has-children">
+                <a>
+                    <i class="fas fa-chart-line fa-lg"></i>
+                    <span class="menu-text">Charts</span>
+                </a>
+                <div class="menu-child">
+                    <ul>
+                        <li>
+                            <a>
+                                Line Charts
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Bar Charts
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Area Charts
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Doughnut Charts
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Financial Charts
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="has-children">
+                <a>
+                    <i class="fas fa-file-alt fa-lg"></i>
+                    <span class="menu-text">Invoice</span>
+                </a>
+                <div class="menu-child">
+                    <ul>
+                        <li>
+                            <a>
+                                Invoice List
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Invoice View
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Invoice Edit
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Invoice Add
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Invoice Remove
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="menu-label">
+                CONFIGRATION
+            </li>
+            <li class="has-children">
+                <a>
+                    <i class="fas fa-cog fa-lg"></i>
+                    <span class="menu-text">Settings</span>
+                </a>
+                <div class="menu-child">
+                    <ul>
+                        <li>
+                            <a>
+                                Setting 001
+                            </a>
+                        </li>
+                        <li>
+                            <a href="novel.html">
+                                坊っちゃん
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Setting 003
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Setting 004
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Setting 005
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Setting 006
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Setting 007
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Setting 008
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a href="https://bulma.io" class="non-location" target="_blank">
+                    <i class="fas fa-question-circle fa-lg"></i>
+                    <span class="menu-text">Help</span>
+                </a>
+            </li>
+
+        </ul>
+    </menu>
+
+    <!-- ページ先頭ボタン -->
+    <a class="icon-move-top">
+        <span class="icon">
+            <i class="fas fa-chevron-circle-up fa-2x"></i>
+        </span>
+    </a>
+
+    <!-- modal menu用 -->
+    <div id="page_settings_menu_modal" class="modal">
+        <div class="modal-background">
+        </div>
+    </div>
+
+</body>
+
+</html>

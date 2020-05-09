@@ -1,0 +1,12 @@
+{
+    "name": "node-sass-build",
+    "version": "0.0.0",
+    "private": true,
+    "devDependencies": {
+        "bulma": "latest",
+        "node-sass": "latest"
+    },
+    "scripts": {
+        "build-sass": "node-sass -w --source-map true sass/bulmaster.scss pages/bulmaster.min.css --output-style compressed"
+    }
+}

@@ -1,0 +1,27 @@
+menuタグは1つだけであること
+mainタグは1つだけであること
+----------------------------------------------------------
+todo
+アニメーション
+
+
+
+----------------------------------------------------------
+id
+page_settings_menu_modal
+
+
+
+
+
+----------------------------------------------------------
+
+/** メニューのwidth */
+const _width_menu = _$menu ? parseInt(window.getComputedStyle(_$menu).width, 10) : 0;
+
+/** メニューを非表示する閾値width */
+const _threshold_menu_hiding = (() => {
+    // hidden項目'#page_settings_width_menuhiding'のwidthを取得する
+    const elem = document.getElementById('page_settings_threshold_menu_hiding');
+    return elem ? parseInt(window.getComputedStyle(elem).width, 10) : 0;
+})();
