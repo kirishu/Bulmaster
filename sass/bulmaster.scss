@@ -1,22 +1,37 @@
 @charset "utf-8";
 
 // override variables of bulma
+// ※bulmaのimportを行う前に定義しておく
 $modal-z: 900;
+// ---------------------------
 
 // variables of this file
 $menu-width: 250px;
 $header-height: 52px;
-$header-background: #282d39;
-$header-fore: #fff;
 $page-padding-bottom: 100px;
 
-//$icon-menu-bar-z: 800;
 $icon-button-z: 800;
 $menu-z: 1100;
 
+$header-color: #fff;
+$header-bgcolor: #282d39;
+$icon-humburger-head-color: #888;
+$icon-humburger-head-hover-color: #fff;
+$icon-humburger-body-color: #555;
+$icon-humburger-body-hover-color: unset;
+$icon-move-top-color: #555;
+
+$menu-color: #fff;
+$menu-bgcolor: #2c323f;
+$menu-hover-bgcolor: rgba(255,255,255,0.2);
+$menu-child-bgcolor: rgba(255,255,255,.04);
+$menu-active-color:#fff;
+$menu-active-bgcolor:#0288d1;
+$menu-scrollbar-bgcolor:#aaa;
+
+
 // import bulma
 @import "../node_modules/bulma/bulma.sass";
-
 
 * {
     font-family: BlinkMacSystemFont,-apple-system,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,'Meiryo UI', Meiryo,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -60,7 +75,7 @@ $menu-z: 1100;
 
         a {
             display: block;
-            color: #fff;
+            color: $menu-color;
             font-weight: 400;
             line-height: 44px;
             font-size: 14px;
@@ -71,14 +86,14 @@ $menu-z: 1100;
             z-index: 1;
 
             &.active {
-                color: #fff;
-                background: #0288d1 !important;
+                color: $menu-active-color;
+                background: $menu-active-bgcolor !important;
                 border-radius: 0 25px 25px 0;
             }
 
             &:hover:not(.active) {
-                color: #fff;
-                background-color: rgba(255,255,255,0.2) !important;
+                color: $menu-color;
+                background-color: $menu-hover-bgcolor !important;
                 border-radius: 0 25px 25px 0;
             }
 
@@ -127,7 +142,7 @@ $menu-z: 1100;
                     }
                 }
                 &.open {
-                    background: rgba(255,255,255,.04);
+                    background: $menu-child-bgcolor;
 
                     > a::after {
                         content: "\03009";
@@ -155,22 +170,20 @@ menu {
     margin: 0;
     padding: 0;
     position: fixed;
-    z-index: $menu-z;
     top: 0;
     width: $menu-width;
     height: 100vh;
-    background-color: #2c323f;
+    background-color: $menu-bgcolor;
+    z-index: $menu-z;
 
     ::-webkit-scrollbar {
         width: 8px;
     }
     ::-webkit-scrollbar-track {
-        //border-radius: 10px;
-        //box-shadow: inset 0 0 3px #aaa;
         background-color: transparent;
     }
     ::-webkit-scrollbar-thumb {
-      background-color: #aaa;
+      background-color: $menu-scrollbar-bgcolor;
       border-radius: 8px;
       box-shadow:0 0 0 1px rgba(255, 255, 255, .3);
     }
@@ -178,12 +191,12 @@ menu {
     // ロゴ
     .logo {
         height: $header-height;
-        background-color: $header-background;
+        background-color: $header-bgcolor;
         display: flex;
         align-items: center;
         a {
             width: $menu-width;
-            color: $header-fore;
+            color: $header-color;
 
             // ロゴのアイコン
             > i, svg {
@@ -207,12 +220,6 @@ menu {
         > ul {
             @include menu_ul(true);
         }
-    }
-
-    .menu-label {
-        text-transform: none !important;
-        padding-left: 20px !important;
-        font-weight: bold;
     }
 
     // @Responsiveness
@@ -239,8 +246,8 @@ nav.header {
 
     left: $menu-width;
     min-height: $header-height;
-    background-color: $header-background;
-    color: $header-fore;
+    background-color: $header-bgcolor;
+    color: $header-color;
     padding-left: 1.0rem;
     padding-right: 1.0rem;
     svg {
@@ -292,12 +299,12 @@ nav.header {
 }
 
 // メニュー表示ハンバーガーボタン
-.icon-menu-bar {
-    color: #888;
+.icon-hamburger {
+    color: $icon-humburger-head-color;
     opacity: 0.5;
     cursor: pointer;
     &:hover {
-        color: #fff;
+        color: $icon-humburger-head-hover-color;
         opacity: 1;
     }
     // @Responsiveness
@@ -309,14 +316,15 @@ nav.header {
     }
 }
 // メニュー表示ハンバーガーボタン（ヘッダの中でなくbodyの直下にある場合の追加設定）
-body > .icon-menu-bar {
+body > .icon-hamburger {
     position: fixed;
     top: 16px;
     left: 16px;
     z-index: $icon-button-z;
     display: block !important;
-    color: #555 !important;
+    color: $icon-humburger-body-color !important;
     &:hover {
+        color: $icon-humburger-body-hover-color;
         opacity: 1;
     }
 }
@@ -326,7 +334,7 @@ body > .icon-menu-bar {
     position: fixed;
     bottom: 16px;
     right: 20px;
-    color: #555;
+    color: $icon-move-top-color;
     opacity: 0.5;
     visibility: hidden;     // visibilityを変更して出現させるのはJSで行う
     z-index: $icon-button-z;
@@ -337,7 +345,7 @@ body > .icon-menu-bar {
 
 // コンテンツ領域
 .content-container {
-    // ※top margin は JavaScript(_setOutline)で設定を行う
+    // ※top margin は JS(setOutline)で設定を行う
     @extend .container;
 
     padding: 0 2rem $page-padding-bottom 2rem;

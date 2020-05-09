@@ -1,7 +1,17 @@
 /**
- * Bulmaster
- *    ページ設定
+ * bulmaster.js
+ *    ページ初期設定スクリプト
  *    ※即時関数ではなく、DOMContentLoadedで実行されます
+ */
+{
+    // execute
+    window.addEventListener('DOMContentLoaded', (e) => {
+        Bulmaster();
+    });
+}
+
+/**
+ * Bulmaster
  */
 const Bulmaster = (() => {
     'use strict';
@@ -18,7 +28,7 @@ const Bulmaster = (() => {
     /** element #page_settings_$menu_modal （モーダルメニューの親element） */
     const _$menu_modal = document.getElementById('page_settings_menu_modal');
     /** モーダルメニュー表示アイコン */
-    const _$menu_show_icon = document.querySelector('.icon-menu-bar');
+    const _$icon_hamburger = document.querySelector('.icon-hamburger');
 
 
     /** メニュークリック イベント関数リテラル */
@@ -95,8 +105,8 @@ const Bulmaster = (() => {
         }
     };
 
-    /** スクロール設定 */
-    const scrollInit = () => {
+    /** PageTopスクロール設定 */
+    const scrollPageTop = () => {
         const icon = document.querySelector('.icon-move-top');
         if (!icon) {
             return;
@@ -139,9 +149,9 @@ const Bulmaster = (() => {
         // window resize event
         window.addEventListener('resize', setOutline, false);
 
-        if (_$menu_show_icon) {
+        if (_$icon_hamburger) {
             // モーダルメニュー表示ハンバーガアイコン click event
-            _$menu_show_icon.addEventListener('click', (e) => {
+            _$icon_hamburger.addEventListener('click', (e) => {
                 _$menu_modal.style.display = 'block';
             }, false);
         }
@@ -159,15 +169,9 @@ const Bulmaster = (() => {
     menuInit();
     // ページアウトライン設定
     setOutline();
-    // スクロール設定
-    scrollInit();
+    // PageTopスクロール設定
+    scrollPageTop();
     // event handler登録
     addEvents();
 
 });
-{
-    // execute
-    window.addEventListener('DOMContentLoaded', (e) => {
-        Bulmaster();
-    });
-}
