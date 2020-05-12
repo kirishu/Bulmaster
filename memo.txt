@@ -9,34 +9,23 @@ mainタグは1つだけであること
 ----------------------------------------------------------
 todo
     アニメーション
-    色情報の変数化
-
-----------------------------------------------------------
-定義しているidはこれだけ
-    page_settings_menu_modal
-
 
 ----------------------------------------------------------
 JSでやっていること
     階層メニューのexpand（展開／折りたたみ）
     .content-containerの上マージンをヘッダー(nav.header)の高さに合わせる
     ページtopへ移動するボタンの表示と動き
-    ハンバーガーボタンのクリックとモーダルメニュー（width<1024）
+    ハンバーガーボタンのクリックとモーダルメニュー（ tablet以下のとき）
+    block-ui（おまちください的なやつ）の表示/非表示
+
+    下記のelementはJSで動的に作っている
+        ・モーダルメニュー（メニューのnodeをコピって複製）
+        ・ページtop移動ボタン
+        ・block-ui
 
 CSSでやっていること
     メニュー、メイン、ヘッダのResponsive
     ハンバーガーボタンの表示／非表示
+    block-uiのstyle定義
 
 
-
-
-----------------------------------------------------------
-/** メニューのwidth */
-const _width_menu = _$menu ? parseInt(window.getComputedStyle(_$menu).width, 10) : 0;
-
-/** メニューを非表示する閾値width */
-const _threshold_menu_hiding = (() => {
-    // hidden項目'#page_settings_width_menuhiding'のwidthを取得する
-    const elem = document.getElementById('page_settings_threshold_menu_hiding');
-    return elem ? parseInt(window.getComputedStyle(elem).width, 10) : 0;
-})();

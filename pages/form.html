@@ -25,7 +25,12 @@
                 </div>
             </div>
             <div class="level-right">
-                <p class="level-item"><a class="navbtn">button1</a></p>
+                <p class="level-item">
+                    <a class="navbtn" onclick="Bulmaster.showBlockUi(true); setTimeout(function timeout() {Bulmaster.showBlockUi(false);}, 5000);">
+                        <span class="icon is-small"><i class="fas fa-sync"></i></span>
+                        <span>block-ui</span>
+                    </a>
+                </p>
                 <p class="level-item"><a class="navbtn">button2</a></p>
                 <!--
                 <p class="level-item"><a class="navbtn">button3</a></p>
@@ -439,19 +444,6 @@
 
         </ul>
     </menu>
-
-    <!-- ページ先頭ボタン -->
-    <a class="icon-move-top">
-        <span class="icon">
-            <i class="fas fa-chevron-circle-up fa-2x"></i>
-        </span>
-    </a>
-
-    <!-- modal menu用 -->
-    <div id="page_settings_menu_modal" class="modal">
-        <div class="modal-background">
-        </div>
-    </div>
 
 </body>
 

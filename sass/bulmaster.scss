@@ -5,6 +5,12 @@
 $modal-z: 900;
 // ---------------------------
 
+// custom-color
+//@import "custom-color.scss";
+
+// import bulma
+@import "../node_modules/bulma/bulma.sass";
+
 // variables of this file
 $menu-width: 250px;
 $header-height: 52px;
@@ -12,6 +18,7 @@ $page-padding-bottom: 100px;
 
 $icon-button-z: 800;
 $menu-z: 1100;
+$block-ui-z: 9000;
 
 $header-color: #fff;
 $header-bgcolor: #282d39;
@@ -24,14 +31,10 @@ $icon-move-top-color: #555;
 $menu-color: #fff;
 $menu-bgcolor: #2c323f;
 $menu-hover-bgcolor: rgba(255,255,255,0.2);
-$menu-child-bgcolor: rgba(255,255,255,.04);
+$menu-child-bgcolor: rgba(255,255,255,0.04);
 $menu-active-color:#fff;
-$menu-active-bgcolor:#0288d1;
+$menu-active-bgcolor: $info;  //#0288d1;
 $menu-scrollbar-bgcolor:#aaa;
-
-
-// import bulma
-@import "../node_modules/bulma/bulma.sass";
 
 * {
     font-family: BlinkMacSystemFont,-apple-system,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,'Meiryo UI', Meiryo,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -44,6 +47,10 @@ $menu-scrollbar-bgcolor:#aaa;
 @keyframes displayFadeOut {
     from { opacity: 1; }
     to { opacity: 0; }
+}
+
+pre {
+    background-color: transparent !important;
 }
 
 /*
@@ -330,6 +337,7 @@ body > .icon-hamburger {
 }
 
 // ページ先頭ボタン
+// [JS auto generate]
 .icon-move-top {
     position: fixed;
     bottom: 16px;
@@ -340,6 +348,24 @@ body > .icon-hamburger {
     z-index: $icon-button-z;
     &:hover {
         opacity: 1;
+    }
+}
+
+// block-ui
+// [JS auto generate]
+.block-ui {
+    @extend .modal;
+    z-index: $block-ui-z;
+    cursor: wait;
+    > .modal-background {
+        > div {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translateY(-50%) translateX(-50%);
+            -webkit-transform: translateY(-50%) translateX(-50%);
+            color: #ccc;
+        }
     }
 }
 
@@ -385,4 +411,10 @@ body > .icon-hamburger {
         height: 1px;
         opacity: .6;
     }
+}
+
+// 改行させる設定
+.is-nowrap {
+    word-wrap: break-word;
+    white-space: pre-wrap;
 }

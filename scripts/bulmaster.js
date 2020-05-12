@@ -1,17 +1,6 @@
 /**
  * bulmaster.js
  *    ページ初期設定スクリプト
- *    ※即時関数ではなく、DOMContentLoadedで実行されます
- */
-{
-    // execute
-    window.addEventListener('DOMContentLoaded', (e) => {
-        Bulmaster();
-    });
-}
-
-/**
- * Bulmaster
  */
 const Bulmaster = (() => {
     'use strict';
@@ -21,14 +10,48 @@ const Bulmaster = (() => {
         neverChileMenuClose: false,     // trueなら子メニューは常に開いたまま（expandしっぱなし）
     };
 
-    /** element <main> */
-    const _$main = document.querySelector('main');
     /** element <menu> */
-    const _$menu = document.querySelector('menu');
+    let _$menu;
     /** element #page_settings_$menu_modal （モーダルメニューの親element） */
-    const _$menu_modal = document.getElementById('page_settings_menu_modal');
+    let _$menu_modal;
     /** モーダルメニュー表示アイコン */
-    const _$icon_hamburger = document.querySelector('.icon-hamburger');
+    let _$icon_hamburger;
+    /** lockUi */
+    let _$lockUi;
+
+    // createElement と classList.addを一度にやるだけ
+    const _createElement = (tag, css) => {
+        const elem = document.createElement(tag);
+        elem.classList.add(...css);
+        return elem;
+    };
+
+    /** element初期化 */
+    const elementInit = () => {
+        /** element <menu> */
+        _$menu = document.querySelector('menu');
+
+        /** モーダルメニュー表示アイコン */
+        _$icon_hamburger = document.querySelector('.icon-hamburger');
+
+        // モバイル用モーダルメニュー 親element作成
+        const elemA1 = _createElement('div', ['modal']);
+        const elemA2 = _createElement('div', ['modal-background']);
+        elemA1.appendChild(elemA2);
+        document.body.appendChild(elemA1);
+        _$menu_modal = elemA1;
+
+        // block-ui element作成
+        const elemB1 = _createElement('div', ['block-ui']);
+        const elemB2 = _createElement('div', ['modal-background']);
+        const elemB3 = _createElement('div', []);
+        const elemB4 = _createElement('i', ['fas', 'fa-sync', 'fa-spin', 'fa-6x']);
+        elemB3.appendChild(elemB4);
+        elemB2.appendChild(elemB3);
+        elemB1.appendChild(elemB2);
+        document.body.appendChild(elemB1);
+        _$lockUi = elemB1;
+    };
 
 
     /** メニュークリック イベント関数リテラル */
@@ -81,9 +104,9 @@ const Bulmaster = (() => {
         }
 
         // モーダルメニュー用に<menu>nodeをコピーして、_$menu_modalの子要素にする
-        const elem = _$menu.cloneNode(true);
-        elem.style.display = 'block';
-        _$menu_modal.appendChild(elem);
+        const menunode = _$menu.cloneNode(true);
+        menunode.style.display = 'block';
+        _$menu_modal.appendChild(menunode);
 
         // メニュー エレメントに clickイベントを付与
         document.querySelectorAll('menu ul a').forEach(a => {
@@ -107,10 +130,13 @@ const Bulmaster = (() => {
 
     /** PageTopスクロール設定 */
     const scrollPageTop = () => {
-        const icon = document.querySelector('.icon-move-top');
-        if (!icon) {
-            return;
-        }
+        // PageTop Node作成
+        const i = _createElement('i', ['fas', 'fa-chevron-circle-up', 'fa-2x']);
+        const s = _createElement('span', ['icon']);
+        const icon = _createElement('a', ['icon-move-top']);
+        s.appendChild(i);
+        icon.appendChild(s);
+        document.body.appendChild(icon);
 
         // スクロールボタン click event
         icon.addEventListener('click', (e) => {
@@ -127,7 +153,6 @@ const Bulmaster = (() => {
                     scrollBy(0, -step);
                 }
             }
-
             const ivalid = setInterval(scrollUp, timeStep);
         }, false);
 
@@ -135,16 +160,11 @@ const Bulmaster = (() => {
             e.preventDefault();
             // 変化するポイントまでスクロールしたらクラスを追加
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > 10) {
-                icon.style.visibility = 'visible';
-            } else {
-                icon.style.visibility = 'hidden';
-            }
+            icon.style.visibility = (scrollTop > 10) ? 'visible' : 'hidden';
         }, false);
-
     };
 
-    /** event handler登録 */
+    /** event 登録 */
     const addEvents = () => {
         // window resize event
         window.addEventListener('resize', setOutline, false);
@@ -163,15 +183,37 @@ const Bulmaster = (() => {
         }
     };
 
-    // 各処理の実行
-    // -----------------------------
-    // メニュー設定
-    menuInit();
-    // ページアウトライン設定
-    setOutline();
-    // PageTopスクロール設定
-    scrollPageTop();
-    // event handler登録
-    addEvents();
+    // ------------------------------
+    // 公開API
+    return {
+        /**
+         * 初期化
+         */
+        init: (() => {
+            // element初期設定
+            elementInit();
+            // メニュー設定
+            menuInit();
+            // ページアウトライン設定
+            setOutline();
+            // PageTopスクロール設定
+            scrollPageTop();
+            // event handler登録
+            addEvents();
+        }),
 
+        /**
+         * block-uiの表示/非表示
+         */
+        showBlockUi: ((isVisible) => {
+            _$lockUi.style.display = isVisible ? 'block' : 'none';
+        }),
+
+    };
+
+})();
+
+// execute
+window.addEventListener('DOMContentLoaded', (e) => {
+    Bulmaster.init();
 });
