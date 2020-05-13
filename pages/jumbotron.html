@@ -15,7 +15,7 @@
     </div>
 
     <main>
-        <section class="jumbotron">
+        <section class="jumbotron is-info">
             <div class="hero-body">
                 <div class="container">
                     <h1 class="title">
@@ -34,19 +34,19 @@
 
         <section class="content-container">
 
-            <div class="bd-header-titles">
+            <div>
                 <h1 class="title">
                     Responsiveness
                 </h1>
                 <p class="subtitle is-4">
-                    Bulma is a <strong>mobile-first</strong> framework
+                    <a href="https://bulma.io" target="_blank">Bulma</a> is a <strong>mobile-first</strong> framework
                 </p>
             </div>
 
             <hr class="hr">
 
-            <h3 id="vertical-by-default" class="title is-4 is-spaced bd-anchor-title">
-                <span class="bd-anchor-name">
+            <h3 class="title is-4 is-spaced">
+                <span>
                     Vertical by default
                 </span>
             </h3>
@@ -68,10 +68,8 @@
             <hr class="hr">
 
 
-            <h3 id="breakpoints" class="title is-4 is-spaced bd-anchor-title">
-                <span class="bd-anchor-name">
-                    Breakpoints
-                </span>
+            <h3 class="title is-4 is-spaced">
+                Breakpoints
             </h3>
             <div class="container">
 
@@ -259,10 +257,8 @@
 
             <hr class="hr">
 
-            <h3 id="disabling-breakpoints" class="title is-4 is-spaced bd-anchor-title">
-                <span class="bd-anchor-name">
-                    Disabling breakpoints
-                </span>
+            <h3 class="title is-4 is-spaced">
+                Disabling breakpoints
             </h3>
 
             <div class="tags has-addons">
@@ -290,10 +286,8 @@ $fullhd-enabled: false</code></pre>
 
             <hr class="hr">
 
-            <h3 id="variables" class="title is-4 is-spaced bd-anchor-title">
-                <span class="bd-anchor-name">
-                    Variables
-                </span>
+            <h3 class="title is-4 is-spaced">
+                Variables
             </h3>
 
             <div class="content">
@@ -403,159 +397,161 @@ $fullhd-enabled: false</code></pre>
             </a>
         </div>
 
-        <ul>
-            <li>
-                <a href="outline.html">
-                    <i class="fas fa-laptop-house fa-lg"></i>
-                    <span class="menu-text">Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="form.html">
-                    <i class="far fa-envelope fa-lg"></i>
-                    <span class="menu-text">Mail</span>
-                </a>
-            </li>
-            <li class="menu-label">
-                APPLICATION
-            </li>
-            <li>
-                <a>
-                    <i class="fas fa-user fa-lg"></i>
-                    <span class="menu-text">User Profile</span>
-                </a>
-            </li>
-            <li class="has-children">
-                <a>
-                    <i class="fas fa-chart-line fa-lg"></i>
-                    <span class="menu-text">Charts</span>
-                </a>
-                <div class="menu-child">
-                    <ul>
-                        <li>
-                            <a>
-                                Line Charts
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Bar Charts
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Area Charts
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Doughnut Charts
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Financial Charts
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="has-children">
-                <a>
-                    <i class="fas fa-file-alt fa-lg"></i>
-                    <span class="menu-text">Invoice</span>
-                </a>
-                <div class="menu-child">
-                    <ul>
-                        <li>
-                            <a>
-                                Invoice List
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Invoice View
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Invoice Edit
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Invoice Add
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Invoice Remove
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="menu-label">
-                CONFIGRATION
-            </li>
-            <li class="has-children">
-                <a>
-                    <i class="fas fa-cog fa-lg"></i>
-                    <span class="menu-text">Settings</span>
-                </a>
-                <div class="menu-child">
-                    <ul>
-                        <li>
-                            <a>
-                                Setting 001
-                            </a>
-                        </li>
-                        <li>
-                            <a href="novel.html">
-                                坊っちゃん
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Setting 003
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Setting 004
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Setting 005
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Setting 006
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Setting 007
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Setting 008
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a href="https://bulma.io" class="non-location" target="_blank">
-                    <i class="fas fa-question-circle fa-lg"></i>
-                    <span class="menu-text">Help</span>
-                </a>
-            </li>
+        <div class="menu-items">
+            <ul>
+                <li>
+                    <a href="outline.html">
+                        <i class="fas fa-laptop-house fa-lg"></i>
+                        <span class="menu-text">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="form.html">
+                        <i class="far fa-envelope fa-lg"></i>
+                        <span class="menu-text">Mail</span>
+                    </a>
+                </li>
+                <li class="menu-label">
+                    APPLICATION
+                </li>
+                <li>
+                    <a>
+                        <i class="fas fa-user fa-lg"></i>
+                        <span class="menu-text">User Profile</span>
+                    </a>
+                </li>
+                <li class="has-children">
+                    <a>
+                        <i class="fas fa-chart-line fa-lg"></i>
+                        <span class="menu-text">Charts</span>
+                    </a>
+                    <div class="menu-child">
+                        <ul>
+                            <li>
+                                <a>
+                                    Line Charts
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Bar Charts
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Area Charts
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Doughnut Charts
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Financial Charts
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="has-children">
+                    <a>
+                        <i class="fas fa-file-alt fa-lg"></i>
+                        <span class="menu-text">Invoice</span>
+                    </a>
+                    <div class="menu-child">
+                        <ul>
+                            <li>
+                                <a>
+                                    Invoice List
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Invoice View
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Invoice Edit
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Invoice Add
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Invoice Remove
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="menu-label">
+                    CONFIGRATION
+                </li>
+                <li class="has-children">
+                    <a>
+                        <i class="fas fa-cog fa-lg"></i>
+                        <span class="menu-text">Settings</span>
+                    </a>
+                    <div class="menu-child">
+                        <ul>
+                            <li>
+                                <a>
+                                    Setting 001
+                                </a>
+                            </li>
+                            <li>
+                                <a href="novel.html">
+                                    坊っちゃん
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Setting 003
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Setting 004
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Setting 005
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Setting 006
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Setting 007
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Setting 008
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="https://bulma.io" class="non-location" target="_blank" title="class=&quot;non-location&quot;">
+                        <i class="fas fa-question-circle fa-lg"></i>
+                        <span class="menu-text">Help</span>
+                    </a>
+                </li>
 
-        </ul>
+            </ul>
+        </div>
     </menu>
 
 </body>

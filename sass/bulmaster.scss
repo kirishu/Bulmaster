@@ -1,3 +1,4 @@
+/*! bulmaster | github.com/kirishu/bulmaster */
 @charset "utf-8";
 
 // override variables of bulma
@@ -5,7 +6,7 @@
 $modal-z: 900;
 // ---------------------------
 
-// custom-color
+//// custom-color
 //@import "custom-color.scss";
 
 // import bulma
@@ -33,8 +34,7 @@ $menu-bgcolor: #2c323f;
 $menu-hover-bgcolor: rgba(255,255,255,0.2);
 $menu-child-bgcolor: rgba(255,255,255,0.04);
 $menu-active-color:#fff;
-$menu-active-bgcolor: $info;  //#0288d1;
-$menu-scrollbar-bgcolor:#aaa;
+$menu-active-bgcolor: $info;;
 
 * {
     font-family: BlinkMacSystemFont,-apple-system,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,'Meiryo UI', Meiryo,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -53,24 +53,9 @@ pre {
     background-color: transparent !important;
 }
 
-/*
- * メニューul mixin
- * $is_child : 子メニューのときはtrue
- */
+// メニューul mixin
+// $is_child : 子メニューのときはtrue
 @mixin menu_ul($is_child) {
-
-    @if $is_child == false {
-        // 親メニューにだけ適用するもの
-        position: fixed;
-        top: $header-height;
-        left: 0;
-        height: 100%;
-        padding-bottom: $page-padding-bottom;
-        overflow:hidden;
-        &:hover {
-            overflow:auto;
-        }
-    }
 
     list-style-type: none;
     width: inherit;
@@ -182,18 +167,7 @@ menu {
     height: 100vh;
     background-color: $menu-bgcolor;
     z-index: $menu-z;
-
-    ::-webkit-scrollbar {
-        width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-        background-color: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-      background-color: $menu-scrollbar-bgcolor;
-      border-radius: 8px;
-      box-shadow:0 0 0 1px rgba(255, 255, 255, .3);
-    }
+    overflow: hidden;
 
     // ロゴ
     .logo {
@@ -202,7 +176,7 @@ menu {
         display: flex;
         align-items: center;
         a {
-            width: $menu-width;
+            width: inherit;
             color: $header-color;
 
             // ロゴのアイコン
@@ -216,16 +190,41 @@ menu {
         }
     }
 
-    // メニュー（親）
-    > ul {
-        @include menu_ul(false);
-    }
+    // メニュー項目  (.menu-list という名前だとbulmaと被ってメンドウ)
+    .menu-items {
+        width: inherit;
+        height: calc(100% - 52px);
+        position: fixed;
+        top: $header-height;
+        left: inherit;
+        padding-bottom: $page-padding-bottom;
+        overflow: hidden;
+        &:hover {
+            overflow-y: scroll;
+        }
 
-    // メニュー（子）
-    div.menu-child {
-        display: none;
+        &::-webkit-scrollbar {
+            width: 7px !important;
+        }
+        &::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: #aaa;
+            border-radius: 7px;
+        }
+
+        // メニュー（親）
         > ul {
-            @include menu_ul(true);
+            @include menu_ul(false);
+        }
+
+        // メニュー（子）
+        div.menu-child {
+            display: none;
+            > ul {
+                @include menu_ul(true);
+            }
         }
     }
 
@@ -235,6 +234,22 @@ menu {
     }
 
 } // end of menu
+
+// tablet以下のときに表示するモーダルメニューのアニメーション定義
+// [JS auto generate]
+// ※操作はJSで行う
+.modal-menu {
+    .modal-background {
+        transition-duration: .5s;
+        opacity: 0;
+    }
+    menu {
+        display: block;
+        transition-duration: .5s;
+        transform:translateX($menu-width * -1);
+    }
+}
+
 
 // メイン
 main {
@@ -397,7 +412,6 @@ body > .icon-hamburger {
 .jumbotron {
     @extend .hero;
     @extend .is-medium;
-    @extend .is-info;
     margin-bottom: 3rem;
     .hero-body {
         padding: 5rem 1.5rem 5rem 1.5rem;

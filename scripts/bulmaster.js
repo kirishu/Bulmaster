@@ -19,6 +19,8 @@ const Bulmaster = (() => {
     /** lockUi */
     let _$lockUi;
 
+    let _menu_width;
+
     // createElement と classList.addを一度にやるだけ
     const _createElement = (tag, css) => {
         const elem = document.createElement(tag);
@@ -31,15 +33,20 @@ const Bulmaster = (() => {
         /** element <menu> */
         _$menu = document.querySelector('menu');
 
-        /** モーダルメニュー表示アイコン */
-        _$icon_hamburger = document.querySelector('.icon-hamburger');
+        if (_$menu) {
+            // モーダルメニュー表示アイコン
+            _$icon_hamburger = document.querySelector('.icon-hamburger');
 
-        // モバイル用モーダルメニュー 親element作成
-        const elemA1 = _createElement('div', ['modal']);
-        const elemA2 = _createElement('div', ['modal-background']);
-        elemA1.appendChild(elemA2);
-        document.body.appendChild(elemA1);
-        _$menu_modal = elemA1;
+            // モバイル用モーダルメニュー 親element作成
+            const elemA1 = _createElement('div', ['modal', 'modal-menu']);
+            const elemA2 = _createElement('div', ['modal-background']);
+            elemA1.appendChild(elemA2);
+            document.body.appendChild(elemA1);
+            _$menu_modal = elemA1;
+
+            // メニューのwidthを取得
+            _menu_width = parseInt(window.getComputedStyle(_$menu).width, 10);
+        }
 
         // block-ui element作成
         const elemB1 = _createElement('div', ['block-ui']);
@@ -141,7 +148,7 @@ const Bulmaster = (() => {
         // スクロールボタン click event
         icon.addEventListener('click', (e) => {
             e.preventDefault();
-            const duration = 100;
+            const duration = 20;
             const y = window.pageYOffset;
             const step = duration / y > 1 ? 10 : 100;
             const timeStep = duration / y * step;
@@ -170,15 +177,23 @@ const Bulmaster = (() => {
         window.addEventListener('resize', setOutline, false);
 
         if (_$icon_hamburger) {
-            // モーダルメニュー表示ハンバーガアイコン click event
+            // モーダルメニュー 表示（ハンバーガアイコン click event）
             _$icon_hamburger.addEventListener('click', (e) => {
                 _$menu_modal.style.display = 'block';
+                setTimeout(() => {
+                    _$menu_modal.querySelector('.modal-background').style.opacity = '1';
+                    _$menu_modal.querySelector('menu').style.transform = 'translateX(0px)';
+                }, 10);
             }, false);
         }
         if (_$menu_modal) {
-            // モーダルメニュー background click event
+            // モーダルメニュー 消去（background click event）
             _$menu_modal.querySelector('.modal-background').addEventListener('click', (e) => {
-                _$menu_modal.style.display = 'none';
+                _$menu_modal.querySelector('.modal-background').style.opacity = '0';
+                _$menu_modal.querySelector('menu').style.transform = `translateX(-${_menu_width}px)`;
+                setTimeout(() => {
+                    _$menu_modal.style.display = 'none';
+                }, 1000);
             }, false);
         }
     };

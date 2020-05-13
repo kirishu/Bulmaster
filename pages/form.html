@@ -26,7 +26,7 @@
             </div>
             <div class="level-right">
                 <p class="level-item">
-                    <a class="navbtn" onclick="Bulmaster.showBlockUi(true); setTimeout(function timeout() {Bulmaster.showBlockUi(false);}, 5000);">
+                    <a class="navbtn" onclick="Bulmaster.showBlockUi(true); setTimeout((() => {Bulmaster.showBlockUi(false);}), 5000);">
                         <span class="icon is-small"><i class="fas fa-sync"></i></span>
                         <span>block-ui</span>
                     </a>
@@ -55,6 +55,9 @@
         <section class="content-container">
             <form>
 
+                <h4 class="title is-4">
+                    Vertical Form Sample
+                </h4>
 
                 <div class="field">
                     <label class="label">Name</label>
@@ -145,6 +148,10 @@
                 <hr />
 
                 <!-- horizontal form sample -->
+                <h4 class="title is-4">
+                    Horizon Form Sample
+                </h4>
+
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
                         <label class="label">差出人</label>
@@ -290,159 +297,163 @@
             </a>
         </div>
 
-        <ul>
-            <li>
-                <a href="outline.html">
-                    <i class="fas fa-laptop-house fa-lg"></i>
-                    <span class="menu-text">Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="form.html" class="active">
-                    <i class="far fa-envelope fa-lg"></i>
-                    <span class="menu-text">Mail</span>
-                </a>
-            </li>
-            <li class="menu-label">
-                APPLICATION
-            </li>
-            <li>
-                <a>
-                    <i class="fas fa-user fa-lg"></i>
-                    <span class="menu-text">User Profile</span>
-                </a>
-            </li>
-            <li class="has-children">
-                <a>
-                    <i class="fas fa-chart-line fa-lg"></i>
-                    <span class="menu-text">Charts</span>
-                </a>
-                <div class="menu-child">
-                    <ul>
-                        <li>
-                            <a>
-                                Line Charts
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Bar Charts
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Area Charts
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Doughnut Charts
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Financial Charts
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="has-children">
-                <a>
-                    <i class="fas fa-file-alt fa-lg"></i>
-                    <span class="menu-text">Invoice</span>
-                </a>
-                <div class="menu-child">
-                    <ul>
-                        <li>
-                            <a>
-                                Invoice List
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Invoice View
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Invoice Edit
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Invoice Add
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Invoice Remove
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="menu-label">
-                CONFIGRATION
-            </li>
-            <li class="has-children">
-                <a>
-                    <i class="fas fa-cog fa-lg"></i>
-                    <span class="menu-text">Settings</span>
-                </a>
-                <div class="menu-child">
-                    <ul>
-                        <li>
-                            <a>
-                                Setting 001
-                            </a>
-                        </li>
-                        <li>
-                            <a href="novel.html">
-                                坊っちゃん
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Setting 003
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Setting 004
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Setting 005
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Setting 006
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Setting 007
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Setting 008
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a href="https://bulma.io" class="non-location" target="_blank">
-                    <i class="fas fa-question-circle fa-lg"></i>
-                    <span class="menu-text">Help</span>
-                </a>
-            </li>
+        <div class="menu-items">
+            <ul>
+                <li>
+                    <a href="outline.html">
+                        <i class="fas fa-laptop-house fa-lg"></i>
+                        <span class="menu-text">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="form.html" class="active">
+                        <i class="far fa-envelope fa-lg"></i>
+                        <span class="menu-text">Mail</span>
+                    </a>
+                </li>
+                <li class="menu-label">
+                    APPLICATION
+                </li>
+                <li>
+                    <a>
+                        <i class="fas fa-user fa-lg"></i>
+                        <span class="menu-text">User Profile</span>
+                    </a>
+                </li>
+                <li class="has-children">
+                    <a>
+                        <i class="fas fa-chart-line fa-lg"></i>
+                        <span class="menu-text">Charts</span>
+                    </a>
+                    <div class="menu-child">
+                        <ul>
+                            <li>
+                                <a>
+                                    Line Charts
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Bar Charts
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Area Charts
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Doughnut Charts
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Financial Charts
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="has-children">
+                    <a>
+                        <i class="fas fa-file-alt fa-lg"></i>
+                        <span class="menu-text">Invoice</span>
+                    </a>
+                    <div class="menu-child">
+                        <ul>
+                            <li>
+                                <a>
+                                    Invoice List
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Invoice View
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Invoice Edit
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Invoice Add
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Invoice Remove
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="menu-label">
+                    CONFIGRATION
+                </li>
+                <li class="has-children">
+                    <a>
+                        <i class="fas fa-cog fa-lg"></i>
+                        <span class="menu-text">Settings</span>
+                    </a>
+                    <div class="menu-child">
+                        <ul>
+                            <li>
+                                <a>
+                                    Setting 001
+                                </a>
+                            </li>
+                            <li>
+                                <a href="novel.html">
+                                    坊っちゃん
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Setting 003
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Setting 004
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Setting 005
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Setting 006
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Setting 007
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Setting 008
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="https://bulma.io" class="non-location" target="_blank" title="class=&quot;non-location&quot;">
+                        <i class="fas fa-question-circle fa-lg"></i>
+                        <span class="menu-text">Help</span>
+                    </a>
+                </li>
 
-        </ul>
+            </ul>
+
+        </div>
+
     </menu>
 
 </body>
