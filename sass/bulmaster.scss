@@ -4,6 +4,7 @@
 // override variables of bulma
 // ※bulmaのimportを行う前に定義しておく
 $modal-z: 900;
+$control-radius-small: 4px;
 // ---------------------------
 
 //// custom-color
@@ -15,12 +16,15 @@ $modal-z: 900;
 // variables of this file
 $menu-width: 250px;
 $header-height: 52px;
+$logo-height: $header-height;
 $page-padding-bottom: 100px;
 
-$icon-button-z: 800;
-$menu-z: 1100;
-$block-ui-z: 9000;
+// z-index
+$z-icon-button: 800;    // topへ移動やハンバーガなどのアイコンのz-index
+$z-menu: 1100;
+$z-block-ui: 9000;
 
+// colors
 $header-color: #fff;
 $header-bgcolor: #282d39;
 $icon-humburger-head-color: #888;
@@ -51,6 +55,8 @@ $menu-active-bgcolor: $info;;
 
 pre {
     background-color: transparent !important;
+    white-space: pre-line !important;
+    word-wrap: break-word !important;
 }
 
 // メニューul mixin
@@ -61,7 +67,6 @@ pre {
     width: inherit;
 
     li {
-        line-height: 44px;
         padding: 0;
         float: none;
 
@@ -69,11 +74,12 @@ pre {
             display: block;
             color: $menu-color;
             font-weight: 400;
-            line-height: 44px;
             font-size: 14px;
             text-decoration: none;
             margin-right: 1.15rem;
             padding-left: 12px !important;
+            padding-top: 12px;
+            padding-bottom: 11px;
             position: relative;
             z-index: 1;
 
@@ -102,6 +108,7 @@ pre {
                     font-weight: normal;
                     margin-left: 12px;
                     margin-right: 14px;
+                    opacity: .4;
                     content: '\025c9';
                 }
             }
@@ -140,12 +147,11 @@ pre {
                         content: "\03009";
                         transform: rotate(90deg);
                         transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
-                        top: 2px;
                         right: 12px;
                     }
 
                     > div.menu-child {
-                        animation: displayFadeIn 0.3s linear 0s;
+                        animation: displayFadeIn .3s linear 0s;
                         display: block;
                     }
 
@@ -166,24 +172,26 @@ menu {
     width: $menu-width;
     height: 100vh;
     background-color: $menu-bgcolor;
-    z-index: $menu-z;
+    z-index: $z-menu;
     overflow: hidden;
 
     // ロゴ
     .logo {
-        height: $header-height;
+        height: $logo-height;
         background-color: $header-bgcolor;
         display: flex;
         align-items: center;
         a {
             width: inherit;
             color: $header-color;
+            display: flex;
+            align-items: center;
 
             // ロゴのアイコン
             > i, svg {
                 width: 52px !important;
             }
-            > span {
+            > div {
                 font-weight: bold;
                 font-size: 21px;
             }
@@ -193,10 +201,7 @@ menu {
     // メニュー項目  (.menu-list という名前だとbulmaと被ってメンドウ)
     .menu-items {
         width: inherit;
-        height: calc(100% - 52px);
-        position: fixed;
-        top: $header-height;
-        left: inherit;
+        height: calc(100% - #{$logo-height});
         padding-bottom: $page-padding-bottom;
         overflow: hidden;
         &:hover {
@@ -257,7 +262,6 @@ main {
     // @Responsiveness
     @include until($desktop) {
         margin-left: 0;
-        border-left: 0;
     }
 }
 
@@ -277,14 +281,19 @@ nav.header {
     }
 
     .level-left {
+        // タイトル
+        span {
+            font-size: 1.3rem !important;
+        }
+
         @include until($tablet) {
             display: flex !important;
             flex-wrap: wrap;
-            margin-top: 0.5rem !important;
+            margin-top: .5rem !important;
+
             .level-item {
-                @include until($tablet) {
-                    margin-bottom: 0 !important;
-                }
+                margin-bottom: 0 !important;
+                margin-right: .75rem !important;
             }
         }
     }
@@ -294,14 +303,14 @@ nav.header {
             // bulmaではセンタリングしていたが、右寄せ回り込みを行う
             display: flex !important;
             flex-wrap: wrap;
-            margin-top: 0.2rem !important;
+            margin-top: .2rem !important;
         }
 
         .level-item {
             @include until($tablet) {
                 // bulmaでは ":not(:last-child)" にだけ, 右・下のマージンを適用しているけど, wrapさせるためにmobileではすべてマージンを取る
-                margin-right: 0.75rem !important;
-                margin-bottom: 0.75rem !important;
+                margin-right: .75rem !important;
+                margin-bottom: .75rem !important;
             }
         }
     }
@@ -312,6 +321,7 @@ nav.header {
         @extend .is-info;
         @extend .is-outlined;
         background-color: #fff;
+        border-radius: $control-radius-small;
     }
 
     // @Responsiveness
@@ -323,16 +333,15 @@ nav.header {
 // メニュー表示ハンバーガーボタン
 .icon-hamburger {
     color: $icon-humburger-head-color;
-    opacity: 0.5;
+    opacity: .5;
     cursor: pointer;
     &:hover {
         color: $icon-humburger-head-hover-color;
         opacity: 1;
     }
+    display: none;
+
     // @Responsiveness
-    @include from($desktop) {
-        display: none;
-    }
     @include until($desktop) {
         display: flex;
     }
@@ -342,7 +351,7 @@ body > .icon-hamburger {
     position: fixed;
     top: 16px;
     left: 16px;
-    z-index: $icon-button-z;
+    z-index: $z-icon-button;
     display: block !important;
     color: $icon-humburger-body-color !important;
     &:hover {
@@ -358,9 +367,9 @@ body > .icon-hamburger {
     bottom: 16px;
     right: 20px;
     color: $icon-move-top-color;
-    opacity: 0.5;
+    opacity: .5;
     visibility: hidden;     // visibilityを変更して出現させるのはJSで行う
-    z-index: $icon-button-z;
+    z-index: $z-icon-button;
     &:hover {
         opacity: 1;
     }
@@ -370,7 +379,7 @@ body > .icon-hamburger {
 // [JS auto generate]
 .block-ui {
     @extend .modal;
-    z-index: $block-ui-z;
+    z-index: $z-block-ui;
     cursor: wait;
     > .modal-background {
         > div {
@@ -427,8 +436,8 @@ body > .icon-hamburger {
     }
 }
 
-// 改行させる設定
-.is-nowrap {
+// 単語の途中でも改行させる設定
+.is-break-all {
     word-wrap: break-word;
-    white-space: pre-wrap;
+    word-break: break-all;
 }

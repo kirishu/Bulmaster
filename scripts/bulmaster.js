@@ -14,9 +14,9 @@ const Bulmaster = (() => {
     let _$menu;
     /** element #page_settings_$menu_modal （モーダルメニューの親element） */
     let _$menu_modal;
-    /** モーダルメニュー表示アイコン */
+    /** element　モーダルメニュー表示アイコン */
     let _$icon_hamburger;
-    /** lockUi */
+    /** element　lockUi */
     let _$lockUi;
 
     let _menu_width;
