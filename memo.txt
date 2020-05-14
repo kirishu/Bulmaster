@@ -4,6 +4,24 @@ Shift + Ctrl + B : build-sass 実行
 ----------------------------------------------------------
 menuタグは1つだけであること
 mainタグは1つだけであること
+section.containerも1つだけであること
+
+main
+    余白無し
+    サイドメニューのresponseve設定
+    navやjumbotromなどはこの直下に置くこと
+
+section.container
+    .container継承
+    max-widthのresponsive設定
+    余白無し
+    .unlimit-widthで、fullhdのときmax-widthなし
+    bulmaの margin: 0 auto を打ち消している
+
+.content
+    .content継承
+    左右下にpaddingがある（padding: 0 2rem 2rem 2rem;）
+
 
 
 ----------------------------------------------------------

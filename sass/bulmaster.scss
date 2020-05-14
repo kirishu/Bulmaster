@@ -255,16 +255,6 @@ menu {
     }
 }
 
-
-// メイン
-main {
-    margin-left: $menu-width;
-    // @Responsiveness
-    @include until($desktop) {
-        margin-left: 0;
-    }
-}
-
 // ヘッダnav
 nav.header {
     @extend .navbar;
@@ -393,14 +383,34 @@ body > .icon-hamburger {
     }
 }
 
-// コンテンツ領域
-.content-container {
+
+// メイン
+main {
+    margin-left: $menu-width;
+
+    // @Responsiveness
+    @include until($desktop) {
+        margin-left: 0;
+    }
+}
+
+// コンテナ
+.container {
     // ※top margin は JS(setOutline)で設定を行う
     @extend .container;
 
     padding: 0 2rem $page-padding-bottom 2rem;
     margin-left: 0 !important;      // 1408px以上のときにセンタリングされないように
     margin-right: 0 !important;     // 〃
+
+    // 1408px以上でもmax-widthを設定しない
+    &.unlimit-width {
+        @include from($fullhd) {
+            max-width: unset !important;
+        }
+    }
+}
+.content-container {
 
     ul {
         list-style: disc outside;
@@ -409,12 +419,6 @@ body > .icon-hamburger {
         margin-bottom: 1rem;
     }
 
-    // 1408px以上でもmax-widthを設定しない
-    &.unlimit-width {
-        @include from($fullhd) {
-            max-width: unset !important;
-        }
-    }
 }
 
 // Jumbotron style
