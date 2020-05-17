@@ -21,6 +21,7 @@ section.container
 .content
     .content継承
     左右下にpaddingがある（padding: 0 2rem 2rem 2rem;）
+    :last-child に、padding-bottom:$page-padding-bottom;
 
 
 
@@ -45,5 +46,3 @@ CSSでやっていること
     メニュー、メイン、ヘッダのResponsive
     ハンバーガーボタンの表示／非表示
     block-uiのstyle定義
-
-

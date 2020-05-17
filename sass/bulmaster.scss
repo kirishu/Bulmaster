@@ -5,6 +5,7 @@
 // ※bulmaのimportを行う前に定義しておく
 $modal-z: 900;
 $control-radius-small: 4px;
+$column-gap: .25rem .5rem;
 // ---------------------------
 
 //// custom-color
@@ -240,21 +241,6 @@ menu {
 
 } // end of menu
 
-// tablet以下のときに表示するモーダルメニューのアニメーション定義
-// [JS auto generate]
-// ※操作はJSで行う
-.modal-menu {
-    .modal-background {
-        transition-duration: .5s;
-        opacity: 0;
-    }
-    menu {
-        display: block;
-        transition-duration: .5s;
-        transform:translateX($menu-width * -1);
-    }
-}
-
 // ヘッダnav
 nav.header {
     @extend .navbar;
@@ -320,6 +306,22 @@ nav.header {
     }
 }
 
+
+// tablet以下のときに表示するモーダルメニューのアニメーション定義
+// [JS auto generate]
+// ※操作はJSで行う
+.modal-menu {
+    .modal-background {
+        transition-duration: .5s;
+        opacity: 0;
+    }
+    menu {
+        display: block;
+        transition-duration: .5s;
+        transform:translateX($menu-width * -1);
+    }
+}
+
 // メニュー表示ハンバーガーボタン
 .icon-hamburger {
     color: $icon-humburger-head-color;
@@ -347,6 +349,52 @@ body > .icon-hamburger {
     &:hover {
         color: $icon-humburger-body-hover-color;
         opacity: 1;
+    }
+}
+
+
+// メイン
+main {
+    margin-left: $menu-width;
+
+    // @Responsiveness
+    @include until($desktop) {
+        margin-left: 0;
+    }
+}
+
+// コンテナ
+.container {
+    //@extend .container;
+    // ※top margin は JS(setOutline)で設定を行う
+
+    margin-left: 0 !important;      // 1408px以上のときにセンタリングされないように
+    margin-right: 0 !important;     // 〃
+
+    // 1408px以上でもmax-widthを設定しない
+    &.unlimit-width {
+        @include from($fullhd) {
+            max-width: unset !important;
+        }
+    }
+}
+
+// コンテント
+.content {
+    //@extend .content;
+
+    margin: 0 !important;
+    padding: 0 2rem 2rem 2rem;
+
+    &:last-child {
+        padding-bottom: $page-padding-bottom;
+    }
+
+    ul {
+        list-style: disc outside;
+        margin-left: 2em;
+        margin-top: 1em;
+        margin-bottom: 1rem;
     }
 }
 
@@ -381,44 +429,6 @@ body > .icon-hamburger {
             color: #ccc;
         }
     }
-}
-
-
-// メイン
-main {
-    margin-left: $menu-width;
-
-    // @Responsiveness
-    @include until($desktop) {
-        margin-left: 0;
-    }
-}
-
-// コンテナ
-.container {
-    // ※top margin は JS(setOutline)で設定を行う
-    @extend .container;
-
-    padding: 0 2rem $page-padding-bottom 2rem;
-    margin-left: 0 !important;      // 1408px以上のときにセンタリングされないように
-    margin-right: 0 !important;     // 〃
-
-    // 1408px以上でもmax-widthを設定しない
-    &.unlimit-width {
-        @include from($fullhd) {
-            max-width: unset !important;
-        }
-    }
-}
-.content-container {
-
-    ul {
-        list-style: disc outside;
-        margin-left: 2em;
-        margin-top: 1em;
-        margin-bottom: 1rem;
-    }
-
 }
 
 // Jumbotron style

@@ -14,9 +14,9 @@ const Bulmaster = (() => {
     let _$menu;
     /** element #page_settings_$menu_modal （モーダルメニューの親element） */
     let _$menu_modal;
-    /** element　モーダルメニュー表示アイコン */
+    /** element モーダルメニュー表示アイコン */
     let _$icon_hamburger;
-    /** element　lockUi */
+    /** element lockUi */
     let _$lockUi;
 
     let _menu_width;
@@ -128,10 +128,10 @@ const Bulmaster = (() => {
      * ※init()と window.resizeイベントで呼ばれる
      */
     const setOutline = () => {
-        // .content-containerの上マージンをヘッダー(nav.header)の高さに合わせる
+        // section.containerの上マージンをヘッダー(nav.header)の高さに合わせる
         const nav = document.querySelector('nav.header');
         if (nav) {
-            document.querySelector('.content-container').style.marginTop = nav.clientHeight + 25 + 'px';
+            document.querySelector('section.container').style.marginTop = nav.clientHeight + 25 + 'px';
         }
     };
 
