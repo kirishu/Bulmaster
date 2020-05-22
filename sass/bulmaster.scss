@@ -53,9 +53,7 @@ $menu-active-bgcolor: $info;;
 }
 
 pre {
-    background-color: transparent !important;
-    white-space: pre-line !important;
-    word-wrap: break-word !important;
+    background-color: transparent;
 }
 
 // メニューul mixin
@@ -450,6 +448,7 @@ main {
 
 // 単語の途中でも改行させる設定
 .is-break-all {
-    word-wrap: break-word;
-    word-break: break-all;
+    word-wrap: break-word !important;
+    word-break: break-all !important;
+    white-space: pre-wrap !important;
 }
