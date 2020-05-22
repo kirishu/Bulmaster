@@ -21,7 +21,7 @@ const Bulmaster = (() => {
 
     let _menu_width;
 
-    // createElement と classList.addを一度にやるだけ
+    // createElement と classList.addを一度にやるだけの関数
     const _createElement = (tag, css) => {
         const elem = document.createElement(tag);
         elem.classList.add(...css);
@@ -198,8 +198,13 @@ const Bulmaster = (() => {
         }
     };
 
+    // DOMContentLoaded execute
+    window.addEventListener('DOMContentLoaded', (e) => {
+        Bulmaster.init();
+    });
+
     // ------------------------------
-    // 公開API
+    // public API
     return {
         /**
          * 初期化
@@ -227,8 +232,3 @@ const Bulmaster = (() => {
     };
 
 })();
-
-// execute
-window.addEventListener('DOMContentLoaded', (e) => {
-    Bulmaster.init();
-});

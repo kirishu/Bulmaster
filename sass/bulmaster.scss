@@ -1,18 +1,20 @@
-/*! bulmaster | github.com/kirishu/bulmaster */
 @charset "utf-8";
+/*! bulmaster | github.com/kirishu/bulmaster */
 
 // override variables of bulma
 // ※bulmaのimportを行う前に定義しておく
 $modal-z: 900;
 $control-radius-small: 4px;
 $column-gap: .25rem .5rem;
+$family-primary: "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", YuGothic, Meiryo, sans-serif;
+$family-monospace: Menlo, Monaco, Consolas, "Courier New", monospace;
 // ---------------------------
 
 //// custom-color
 //@import "custom-color.scss";
 
 // import bulma
-@import "../node_modules/bulma/bulma.sass";
+@import "./bulma/bulma.sass";
 
 // variables of this file
 $menu-width: 250px;
@@ -40,10 +42,6 @@ $menu-hover-bgcolor: rgba(255,255,255,0.2);
 $menu-child-bgcolor: rgba(255,255,255,0.04);
 $menu-active-color:#fff;
 $menu-active-bgcolor: $info;;
-
-* {
-    font-family: BlinkMacSystemFont,-apple-system,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,'Meiryo UI', Meiryo,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
-}
 
 @keyframes displayFadeIn {
     from { opacity: 0; }

@@ -1,5 +1,12 @@
-Ctrl + @ : npm install
-Shift + Ctrl + B : build-sass 実行
+Visual Studio Codeでの使い方
+    必要な拡張機能
+        npm, SCSS Intellisence
+
+    最初にやること
+        Ctrl + @ : npm install
+
+    毎回起動時にやること
+        Shift + Ctrl + B : build-sass 実行
 
 ----------------------------------------------------------
 menuタグは1つだけであること
@@ -24,18 +31,13 @@ section.container
     :last-child に、padding-bottom:$page-padding-bottom;
 
 
-
 ----------------------------------------------------------
-todo
-    アニメーション
-
-----------------------------------------------------------
-JSでやっていること
-    階層メニューのexpand（展開／折りたたみ）
-    .content-containerの上マージンをヘッダー(nav.header)の高さに合わせる
+JavaScriptでやっていること
+    階層メニュークリック時のexpand（展開／折りたたみ）
+    section.container の上マージンを、ヘッダー(nav.header)の高さに合わせる
     ページtopへ移動するボタンの表示と動き
-    ハンバーガーボタンのクリックとモーダルメニュー（ tablet以下のとき）
-    block-ui（おまちください的なやつ）の表示/非表示
+    ハンバーガーボタンのクリックとモーダルメニュー（tablet以下のとき）
+    block-ui（おまちください的なやつ）の表示／非表示
 
     下記のelementはJSで動的に作っている
         ・モーダルメニュー（メニューのnodeをコピって複製）
