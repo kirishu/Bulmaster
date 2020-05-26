@@ -4,29 +4,21 @@
 // override variables of bulma
 // ※bulmaのimportを行う前に定義しておく
 $modal-z: 900;
-$control-radius-small: 4px;
-$column-gap: .25rem .5rem;
+$primary: hsl(204, 71%, 53%);
 $family-primary: "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", YuGothic, Meiryo, sans-serif;
 $family-monospace: Menlo, Monaco, Consolas, "Courier New", monospace;
+$control-radius-small: 4px;
+$column-gap: .25rem .5rem;
 // ---------------------------
-
-//// custom-color
-//@import "custom-color.scss";
-
-// import bulma
-@import "./bulma/bulma.sass";
 
 // variables of this file
 $menu-width: 250px;
 $header-height: 52px;
-$logo-height: $header-height;
 $page-padding-bottom: 100px;
-
 // z-index
 $z-icon-button: 800;    // topへ移動やハンバーガなどのアイコンのz-index
 $z-menu: 1100;
 $z-block-ui: 9000;
-
 // colors
 $header-color: #fff;
 $header-bgcolor: #282d39;
@@ -35,13 +27,20 @@ $icon-humburger-head-hover-color: #fff;
 $icon-humburger-body-color: #555;
 $icon-humburger-body-hover-color: unset;
 $icon-move-top-color: #555;
-
 $menu-color: #fff;
 $menu-bgcolor: #2c323f;
 $menu-hover-bgcolor: rgba(255,255,255,0.2);
 $menu-child-bgcolor: rgba(255,255,255,0.04);
+$menu-label-color: #7a7a7a;
 $menu-active-color:#fff;
-$menu-active-bgcolor: $info;;
+
+
+// // custom-color
+// @import "custom-color.scss";
+
+// import bulma
+@import "./bulma/bulma.sass";
+
 
 @keyframes displayFadeIn {
     from { opacity: 0; }
@@ -53,7 +52,7 @@ $menu-active-bgcolor: $info;;
 }
 
 pre {
-    background-color: transparent;
+    background-color: transparent !important;
 }
 
 // メニューul mixin
@@ -82,7 +81,7 @@ pre {
 
             &.active {
                 color: $menu-active-color;
-                background: $menu-active-bgcolor !important;
+                background: $primary !important;
                 border-radius: 0 25px 25px 0;
             }
 
@@ -117,6 +116,7 @@ pre {
             padding-left: 20px !important;
             line-height: 1.5 !important;
             font-weight: bold;
+            color: $menu-label-color;
         }
 
         @if $is_child == false {
@@ -174,7 +174,8 @@ menu {
 
     // ロゴ
     .logo {
-        height: $logo-height;
+        width: 100%;
+        height: $header-height;
         background-color: $header-bgcolor;
         display: flex;
         align-items: center;
@@ -198,11 +199,11 @@ menu {
     // メニュー項目  (.menu-list という名前だとbulmaと被ってメンドウ)
     .menu-items {
         width: inherit;
-        height: calc(100% - #{$logo-height});
+        height: calc(100% - #{$header-height});
         padding-bottom: $page-padding-bottom;
         overflow: hidden;
         &:hover {
-            overflow-y: scroll;
+            overflow-y: auto;
         }
 
         &::-webkit-scrollbar {
@@ -290,7 +291,7 @@ nav.header {
     .navbtn {
         @extend .button;
         @extend .is-small;
-        @extend .is-info;
+        @extend .is-primary;
         @extend .is-outlined;
         background-color: #fff;
         border-radius: $control-radius-small;
@@ -340,11 +341,15 @@ body > .icon-hamburger {
     top: 16px;
     left: 16px;
     z-index: $z-icon-button;
-    display: block !important;
     color: $icon-humburger-body-color !important;
     &:hover {
         color: $icon-humburger-body-hover-color;
         opacity: 1;
+    }
+
+    // @Responsiveness
+    @include until($desktop) {
+        display: block !important;
     }
 }
 
@@ -361,7 +366,7 @@ main {
 
 // コンテナ
 .container {
-    //@extend .container;
+    // ***@extend .container;
     // ※top margin は JS(setOutline)で設定を行う
 
     margin-left: 0 !important;      // 1408px以上のときにセンタリングされないように
@@ -377,7 +382,7 @@ main {
 
 // コンテント
 .content {
-    //@extend .content;
+    // ***@extend .content;
 
     margin: 0 !important;
     padding: 0 2rem 2rem 2rem;
@@ -446,9 +451,94 @@ main {
     }
 }
 
+// 単語で改行させる設定
+.is-break-word {
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    white-space: pre-wrap !important;
+}
+
 // 単語の途中でも改行させる設定
 .is-break-all {
     word-wrap: break-word !important;
     word-break: break-all !important;
     white-space: pre-wrap !important;
+}
+
+
+// Switchコントロール
+.switch {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    label {
+        cursor: pointer;
+        font-size: .9rem;
+
+        input[type=checkbox] {
+            opacity: 0;
+            width: 0;
+            height: 0;
+            &:checked+.lever {
+                background-color: lighten($primary, 25%);
+                &::before, &::after {
+                    left: 18px;
+                }
+                &::after {
+                    background-color: $primary;
+                }
+            }
+            &:disabled+.lever {
+                cursor: default;
+                background-color: rgba(0,0,0,0.12);
+                &::after {
+                    background-color: #949494;
+                }
+            }
+        }
+
+        .lever {
+            content: "";
+            display: inline-block;
+            position: relative;
+            width: 36px;
+            height: 14px;
+            background-color: rgba(0,0,0,0.38);
+            border-radius: 15px;
+            -webkit-transition: background 0.3s ease;
+            transition: background 0.3s ease;
+            vertical-align: middle;
+            margin: 0 10px;
+
+            &::before, &::after {
+                content: "";
+                position: absolute;
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                left: 0;
+                top: -3px;
+                -webkit-transition: left 0.3s ease, background .3s ease, -webkit-box-shadow 0.1s ease, -webkit-transform .1s ease;
+                transition: left 0.3s ease, background .3s ease, -webkit-box-shadow 0.1s ease, -webkit-transform .1s ease;
+                transition: left 0.3s ease, background .3s ease, box-shadow 0.1s ease, transform .1s ease;
+                transition: left 0.3s ease, background .3s ease, box-shadow 0.1s ease, transform .1s ease, -webkit-box-shadow 0.1s ease, -webkit-transform .1s ease;
+            }
+            &::before {
+                background-color: rgba(38,166,154,0.15);
+            }
+            &::after {
+                background-color: #F1F1F1;
+                -webkit-box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12);
+                box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12);
+            }
+        }
+    }
+
+    &.is-marginless .lever {
+        margin: 0;
+    }
 }

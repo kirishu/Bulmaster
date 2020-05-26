@@ -150,7 +150,7 @@ const Bulmaster = (() => {
             e.preventDefault();
             const duration = 20;
             const y = window.pageYOffset;
-            const step = duration / y > 1 ? 10 : 100;
+            const step = duration / y > 1 ? 10 : 80;
             const timeStep = duration / y * step;
 
             const scrollUp = () => {
