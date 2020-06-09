@@ -3,12 +3,14 @@
 
 // override variables of bulma
 // ※bulmaのimportを行う前に定義しておく
+$body-size: 14px;
 $modal-z: 900;
 $primary: hsl(204, 71%, 53%);
 $family-primary: "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", YuGothic, Meiryo, sans-serif;
 $family-monospace: Menlo, Monaco, Consolas, "Courier New", monospace;
 $control-radius-small: 4px;
 $column-gap: .25rem .5rem;
+$label-weight: 400;
 // ---------------------------
 
 // variables of this file
@@ -40,7 +42,6 @@ $menu-active-color:#fff;
 
 // import bulma
 @import "./bulma/bulma.sass";
-
 
 @keyframes displayFadeIn {
     from { opacity: 0; }
@@ -95,6 +96,9 @@ pre {
             i, svg {
                 width: 32px !important;
                 margin-right: 4px;
+                font-size: 1.33em;
+                line-height: .75em;
+                vertical-align: -.225em;
             }
 
             @if $is_child {
@@ -115,6 +119,7 @@ pre {
             text-transform: none !important;
             padding-left: 20px !important;
             line-height: 1.5 !important;
+            font-size: .85em;
             font-weight: bold;
             color: $menu-label-color;
         }
@@ -188,6 +193,7 @@ menu {
             // ロゴのアイコン
             > i, svg {
                 width: 52px !important;
+                font-size: 2.5em;
             }
             > div {
                 font-weight: bold;
@@ -255,9 +261,7 @@ nav.header {
 
     .level-left {
         // タイトル
-        span {
-            font-size: 1.3rem !important;
-        }
+        font-size: 1.5rem;
 
         @include until($tablet) {
             display: flex !important;
@@ -295,6 +299,7 @@ nav.header {
         @extend .is-outlined;
         background-color: #fff;
         border-radius: $control-radius-small;
+        font-size: .85rem;
     }
 
     // @Responsiveness
@@ -340,6 +345,7 @@ body > .icon-hamburger {
     position: fixed;
     top: 16px;
     left: 16px;
+    font-size: 1.8rem;
     z-index: $z-icon-button;
     color: $icon-humburger-body-color !important;
     &:hover {
@@ -399,6 +405,12 @@ main {
     }
 }
 
+// bulma override
+.control {
+    margin-bottom: 0 !important;
+}
+
+
 // ページ先頭ボタン
 // [JS auto generate]
 .icon-move-top {
@@ -409,6 +421,7 @@ main {
     opacity: .5;
     visibility: hidden;     // visibilityを変更して出現させるのはJSで行う
     z-index: $z-icon-button;
+    font-size: 2.25em;
     &:hover {
         opacity: 1;
     }
@@ -465,8 +478,30 @@ main {
     white-space: pre-wrap !important;
 }
 
+// タブ付きグループパネル
+.group-panel {
+    border-radius: 6px;
 
-// Switchコントロール
+    // 直下にdivは2つだけ定義すること
+    > div:first-child {
+        background-color: $menu-bgcolor;
+        color: $menu-color;
+        border-radius: 6px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        padding: 0.5rem 2rem 0.5rem 1rem;
+        display: inline-flex;
+    }
+    > div:last-child {
+        border: solid 1px $menu-bgcolor;
+        border-radius: 6px;
+        border-top-left-radius: 0;
+        padding: 1.5rem;
+        background: whitesmoke;
+    }
+}
+
+// Switchコントロール (checkbox)
 .switch {
     -webkit-tap-highlight-color: transparent;
     -webkit-user-select: none;

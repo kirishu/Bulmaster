@@ -17,10 +17,10 @@
         <nav class="header level">
             <div class="level-left">
                 <div class="level-item icon-hamburger">
-                    <i class="fas fa-bars fa-lg"></i>
+                    <i class="fas fa-bars"></i>
                 </div>
                 <div class="level-item">
-                    <i class="far fa-envelope fa-lg"></i>
+                    <i class="far fa-envelope"></i>
                     <span>Mail</span>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                 <p class="level-item">
                     <a class="navbtn"
                         onclick="Bulmaster.showBlockUi(true); setTimeout((() => {Bulmaster.showBlockUi(false);}), 5000);">
-                        <span class="icon is-small"><i class="fas fa-sync"></i></span>
+                        <span class="icon"><i class="fas fa-sync"></i></span>
                         <span>block-ui</span>
                     </a>
                 </p>
@@ -40,13 +40,13 @@
                 -->
                 <p class="level-item">
                     <a class="navbtn">
-                        <span class="icon is-small"><i class="fab fa-twitter"></i></span>
+                        <span class="icon"><i class="fab fa-twitter"></i></span>
                         <span>Twitter</span>
                     </a>
                 </p>
                 <p class="level-item">
                     <a class="navbtn" onclick="alert('github click')">
-                        <span class="icon is-small"><i class="fab fa-github"></i></span>
+                        <span class="icon"><i class="fab fa-github"></i></span>
                         <span>GitHub</span>
                     </a>
                 </p>
@@ -318,7 +318,7 @@
                                 </div>
                                 <div class="switch is-marginless">
                                     <label>
-                                        <input type="checkbox" disabled>
+                                        <input type="checkbox">
                                         <span class="lever"></span>
                                         .swith.is-marginless
                                     </label>
@@ -327,12 +327,112 @@
                         </div>
                     </div>
 
-
                 </div>
 
-
-
             </form>
+
+
+            <div class="content">
+                <hr />
+            </div>
+
+            <div class="content">
+
+                <!-- テストその２ -->
+                <div class="group-panel">
+                    <div>
+                        Grid Form
+                    </div>
+                    <div>
+
+                        <form>
+                            <div class="columns field">
+                                <div class="column is-7">
+                                    <label class="label">Email</label>
+                                    <div class="control">
+                                        <input class="input" type="text" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="column is-5">
+                                    <label class="label">Password</label>
+                                    <div class="control">
+                                        <input class="input" type="password" placeholder="Password">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="columns field">
+                                <div class="column">
+                                    <label class="label">Address</label>
+                                    <div class="control">
+                                        <input class="input" type="text" placeholder="Address">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="columns field">
+                                <div class="column is-6">
+                                    <label class="label">City</label>
+                                    <div class="control">
+                                        <input class="input" type="text" placeholder="City">
+                                    </div>
+                                </div>
+                                <div class="column is-4">
+                                    <label class="label">State</label>
+                                    <div class="control">
+                                        <div class="select is-fullwidth">
+                                            <select>
+                                                <option>is-fullwidth</option>
+                                                <option>hoge</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column is-2">
+                                    <label class="label">Zip</label>
+                                    <div class="control">
+                                        <input class="input" type="text" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="columns field">
+                                <div class="column">
+                                    <div class="control">
+                                        <label class="checkbox">
+                                            <input type="checkbox">
+                                            Agree to terms and conditions
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="columns field">
+                                <div class="column">
+                                    <div class="control">
+                                        <label class="radio">
+                                            <input type="radio" name="question">
+                                            Radoio1
+                                        </label>
+                                        <label class="radio">
+                                            <input type="radio" name="question">
+                                            Radoio2
+                                        </label>
+                                        <label class="radio">
+                                            <input type="radio" name="question">
+                                            Radoio3
+                                        </label>
+                                        <label class="radio">
+                                            <input type="radio" name="question">
+                                            Radoio4
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
         </section>
 
     </main>
@@ -342,7 +442,7 @@
     <menu>
         <div class="logo">
             <a href="jumbotron.html">
-                <i class="fab fa-html5 fa-2x"></i>
+                <i class="fab fa-html5"></i>
                 <div>Bulmaster</div>
             </a>
         </div>
@@ -351,13 +451,13 @@
             <ul>
                 <li>
                     <a href="outline.html">
-                        <i class="fas fa-laptop-house fa-lg"></i>
+                        <i class="fas fa-laptop-house"></i>
                         <span class="menu-text">Dashboard</span>
                     </a>
                 </li>
                 <li>
                     <a href="form.html" class="active">
-                        <i class="far fa-envelope fa-lg"></i>
+                        <i class="far fa-envelope"></i>
                         <span class="menu-text">Mail</span>
                     </a>
                 </li>
@@ -366,13 +466,13 @@
                 </li>
                 <li>
                     <a>
-                        <i class="fas fa-user fa-lg"></i>
+                        <i class="fas fa-user"></i>
                         <span class="menu-text">User Profile</span>
                     </a>
                 </li>
                 <li class="has-children">
                     <a>
-                        <i class="fas fa-chart-line fa-lg"></i>
+                        <i class="fas fa-chart-line"></i>
                         <span class="menu-text">Charts</span>
                     </a>
                     <div class="menu-child">
@@ -407,7 +507,7 @@
                 </li>
                 <li class="has-children">
                     <a>
-                        <i class="fas fa-file-alt fa-lg"></i>
+                        <i class="fas fa-file-alt"></i>
                         <span class="menu-text">Invoice</span>
                     </a>
                     <div class="menu-child">
@@ -445,7 +545,7 @@
                 </li>
                 <li class="has-children">
                     <a>
-                        <i class="fas fa-cog fa-lg"></i>
+                        <i class="fas fa-cog"></i>
                         <span class="menu-text">Settings</span>
                     </a>
                     <div class="menu-child">
@@ -496,7 +596,7 @@
                 <li>
                     <a href="https://bulma.io" class="non-location" target="_blank"
                         title="class=&quot;non-location&quot;">
-                        <i class="fas fa-question-circle fa-lg"></i>
+                        <i class="fas fa-question-circle"></i>
                         <span class="menu-text">Help</span>
                     </a>
                 </li>

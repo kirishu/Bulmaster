@@ -138,7 +138,7 @@ const Bulmaster = (() => {
     /** PageTopスクロール設定 */
     const scrollPageTop = () => {
         // PageTop Node作成
-        const i = _createElement('i', ['fas', 'fa-chevron-circle-up', 'fa-2x']);
+        const i = _createElement('i', ['fas', 'fa-chevron-circle-up']);
         const s = _createElement('span', ['icon']);
         const icon = _createElement('a', ['icon-move-top']);
         s.appendChild(i);
