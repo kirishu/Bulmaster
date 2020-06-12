@@ -115,10 +115,45 @@ const Bulmaster = (() => {
         menunode.style.display = 'block';
         _$menu_modal.appendChild(menunode);
 
-        // メニュー エレメントに clickイベントを付与
+        // メニュー のアンカーに clickイベントを付与
         document.querySelectorAll('menu ul a').forEach(a => {
             a.addEventListener('click', _menuClickEvent, false);
         }, this);
+
+
+        // 表示制御switchを動的に追加
+        const html = (() => {/*
+            <div>
+                MENU SWITCH
+            </div>
+            <div class="switch">
+                <label>
+                    <input type="checkbox" checked>
+                    <span class="lever"></span>
+                </label>
+            </div>
+        */}).toString().match(/(?:\/\*(?:[\s\S]*?)\*\/)/).pop().replace(/^\/\*/, '').replace(/\*\/$/, '');
+        const domli = _createElement('li', ['menu-label', 'menu-switch']);
+        domli.innerHTML = html;
+        _$menu.querySelector('ul').appendChild(domli);
+
+        // 表示制御switch change event
+        _$menu.querySelector(".switch input[type='checkbox']").addEventListener('change', (e) => {
+            const main = document.querySelector('main');
+            const nav = document.querySelector('nav.header');
+            if (e.target.checked) {
+
+            } else {
+                main.style.marginLeft = '0';
+                if (nav) {
+                    nav.style.left = '0';
+                    _$icon_hamburger.style.display = 'block';
+                } else {
+                    _$icon_hamburger.style.display = 'flex';
+                }
+                _$menu.style.width = '0';
+            }
+        }, false);
 
         return;
     };
@@ -177,13 +212,24 @@ const Bulmaster = (() => {
         window.addEventListener('resize', setOutline, false);
 
         if (_$icon_hamburger) {
-            // モーダルメニュー 表示（ハンバーガアイコン click event）
+            // ハンバーガアイコン click event
             _$icon_hamburger.addEventListener('click', (e) => {
+                const menuswitch = _$menu.querySelector(".switch input[type='checkbox']");
                 _$menu_modal.style.display = 'block';
-                setTimeout(() => {
-                    _$menu_modal.querySelector('.modal-background').style.opacity = '1';
-                    _$menu_modal.querySelector('menu').style.transform = 'translateX(0px)';
-                }, 10);
+                if (menuswitch.checked) {
+                    // モーダルメニュー 表示
+                    setTimeout(() => {
+                        _$menu_modal.querySelector('.modal-background').style.opacity = '1';
+                        _$menu_modal.querySelector('menu').style.transform = 'translateX(0px)';
+                    }, 10);
+                } else {
+                    // モーダルでないメニューの表示
+                    setTimeout(() => {
+                        _$menu_modal.querySelector('.modal-background').style.opacity = '1';
+                        _$menu.style.width = _menu_width + 'px';
+                    }, 10);
+                }
+
             }, false);
         }
         if (_$menu_modal) {

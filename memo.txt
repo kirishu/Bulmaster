@@ -31,6 +31,8 @@ section.container
     :last-child に、padding-bottom:$page-padding-bottom;
 
 
+コンテンツ内のz-indexは、900未満であること
+
 ----------------------------------------------------------
 JavaScriptでやっていること
     階層メニュークリック時のexpand（展開／折りたたみ）

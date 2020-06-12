@@ -29,13 +29,12 @@ $icon-humburger-head-hover-color: #fff;
 $icon-humburger-body-color: #555;
 $icon-humburger-body-hover-color: unset;
 $icon-move-top-color: #555;
-$menu-color: #fff;
-$menu-bgcolor: #2c323f;
+$menu-bgcolor: #2a3f54;
 $menu-hover-bgcolor: rgba(255,255,255,0.2);
 $menu-child-bgcolor: rgba(255,255,255,0.04);
+$menu-color: #fff;
 $menu-label-color: #7a7a7a;
 $menu-active-color:#fff;
-
 
 // // custom-color
 // @import "custom-color.scss";
@@ -176,6 +175,7 @@ menu {
     background-color: $menu-bgcolor;
     z-index: $z-menu;
     overflow: hidden;
+    transition-duration:.3s;
 
     // ロゴ
     .logo {
@@ -244,6 +244,23 @@ menu {
 
 } // end of menu
 
+
+// メニュー 表示/非表示 switch
+menu .menu-switch {
+    // @Responsiveness
+    @include until($desktop) {
+        display: none;
+    }
+
+    .switch {
+        margin: 1rem 0 0 0;
+        span {
+            margin: 0;
+        }
+    }
+}
+
+
 // ヘッダnav
 nav.header {
     @extend .navbar;
@@ -255,6 +272,7 @@ nav.header {
     color: $header-color;
     padding-left: 1.0rem;
     padding-right: 1.0rem;
+    transition-duration:.3s;
     svg {
         margin-right: .6rem;
     }
@@ -363,6 +381,7 @@ body > .icon-hamburger {
 // メイン
 main {
     margin-left: $menu-width;
+    transition-duration:.3s;
 
     // @Responsiveness
     @include until($desktop) {
@@ -518,7 +537,7 @@ main {
             width: 0;
             height: 0;
             &:checked+.lever {
-                background-color: lighten($primary, 25%);
+                background-color: lighten($primary, 35%);
                 &::before, &::after {
                     left: 18px;
                 }
@@ -566,7 +585,7 @@ main {
                 background-color: rgba(38,166,154,0.15);
             }
             &::after {
-                background-color: #F1F1F1;
+                background-color: #f1f1f1;
                 -webkit-box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12);
                 box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12);
             }
