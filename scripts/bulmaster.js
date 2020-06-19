@@ -8,13 +8,14 @@ const Bulmaster = (() => {
     /** 各種設定 */
     const _settings = {
         neverChileMenuClose: false,     // trueなら子メニューは常に開いたまま（expandしっぱなし）
+        showMenuHideSwitch: true,       // メニューを隠すswitchの表示
     };
 
     /** element <menu> */
     let _$menu;
-    /** element #page_settings_$menu_modal （モーダルメニューの親element） */
-    let _$menu_modal;
-    /** element モーダルメニュー表示アイコン */
+    /** element Responsiveメニューの親element） */
+    let _$menu_rpsv;
+    /** element メニュー表示アイコン */
     let _$icon_hamburger;
     /** element lockUi */
     let _$lockUi;
@@ -34,15 +35,15 @@ const Bulmaster = (() => {
         _$menu = document.querySelector('menu');
 
         if (_$menu) {
-            // モーダルメニュー表示アイコン
+            // Responsiveメニュー表示アイコン
             _$icon_hamburger = document.querySelector('.icon-hamburger');
 
-            // モバイル用モーダルメニュー 親element作成
+            // モバイル用Responsiveメニュー 親element作成
             const elemA1 = _createElement('div', ['modal', 'modal-menu']);
             const elemA2 = _createElement('div', ['modal-background']);
             elemA1.appendChild(elemA2);
             document.body.appendChild(elemA1);
-            _$menu_modal = elemA1;
+            _$menu_rpsv = elemA1;
 
             // メニューのwidthを取得
             _menu_width = parseInt(window.getComputedStyle(_$menu).width, 10);
@@ -110,10 +111,10 @@ const Bulmaster = (() => {
             }
         }
 
-        // モーダルメニュー用に<menu>nodeをコピーして、_$menu_modalの子要素にする
+        // Responsiveメニュー用に<menu>nodeをコピーして、_$menu_rpsvの子要素にする
         const menunode = _$menu.cloneNode(true);
         menunode.style.display = 'block';
-        _$menu_modal.appendChild(menunode);
+        _$menu_rpsv.appendChild(menunode);
 
         // メニュー のアンカーに clickイベントを付与
         document.querySelectorAll('menu ul a').forEach(a => {
@@ -122,38 +123,40 @@ const Bulmaster = (() => {
 
 
         // 表示制御switchを動的に追加
-        const html = (() => {/*
-            <div>
-                MENU SWITCH
-            </div>
-            <div class="switch">
-                <label>
-                    <input type="checkbox" checked>
-                    <span class="lever"></span>
-                </label>
-            </div>
-        */}).toString().match(/(?:\/\*(?:[\s\S]*?)\*\/)/).pop().replace(/^\/\*/, '').replace(/\*\/$/, '');
-        const domli = _createElement('li', ['menu-label', 'menu-switch']);
-        domli.innerHTML = html;
-        _$menu.querySelector('ul').appendChild(domli);
+        if (_settings.showMenuHideSwitch) {
+            const html = (() => {/*
+                <div>
+                    MENU SWITCH
+                </div>
+                <div class="switch is-marginless">
+                    <label>
+                        <input type="checkbox" checked>
+                        <span class="lever"></span>
+                    </label>
+                </div>
+            */}).toString().match(/(?:\/\*(?:[\s\S]*?)\*\/)/).pop().replace(/^\/\*/, '').replace(/\*\/$/, '');
+            const domli = _createElement('li', ['menu-label', 'menu-switch']);
+            domli.innerHTML = html;
+            _$menu.querySelector('ul').appendChild(domli);
 
-        // 表示制御switch change event
-        _$menu.querySelector(".switch input[type='checkbox']").addEventListener('change', (e) => {
-            const main = document.querySelector('main');
-            const nav = document.querySelector('nav.header');
-            if (e.target.checked) {
+            // 表示制御switch change event
+            _$menu.querySelector(".switch input[type='checkbox']").addEventListener('change', (e) => {
+                const main = document.querySelector('main');
+                const nav = document.querySelector('nav.header');
+                if (e.target.checked) {
 
-            } else {
-                main.style.marginLeft = '0';
-                if (nav) {
-                    nav.style.left = '0';
-                    _$icon_hamburger.style.display = 'block';
                 } else {
-                    _$icon_hamburger.style.display = 'flex';
+                    main.style.marginLeft = '0';
+                    if (nav) {
+                        nav.style.left = '0';
+                        _$icon_hamburger.style.display = 'block';
+                    } else {
+                        _$icon_hamburger.style.display = 'flex';
+                    }
+                    _$menu.style.width = '0';
                 }
-                _$menu.style.width = '0';
-            }
-        }, false);
+            }, false);
+        }
 
         return;
     };
@@ -170,6 +173,13 @@ const Bulmaster = (() => {
         }
     };
 
+    /**
+     * メニュー消去
+     */
+    const hideMenu = () => {
+
+    };
+
     /** PageTopスクロール設定 */
     const scrollPageTop = () => {
         // PageTop Node作成
@@ -183,9 +193,9 @@ const Bulmaster = (() => {
         // スクロールボタン click event
         icon.addEventListener('click', (e) => {
             e.preventDefault();
-            const duration = 20;
+            const duration = 200;
             const y = window.pageYOffset;
-            const step = duration / y > 1 ? 10 : 80;
+            const step = duration / y > 1 ? 10 : 40;
             const timeStep = duration / y * step;
 
             const scrollUp = () => {
@@ -215,31 +225,48 @@ const Bulmaster = (() => {
             // ハンバーガアイコン click event
             _$icon_hamburger.addEventListener('click', (e) => {
                 const menuswitch = _$menu.querySelector(".switch input[type='checkbox']");
-                _$menu_modal.style.display = 'block';
+                _$menu_rpsv.style.display = 'block';
                 if (menuswitch.checked) {
-                    // モーダルメニュー 表示
+                    // Responsiveメニュー 表示
                     setTimeout(() => {
-                        _$menu_modal.querySelector('.modal-background').style.opacity = '1';
-                        _$menu_modal.querySelector('menu').style.transform = 'translateX(0px)';
+                        _$menu_rpsv.querySelector('.modal-background').style.opacity = '1';
+                        _$menu_rpsv.querySelector('menu').style.transform = 'translateX(0px)';
                     }, 10);
                 } else {
-                    // モーダルでないメニューの表示
+                    // Responsiveでないメニュー（最初から表示しているメニュー）の表示
                     setTimeout(() => {
-                        _$menu_modal.querySelector('.modal-background').style.opacity = '1';
+                        _$menu_rpsv.querySelector('.modal-background').style.opacity = '1';
                         _$menu.style.width = _menu_width + 'px';
                     }, 10);
                 }
 
             }, false);
         }
-        if (_$menu_modal) {
-            // モーダルメニュー 消去（background click event）
-            _$menu_modal.querySelector('.modal-background').addEventListener('click', (e) => {
-                _$menu_modal.querySelector('.modal-background').style.opacity = '0';
-                _$menu_modal.querySelector('menu').style.transform = `translateX(-${_menu_width}px)`;
-                setTimeout(() => {
-                    _$menu_modal.style.display = 'none';
-                }, 1000);
+        if (_$menu_rpsv) {
+            // メニュー 消去（background click event）
+            _$menu_rpsv.querySelector('.modal-background').addEventListener('click', (e) => {
+                const menuswitch = _$menu.querySelector(".switch input[type='checkbox']");
+                _$menu_rpsv.querySelector('.modal-background').style.opacity = '0';
+                if (menuswitch.checked) {
+                    // Responsiveメニュー 非表示
+                    _$menu_rpsv.querySelector('menu').style.transform = `translateX(-${_menu_width}px)`;
+                    setTimeout(() => {
+                        _$menu_rpsv.style.display = 'none';
+                    }, 1000);
+                } else {
+                    // Responsiveでないメニュー（最初から表示しているメニュー）の非表示
+                    const nav = document.querySelector('nav.header');
+                    if (nav) {
+                        nav.style.left = '0';
+                        _$icon_hamburger.style.display = 'block';
+                    } else {
+                        _$icon_hamburger.style.display = 'flex';
+                    }
+                    _$menu.style.width = '0';
+                    _$menu_rpsv.style.display = 'none';
+                }
+
+
             }, false);
         }
     };
