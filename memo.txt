@@ -3,15 +3,17 @@ Visual Studio Codeでの使い方
         npm, SCSS Intellisence
 
     最初にやること
-        Ctrl + @ : npm install
+        Ctrl + @  →  npm install
 
     毎回起動時にやること
-        Shift + Ctrl + B : build-sass 実行
+        Shift + Ctrl + B  →  build-sass 実行
 
 ----------------------------------------------------------
-menuタグは1つだけであること
-mainタグは1つだけであること
-section.containerも1つだけであること
+★お約束
+HTML内には・・・
+    menuタグは1つだけであること
+    mainタグは1つだけであること
+    section.containerも1つだけであること
 
 main
     余白無し
@@ -20,10 +22,11 @@ main
 
 section.container
     .container継承
-    max-widthのresponsive設定
     余白無し
     .unlimit-widthで、fullhdのときmax-widthなし
     bulmaの margin: 0 auto を打ち消している
+    また、max-widthのresponsive設定も打ち消している
+      （画面幅いっぱいを使う）
 
 .content
     .content継承
@@ -36,17 +39,25 @@ section.container
 ----------------------------------------------------------
 JavaScriptでやっていること
     階層メニュークリック時のexpand（展開／折りたたみ）
-    section.container の上マージンを、ヘッダー(nav.header)の高さに合わせる
     ページtopへ移動するボタンの表示と動き
     ハンバーガーボタンのクリックとモーダルメニュー（tablet以下のとき）
     block-ui（おまちください的なやつ）の表示／非表示
+    メニューの縮小/復元
+    Dropdownボタンのクリックイベント
 
     下記のelementはJSで動的に作っている
         ・モーダルメニュー（メニューのnodeをコピって複製）
         ・ページtop移動ボタン
         ・block-ui
+        ・メニューの縮小switch
 
 CSSでやっていること
     メニュー、メイン、ヘッダのResponsive
     ハンバーガーボタンの表示／非表示
     block-uiのstyle定義
+
+----------------------------------------------------------
+ポリシーのようなもの
+    Responsiveの定義はCSSで行い、JSは関与しないように
+    JSはプリミティブなイベントを請け負う方針で
+

@@ -16,9 +16,11 @@
 
         <nav class="header level">
             <div class="level-left">
+                <!--
                 <div class="level-item icon-hamburger">
                     <i class="fas fa-bars"></i>
                 </div>
+                -->
                 <div class="level-item">
                     <i class="far fa-envelope"></i>
                     <span>Form</span>
@@ -33,30 +35,7 @@
                     </a>
                 </div>
                 <div class="level-item">
-                    <div class="dropdown">
-                        <div class="dropdown-trigger">
-                            <a class="navbtn">
-                                <span class="icon"><i class="fas fa-globe-americas"></i></span>
-                                <span>Dropdown</span>
-                                <span class="icon is-small">
-                                    <i class="fas fa-angle-down" aria-hidden="true"></i>
-                                </span>
-                            </a>
-                        </div>
-                        <div class="dropdown-menu">
-                            <div class="dropdown-content">
-                                <a href="javascript:(alert('selected one'))" class="dropdown-item">
-                                    Dropdown item 1
-                                </a>
-                                <a href="javascript:(alert('selected two'))" class="dropdown-item">
-                                    Dropdown item 2
-                                </a>
-                                <a href="javascript:(alert('selected three'))" class="dropdown-item">
-                                    Dropdown item 3
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    <a class="navbtn">button2</a>
                 </div>
                 <div class="level-item">
                     <a class="navbtn">
@@ -170,6 +149,9 @@
 
                 <div class="content">
                     <hr />
+                </div>
+
+                <div class="content">
 
                     <!-- horizontal form sample -->
                     <h4 class="title is-4">
@@ -306,6 +288,52 @@
                         </div>
                     </div>
 
+                    <div class="field is-horizontal">
+                        <div class="field-label">
+                            <!-- Left empty for spacing -->
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <!-- Switch -->
+                                <div class="switch">
+                                    <label>
+                                        Off
+                                        <input type="checkbox" checked>
+                                        <span class="lever"></span>
+                                        On
+                                    </label>
+                                </div>
+                                <div class="switch">
+                                    <label>
+                                        <input type="checkbox">
+                                        <span class="lever"></span>
+                                    </label>
+                                </div>
+                                <div class="switch">
+                                    <label>
+                                        <input type="checkbox" disabled checked>
+                                        <span class="lever"></span>
+                                        disabled checked
+                                    </label>
+                                </div>
+                                <div class="switch">
+                                    <label>
+                                        <input type="checkbox" disabled>
+                                        <span class="lever"></span>
+                                        disabled off
+                                    </label>
+                                </div>
+                                <div class="switch is-marginless">
+                                    <label>
+                                        <input type="checkbox">
+                                        <span class="lever"></span>
+                                        .swith.is-marginless
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
             </form>
@@ -313,8 +341,11 @@
 
             <div class="content">
                 <hr />
+            </div>
 
-                <!-- Grid Form -->
+            <div class="content">
+
+                <!-- テストその２ -->
                 <div class="group-panel">
                     <div>
                         Grid Form
@@ -409,299 +440,9 @@
                 </div>
             </div>
 
-
-
-            <div class="content">
-                <hr />
-                <h4 class="title is-4">
-                    switch
-                </h4>
-
-                <div class="field is-horizontal">
-                    <div class="field-label">
-                        <!-- Left empty for spacing -->
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <!-- Switch -->
-                            <div class="switch">
-                                <label>
-                                    Off
-                                    <input type="checkbox" checked>
-                                    <span class="lever"></span>
-                                    On
-                                </label>
-                            </div>
-                            <div class="switch">
-                                <label>
-                                    <input type="checkbox">
-                                    <span class="lever"></span>
-                                </label>
-                            </div>
-                            <div class="switch">
-                                <label>
-                                    <input type="checkbox" disabled checked>
-                                    <span class="lever"></span>
-                                    disabled checked
-                                </label>
-                            </div>
-                            <div class="switch">
-                                <label>
-                                    <input type="checkbox" disabled>
-                                    <span class="lever"></span>
-                                    disabled off
-                                </label>
-                            </div>
-                            <div class="switch is-marginless">
-                                <label>
-                                    <input type="checkbox">
-                                    <span class="lever"></span>
-                                    .swith.is-marginless
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="content">
-                <hr />
-                <h4 class="title is-4">
-                    buttons
-                </h4>
-
-                <div class="field is-horizontal">
-                    <div class="field-label">
-                        <!-- Left empty for spacing -->
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-
-                            <button class="button is-primary">button</button>
-
-                            <div class="dropdown">
-                                <div class="dropdown-trigger">
-                                    <button class="button is-primary">
-                                        <span>Dropdown button</span>
-                                        <span class="icon is-small">
-                                            <i class="fas fa-angle-down"></i>
-                                        </span>
-                                    </button>
-                                </div>
-                                <div class="dropdown-menu">
-                                    <div class="dropdown-content">
-                                        <a href="javascript:(alert('selected one'))" class="dropdown-item">
-                                            Dropdown item 1
-                                        </a>
-                                        <a href="javascript:(alert('selected two'))" class="dropdown-item">
-                                            Dropdown item 2
-                                        </a>
-                                        <a href="javascript:(alert('selected three'))" class="dropdown-item">
-                                            Dropdown item 3
-                                        </a>
-                                        <a href="javascript:(alert('selected four'))" class="dropdown-item">
-                                            Dropdown item 4
-                                        </a>
-                                        <hr class="dropdown-divider">
-                                        <a href="javascript:(alert('selected five'))" class="dropdown-item">
-                                            Dropdown item 5 With a divider
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <button class="button is-primary is-outlined">is-outlined</button>
-
-                            <button class="button is-success">
-                                <span class="icon is-small">
-                                    <i class="fas fa-check"></i>
-                                </span>
-                                <span>Save</span>
-                            </button>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-
-
-
-
         </section>
 
     </main>
-
-
-    <!-- menu -->
-    <menu>
-        <div class="logo">
-            <a href="jumbotron.html">
-                <i class="fab fa-html5"></i>
-                <div>Bulmaster</div>
-            </a>
-        </div>
-
-        <div class="menu-items">
-            <ul>
-                <li>
-                    <a href="outline.html">
-                        <i class="fas fa-laptop-house"></i>
-                        <span class="menu-text">Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="form.html" class="active">
-                        <i class="far fa-envelope"></i>
-                        <span class="menu-text">Form</span>
-                    </a>
-                </li>
-                <li class="menu-label">
-                    APPLICATION
-                </li>
-                <li>
-                    <a>
-                        <i class="fas fa-user"></i>
-                        <span class="menu-text">User Profile</span>
-                    </a>
-                </li>
-                <li class="has-children">
-                    <a>
-                        <i class="fas fa-chart-line"></i>
-                        <span class="menu-text">Charts</span>
-                    </a>
-                    <div class="menu-child">
-                        <ul>
-                            <li>
-                                <a>
-                                    Line Charts
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    Bar Charts
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    Area Charts
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    Doughnut Charts
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    Financial Charts
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="has-children">
-                    <a>
-                        <i class="fas fa-file-alt"></i>
-                        <span class="menu-text">Invoice</span>
-                    </a>
-                    <div class="menu-child">
-                        <ul>
-                            <li>
-                                <a>
-                                    Invoice List
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    Invoice View
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    Invoice Edit
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    Invoice Add
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    Invoice Remove
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="menu-label">
-                    CONFIGRATION
-                </li>
-                <li class="has-children">
-                    <a>
-                        <i class="fas fa-cog"></i>
-                        <span class="menu-text">Settings</span>
-                    </a>
-                    <div class="menu-child">
-                        <ul>
-                            <li>
-                                <a href="animation.html">
-                                    Animation
-                                </a>
-                            </li>
-                            <li>
-                                <a href="novel.html">
-                                    坊っちゃん
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    Setting 003
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    Setting 004
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    Setting 005
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    Setting 006
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    Setting 007
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    Setting 008
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <a href="https://bulma.io" class="non-location" target="_blank"
-                        title="class=&quot;non-location&quot;">
-                        <i class="fas fa-question-circle"></i>
-                        <span class="menu-text">Help</span>
-                    </a>
-                </li>
-
-            </ul>
-
-        </div>
-
-    </menu>
 
 
 </body>

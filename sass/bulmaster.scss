@@ -14,11 +14,13 @@ $label-weight: 400;
 // ---------------------------
 
 // variables of this file
-$menu-width: 250px;
-$header-height: 52px;
-$page-padding-bottom: 100px;
+$header-height: 52px;           // ヘッダ高さ
+$page-padding-bottom: 100px;    // ページpdding下
+$menu-width: 250px;             // メニュー幅
+$menu-width-shrink: 12px;       // switchコントロールで縮小されたときのメニュー幅
+$anime-duration: .3s;           // アニメーションの変化時間
 // z-index
-$z-icon-button: 800;    // topへ移動やハンバーガなどのアイコンのz-index
+$z-icon-button: 800;            // topへ移動やハンバーガなどのアイコンのz-index
 $z-menu: 1100;
 $z-block-ui: 9000;
 // colors
@@ -36,20 +38,11 @@ $menu-color: #fff;
 $menu-label-color: #7a7a7a;
 $menu-active-color:#fff;
 
-// // custom-color
-// @import "custom-color.scss";
+// // customize
+// @import "custom-sample.scss";
 
-// import bulma
+// import bulma v0.82
 @import "./bulma/bulma.sass";
-
-@keyframes displayFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-@keyframes displayFadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
-}
 
 pre {
     background-color: transparent !important;
@@ -83,6 +76,7 @@ pre {
                 color: $menu-active-color;
                 background: $primary !important;
                 border-radius: 0 25px 25px 0;
+                cursor: unset;
             }
 
             &:hover:not(.active) {
@@ -124,7 +118,7 @@ pre {
         }
 
         @if $is_child == false {
-            // 子メニューがあるitem
+            // 子メニューがあるitem(li)
             &.has-children {
                 > a {
                     cursor: default;
@@ -141,19 +135,23 @@ pre {
                         right: 10px;
                     }
                 }
+
+                // 子メニューの展開
                 &.open {
                     background: $menu-child-bgcolor;
 
                     > a::after {
                         content: "\03009";
                         transform: rotate(90deg);
-                        transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
+                        transition: transform $anime-duration ease-in-out, -webkit-transform .3s ease-in-out;
                         right: 12px;
+                        padding-top: 8px;
                     }
 
                     > div.menu-child {
-                        animation: displayFadeIn .3s linear 0s;
-                        display: block;
+                        height: auto;
+                        line-height: inherit;
+                        opacity: 1;
                     }
 
                 }
@@ -175,7 +173,7 @@ menu {
     background-color: $menu-bgcolor;
     z-index: $z-menu;
     overflow: hidden;
-    transition-duration:.3s;
+    transition-duration: $anime-duration;
 
     // ロゴ
     .logo {
@@ -230,7 +228,11 @@ menu {
 
         // メニュー（子）
         div.menu-child {
-            display: none;
+            overflow: hidden;
+            height: 0;
+            line-height: 0;
+            transition: all $anime-duration 0s linear;
+
             > ul {
                 @include menu_ul(true);
             }
@@ -260,19 +262,16 @@ menu .menu-switch {
     }
 }
 
-
 // ヘッダnav
 nav.header {
     @extend .navbar;
-    @extend .is-fixed-top;
 
-    left: $menu-width;
     min-height: $header-height;
     background-color: $header-bgcolor;
     color: $header-color;
     padding-left: 1.0rem;
     padding-right: 1.0rem;
-    transition-duration:.3s;
+    transition-duration: $anime-duration;
     svg {
         margin-right: .6rem;
     }
@@ -284,7 +283,6 @@ nav.header {
         @include until($tablet) {
             display: flex !important;
             flex-wrap: wrap;
-            margin-top: .5rem !important;
 
             .level-item {
                 margin-bottom: 0 !important;
@@ -321,11 +319,18 @@ nav.header {
     }
 
     // @Responsiveness
+    @include from($desktop) {
+        position: fixed;
+        top: 0;
+        left: $menu-width;
+        right: 0;
+        z-index: 30;
+    }
     @include until($desktop) {
         left: 0;
+        right: 0;
     }
 }
-
 
 // tablet以下のときに表示するモーダルメニューのアニメーション定義
 // [JS auto generate]
@@ -377,11 +382,10 @@ body > .icon-hamburger {
     }
 }
 
-
 // メイン
 main {
     margin-left: $menu-width;
-    transition-duration:.3s;
+    transition-duration: $anime-duration;
 
     // @Responsiveness
     @include until($desktop) {
@@ -389,26 +393,86 @@ main {
     }
 }
 
+// ***************************
+// shrink-menuに切り替わったときの設定
+// ***************************
+// shrink-menu幅
+.shrink-menu-width {
+    @include from($desktop) {
+        width: $menu-width-shrink !important;
+    }
+}
+// nav left
+.shrink-menu-nav {
+    @include from($desktop) {
+        left: $menu-width-shrink !important;
+    }
+}
+// main left-margin
+.shrink-menu-main {
+    @include from($desktop) {
+        margin-left: $menu-width-shrink !important;
+    }
+}
+// menu switchによる縮小時のオーバレイ
+#__bulmaster_shrink_menu_overlay {
+    height: 100vh;
+    top: 0;
+    overflow: hidden;
+    display: flex;
+    background-color: $menu-bgcolor;
+    position: absolute;
+    cursor: pointer;
+    z-index: $modal-z;
+    text-align: left;
+    align-items: center;
+
+    width: 0;
+    opacity: 0;
+    transition: all $anime-duration 0s linear;
+
+    &::after {
+        content: "\025e5";
+        transform: rotate(45deg);
+        color: $menu-color;
+        display: block;
+        font-size: 4px;
+        margin-left: -2px;
+    }
+
+    &.shrink {
+        width: 100%;
+        opacity: 1;
+    }
+
+    &:hover {
+        background-color: darken($menu-bgcolor, 20%);
+    }
+
+    // @Responsiveness
+    @include until($desktop) {
+        display: none;
+    }
+}
+
+
+
 // コンテナ
 .container {
-    // ***@extend .container;
-    // ※top margin は JS(setOutline)で設定を行う
+    margin-top: calc(#{$header-height} + 20px);
+    max-width: unset !important;    // bulmaのResponsivenessを無視する
 
     margin-left: 0 !important;      // 1408px以上のときにセンタリングされないように
     margin-right: 0 !important;     // 〃
 
-    // 1408px以上でもmax-widthを設定しない
-    &.unlimit-width {
-        @include from($fullhd) {
-            max-width: unset !important;
-        }
+    // @Responsiveness
+    @include until($desktop) {
+        margin-top: 0;
     }
 }
 
 // コンテント
 .content {
-    // ***@extend .content;
-
     margin: 0 !important;
     padding: 0 2rem 2rem 2rem;
 
@@ -520,6 +584,10 @@ main {
     }
 }
 
+// *******************************
+// form parts
+// *******************************
+
 // Switchコントロール (checkbox)
 .switch {
     -webkit-tap-highlight-color: transparent;
@@ -554,7 +622,6 @@ main {
             }
             &:disabled+.lever {
                 cursor: default;
-                //background-color: rgba(0,0,0,0.12);
                 background-color: #e9ecef;
                 border-color: #949494;
                 &::after {
@@ -570,8 +637,8 @@ main {
             width: calc((1rem + 2px) * 2);
             height: calc(1rem + 4px);
             border-radius: calc((1rem + 4px) / 2);
-            -webkit-transition: background 0.3s ease;
-            transition: background 0.3s ease;
+            -webkit-transition: background $anime-duration ease;
+            transition: background $anime-duration ease;
             vertical-align: middle;
             margin: 0 10px;
             // enableでoffのときの設定
@@ -587,10 +654,10 @@ main {
                 border-radius: 50%;
                 left: 1px;
                 top: 1px;
-                -webkit-transition: left 0.3s ease, background .3s ease, -webkit-box-shadow 0.1s ease, -webkit-transform .1s ease;
-                transition: left 0.3s ease, background .3s ease, -webkit-box-shadow 0.1s ease, -webkit-transform .1s ease;
-                transition: left 0.3s ease, background .3s ease, box-shadow 0.1s ease, transform .1s ease;
-                transition: left 0.3s ease, background .3s ease, box-shadow 0.1s ease, transform .1s ease, -webkit-box-shadow 0.1s ease, -webkit-transform .1s ease;
+                -webkit-transition: left $anime-duration ease, background $anime-duration ease, -webkit-box-shadow 0.1s ease, -webkit-transform .1s ease;
+                transition: left $anime-duration ease, background $anime-duration ease, -webkit-box-shadow 0.1s ease, -webkit-transform .1s ease;
+                transition: left $anime-duration ease, background $anime-duration ease, box-shadow 0.1s ease, transform .1s ease;
+                transition: left $anime-duration ease, background $anime-duration ease, box-shadow 0.1s ease, transform .1s ease, -webkit-box-shadow 0.1s ease, -webkit-transform .1s ease;
             }
             &::before {
                 //background-color: rgba(38,166,154,0.15);
@@ -602,4 +669,20 @@ main {
     &.is-marginless .lever {
         margin: 0;
     }
+}
+
+// Dropdown button (navヘッダ内)
+nav.header .dropdown {
+    .dropdown-content {
+        border: solid 1px $primary;
+        a {
+            color: $primary;
+            background-color: #fff;;
+
+            &:hover {
+                color: #fff;
+                background-color: $primary;
+            }
+        }
+     }
 }

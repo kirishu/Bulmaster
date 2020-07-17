@@ -8,7 +8,7 @@ const Bulmaster = (() => {
     /** 各種設定 */
     const _settings = {
         neverChileMenuClose: false,     // trueなら子メニューは常に開いたまま（expandしっぱなし）
-        showMenuHideSwitch: true,       // メニューを隠すswitchの表示
+        showMenuHideSwitch: true,       // メニューを縮小するswitchの表示
     };
 
     /** element <menu> */
@@ -70,13 +70,8 @@ const Bulmaster = (() => {
             // リンクの遷移を無効にする
             e.preventDefault();
             // open/closeを切り替える
-            const hasOpen = li.classList.contains('open');
-            if (hasOpen) {
-                if (!_settings.neverChileMenuClose) {
-                    li.classList.remove('open');
-                }
-            } else {
-                li.classList.add('open');
+            if (!_settings.neverChileMenuClose) {
+                li.classList.toggle('open');
             }
         } else {
             if (!this.classList.contains('non-location')) {
@@ -97,10 +92,11 @@ const Bulmaster = (() => {
         if (!_$menu) {
             return;
         }
+
         if (_settings.neverChileMenuClose) {
             // neverChileMenuCloseがtrueのときは、すべての子持ちメニューを開く
-            _$menu.querySelectorAll('ul li.has-children').forEach(li => {
-                li.classList.add('open');
+            _$menu.querySelectorAll('ul li.has-children').forEach(_ => {
+                _.classList.add('open');
             });
         } else {
             // 子メニューにactiveがついていた場合は開いておく
@@ -117,72 +113,86 @@ const Bulmaster = (() => {
         _$menu_rpsv.appendChild(menunode);
 
         // メニュー のアンカーに clickイベントを付与
-        document.querySelectorAll('menu ul a').forEach(a => {
-            a.addEventListener('click', _menuClickEvent, false);
+        document.querySelectorAll('menu ul a').forEach(_ => {
+            _.addEventListener('click', _menuClickEvent, false);
         }, this);
 
-
-        // 表示制御switchを動的に追加
+        // 表示制御switchの設定
         if (_settings.showMenuHideSwitch) {
-            const html = (() => {/*
-                <div>
-                    MENU SWITCH
-                </div>
-                <div class="switch is-marginless">
-                    <label>
-                        <input type="checkbox" checked>
-                        <span class="lever"></span>
-                    </label>
-                </div>
-            */}).toString().match(/(?:\/\*(?:[\s\S]*?)\*\/)/).pop().replace(/^\/\*/, '').replace(/\*\/$/, '');
-            const domli = _createElement('li', ['menu-label', 'menu-switch']);
-            domli.innerHTML = html;
-            _$menu.querySelector('ul').appendChild(domli);
-
-            // 表示制御switch change event
-            _$menu.querySelector(".switch input[type='checkbox']").addEventListener('change', (e) => {
-                const main = document.querySelector('main');
-                const nav = document.querySelector('nav.header');
-                if (e.target.checked) {
-
-                } else {
-                    main.style.marginLeft = '0';
-                    if (nav) {
-                        nav.style.left = '0';
-                        _$icon_hamburger.style.display = 'block';
-                    } else {
-                        _$icon_hamburger.style.display = 'flex';
-                    }
-                    _$menu.style.width = '0';
-                }
-            }, false);
+            swtchMenuSetting();
         }
 
         return;
     };
 
     /**
-     * ページアウトライン設定
-     * ※init()と window.resizeイベントで呼ばれる
+     * メニュー縮小switchの設定
      */
-    const setOutline = () => {
-        // section.containerの上マージンをヘッダー(nav.header)の高さに合わせる
-        const nav = document.querySelector('nav.header');
-        if (nav) {
-            document.querySelector('section.container').style.marginTop = nav.clientHeight + 25 + 'px';
-        }
-    };
+    const swtchMenuSetting = () => {
+        // メニュー縮小switchを動的に追加
+        const sw = (() => {/*
+            <div>
+                MENU SWITCH
+            </div>
+            <div class="switch is-marginless">
+                <label>
+                    <input type="checkbox" checked>
+                    <span class="lever"></span>
+                </label>
+            </div>
+            */}).toString().match(/(?:\/\*(?:[\s\S]*?)\*\/)/).pop().replace(/^\/\*/, '').replace(/\*\/$/, '');
+        const domli = _createElement('li', ['menu-label', 'menu-switch']);
+        domli.innerHTML = sw;
+        _$menu.querySelector('ul').appendChild(domli);
+        const shirinkSw = _$menu.querySelector(".switch input[type='checkbox']");
 
-    /**
-     * メニュー消去
-     */
-    const hideMenu = () => {
+        // 縮小メニューのオーバレイを動的に追加
+        const shrink = document.createElement('div');
+        shrink.id = '__bulmaster_shrink_menu_overlay';
+        _$menu.appendChild(shrink);
 
+        // メニューを縮小/復元する関数リテラル
+        const doShrinkMenu = (e, isShrink) => {
+            e.preventDefault();
+
+            const main = document.querySelector('main');
+            const nav = document.querySelector('nav.header');
+            if (isShrink) {
+                // 縮小
+                main.classList.add('shrink-menu-main');
+                if (nav) {
+                    nav.classList.add('shrink-menu-nav');
+                }
+                _$menu.classList.add('shrink-menu-width');
+                shrink.classList.add('shrink');
+            } else {
+                // 復元
+                main.classList.remove('shrink-menu-main');
+                if (nav) {
+                    nav.classList.remove('shrink-menu-nav');
+                }
+                _$menu.classList.remove('shrink-menu-width');
+                shrink.classList.remove('shrink');
+                shirinkSw.checked = true;
+            }
+        };
+
+        // メニュー縮小switch change event
+        shirinkSw.addEventListener('change', (e) => {
+            if (!shirinkSw.checked) {
+                doShrinkMenu(e, true);
+            }
+        }, false);
+
+        // shrinkのclick event
+        shrink.addEventListener('click', (e) => {
+            doShrinkMenu(e, false);
+        }, false);
     };
 
     /** PageTopスクロール設定 */
     const scrollPageTop = () => {
-        // PageTop Node作成
+        // PageTopボタン作成
         const i = _createElement('i', ['fas', 'fa-chevron-circle-up']);
         const s = _createElement('span', ['icon']);
         const icon = _createElement('a', ['icon-move-top']);
@@ -190,7 +200,7 @@ const Bulmaster = (() => {
         icon.appendChild(s);
         document.body.appendChild(icon);
 
-        // スクロールボタン click event
+        // PageTopボタン click event
         icon.addEventListener('click', (e) => {
             e.preventDefault();
             const duration = 200;
@@ -218,56 +228,48 @@ const Bulmaster = (() => {
 
     /** event 登録 */
     const addEvents = () => {
-        // window resize event
-        window.addEventListener('resize', setOutline, false);
-
+        // ハンバーガアイコン click event
         if (_$icon_hamburger) {
-            // ハンバーガアイコン click event
             _$icon_hamburger.addEventListener('click', (e) => {
-                const menuswitch = _$menu.querySelector(".switch input[type='checkbox']");
+                e.preventDefault();
                 _$menu_rpsv.style.display = 'block';
-                if (menuswitch.checked) {
-                    // Responsiveメニュー 表示
-                    setTimeout(() => {
-                        _$menu_rpsv.querySelector('.modal-background').style.opacity = '1';
-                        _$menu_rpsv.querySelector('menu').style.transform = 'translateX(0px)';
-                    }, 10);
-                } else {
-                    // Responsiveでないメニュー（最初から表示しているメニュー）の表示
-                    setTimeout(() => {
-                        _$menu_rpsv.querySelector('.modal-background').style.opacity = '1';
-                        _$menu.style.width = _menu_width + 'px';
-                    }, 10);
-                }
-
+                // Responsiveメニュー 表示
+                setTimeout(() => {
+                    _$menu_rpsv.querySelector('.modal-background').style.opacity = '1';
+                    _$menu_rpsv.querySelector('menu').style.transform = 'translateX(0px)';
+                }, 10);
             }, false);
         }
+
+        // modal-background click event
         if (_$menu_rpsv) {
             // メニュー 消去（background click event）
             _$menu_rpsv.querySelector('.modal-background').addEventListener('click', (e) => {
-                const menuswitch = _$menu.querySelector(".switch input[type='checkbox']");
+                e.preventDefault();
                 _$menu_rpsv.querySelector('.modal-background').style.opacity = '0';
-                if (menuswitch.checked) {
-                    // Responsiveメニュー 非表示
-                    _$menu_rpsv.querySelector('menu').style.transform = `translateX(-${_menu_width}px)`;
-                    setTimeout(() => {
-                        _$menu_rpsv.style.display = 'none';
-                    }, 1000);
-                } else {
-                    // Responsiveでないメニュー（最初から表示しているメニュー）の非表示
-                    const nav = document.querySelector('nav.header');
-                    if (nav) {
-                        nav.style.left = '0';
-                        _$icon_hamburger.style.display = 'block';
-                    } else {
-                        _$icon_hamburger.style.display = 'flex';
-                    }
-                    _$menu.style.width = '0';
+                // Responsiveメニュー 非表示
+                _$menu_rpsv.querySelector('menu').style.transform = `translateX(-${_menu_width}px)`;
+                setTimeout(() => {
                     _$menu_rpsv.style.display = 'none';
-                }
-
-
+                }, 1000);
             }, false);
+        }
+
+        // dropdown button click event
+        const $dropbtns = document.querySelectorAll('.dropdown:not(.is-hoverable)');
+        if ($dropbtns) {
+            $dropbtns.forEach(_ => {
+                _.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    _.classList.toggle('is-active');
+                });
+            });
+
+            document.addEventListener('click', (e) => {
+                $dropbtns.forEach(_ => {
+                    _.classList.remove('is-active');
+                });
+            });
         }
     };
 
@@ -287,8 +289,6 @@ const Bulmaster = (() => {
             elementInit();
             // メニュー設定
             menuInit();
-            // ページアウトライン設定
-            setOutline();
             // PageTopスクロール設定
             scrollPageTop();
             // event handler登録

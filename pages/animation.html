@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Animation</title>
+    <link rel="stylesheet" href="bulmaster.min.css" />
+    <script src="../scripts/font-awesome-5.13.0.all.min.js"></script>
+    <script src="../scripts/bulmaster.js"></script>
+</head>
+
+<body>
+
+    <main>
+
+        <nav class="header level">
+            <div class="level-left">
+                <div class="level-item icon-hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="level-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Animation</span>
+                </div>
+            </div>
+            <div class="level-right">
+                <div class="level-item">
+                    <a class="navbtn">
+                        <span class="icon"><i class="fab fa-twitter"></i></span>
+                        <span>Twitter</span>
+                    </a>
+                </div>
+                <div class="level-item">
+                    <a class="navbtn">
+                        <span class="icon"><i class="fab fa-github"></i></span>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <style>
+            .box {
+                width: 100px;
+                height: 100px;
+                margin: 0;
+                padding: 0;
+                background-color: lightseagreen;
+                text-align: center;
+                color: white;
+            }
+
+            @keyframes displayFadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            @keyframes displayFadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
+
+        </style>
+
+        <!-- *********************************** -->
+        <section class="container">
+            <div class="content">
+                <h4>change size</h4>
+                <style>
+                    #anim_size {
+                        transition: all 300ms 0s ease-in-out;
+                    }
+                    #anim_size:hover {
+                        background-color: #ccc;
+                        width: 300px;
+                    }
+                </style>
+                <div id="anim_size" class="box">hover</div>
+            </div>
+
+            <!-- *********************************** -->
+            <div class="content">
+                <h4>translate</h4>
+                <style>
+                    #anim_translate {
+                        transition: all 0.5s 0s ease-in-out;
+                    }
+                    #anim_translate.moved {
+                        transform: translateX(300px);
+                        background: orangered;
+                    }
+                </style>
+                <script>
+                    function anim_translate() {
+                        const elem = document.getElementById('anim_translate');
+                        if (elem.classList.contains('moved')) {
+                            elem.classList.remove('moved');
+                        } else {
+                            elem.classList.add('moved');
+                        }
+                    }
+                </script>
+                <div id="anim_translate" class="box"
+                     onclick="anim_translate();">click</div>
+            </div>
+
+            <!-- *********************************** -->
+            <div class="content">
+                <h4>fadein / fadeout (opacity)</h4>
+                <style>
+                    #anim_fade {
+                        opacity: 0;
+                        transition-duration: 1.0s;
+                    }
+                    #anim_fade:hover {
+                        opacity: 1;
+                    }
+                </style>
+                <div id="anim_fade" class="box">hover</div>
+            </div>
+
+            <!-- *********************************** -->
+            <div class="content">
+                <h4>fadein / fadeout (display:none &amp; keyframes)</h4>
+                <style>
+                    #anim_fade2 {
+                        display: none;
+                    }
+                    #anim_fade2.show {
+                        display: block;
+                        animation: displayFadeIn 1.0s ease-in-out 0s;
+                    }
+                    #anim_fade2.hide {
+                        animation: displayFadeOut 1.0s ease-in-out 0s;
+                        display: none;
+                    }
+                </style>
+                <script>
+                    function anim_fede2() {
+                        const elem = document.getElementById('anim_fade2');
+                        if (elem.classList.contains('show')) {
+                            elem.classList.remove('show');
+                            elem.classList.add('hide');
+                        } else {
+                            elem.classList.add('show');
+                            elem.classList.remove('hide');
+                        }
+                    }
+                </script>
+                <div id="anim_fade2" class="box"></div>
+                <button onclick="anim_fede2();">click</button>
+            </div>
+
+            <!-- *********************************** -->
+            <div class="content">
+                <h4>fadein / fadeout (height:0 -&gt; 100)</h4>
+                <style>
+                    #anim_fade3 {
+                        height: 0;
+                        opacity: 0;
+                        /*
+                        transition: opacity 1.0s 0s ease;
+                        transition-duration: 1.0s;
+                        */
+                        transition: all 1.0s 0s ease-in-out;
+
+                    }
+                    #anim_fade3.show {
+                        opacity: 1;
+                        height: 100px;
+                    }
+                </style>
+                <script>
+                    function anim_fede3() {
+                        const elem = document.getElementById('anim_fade3');
+                        if (elem.classList.contains('show')) {
+                            elem.classList.remove('show');
+                        } else {
+                            elem.classList.add('show');
+                        }
+                    }
+                </script>
+                <div id="anim_fade3" class="box"></div>
+                <button onclick="anim_fede3();">click</button>
+            </div>
+        </section>
+
+    </main>
+
+    <menu>
+        <div class="logo">
+            <a href="jumbotron.html">
+                <i class="fab fa-html5"></i>
+                <div>Bulmaster</div>
+            </a>
+        </div>
+        <div class="menu-items">
+            <ul>
+                <li>
+                    <a href="outline.html">
+                        <i class="fas fa-laptop-house"></i>
+                        <span class="menu-text">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="form.html">
+                        <i class="far fa-envelope"></i>
+                        <span class="menu-text">Form</span>
+                    </a>
+                </li>
+                <li class="menu-label">
+                    APPLICATION
+                </li>
+                <li>
+                    <a>
+                        <i class="fas fa-user"></i>
+                        <span class="menu-text">User Profile</span>
+                    </a>
+                </li>
+                <li class="has-children">
+                    <a>
+                        <i class="fas fa-chart-line"></i>
+                        <span class="menu-text">Charts</span>
+                    </a>
+                    <div class="menu-child">
+                        <ul>
+                            <li>
+                                <a>
+                                    Line Charts
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Bar Charts
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Area Charts
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Doughnut Charts
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Financial Charts
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="has-children">
+                    <a>
+                        <i class="fas fa-file-alt"></i>
+                        <span class="menu-text">Invoice</span>
+                    </a>
+                    <div class="menu-child">
+                        <ul>
+                            <li>
+                                <a>
+                                    Invoice List
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Invoice View
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Invoice Edit
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Invoice Add
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Invoice Remove
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="menu-label">
+                    CONFIGRATION
+                </li>
+                <li class="has-children">
+                    <a>
+                        <i class="fas fa-cog"></i>
+                        <span class="menu-text">Settings</span>
+                    </a>
+                    <div class="menu-child">
+                        <ul>
+                            <li>
+                                <a href="animation.html" class="active">
+                                    Animation
+                                </a>
+                            </li>
+                            <li>
+                                <a href="novel.html">
+                                    坊っちゃん
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Setting 003
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Setting 004
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Setting 005
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Setting 006
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Setting 007
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Setting 008 Setting 008 Setting 008 Setting 008 Setting 008
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="https://bulma.io" class="non-location" target="_blank" title="class=&quot;non-location&quot;">
+                        <i class="fas fa-question-circle"></i>
+                        <span class="menu-text">Help</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </menu>
+
+</body>
+
+</html>
