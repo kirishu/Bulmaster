@@ -1,5 +1,5 @@
 /**
- * bulmaster.js
+ *! bulmaster.js | github.com/kirishu/bulmaster
  *    ページ初期設定スクリプト
  */
 const Bulmaster = (() => {
