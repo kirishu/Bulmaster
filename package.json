@@ -7,6 +7,7 @@
         "node-sass": "latest"
     },
     "scripts": {
-        "build-sass": "node-sass -w --source-map true sass/bulmaster.scss pages/bulmaster.min.css --output-style compressed"
+        "build-sass-normal": "node-sass -w sass/bulmaster.scss css/bulmaster.css --output-style expanded",
+        "build-sass-compressed": "node-sass -w --source-map true sass/bulmaster.scss css/bulmaster.min.css --output-style compressed"
     }
 }
