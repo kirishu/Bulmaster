@@ -1,14 +1,33 @@
-$primary: #ff2e12;
+// *******************************
+// 例：Excelっぽい緑色
+// *******************************
+$primary: #009c34;
 $link: #009c34;
+$header-bgcolor: darken($primary, 45%);
+$menu-bgcolor: darken($primary, 20%);
+$logo-bgcolor: darken($primary, 23%);
+/*
+*/
 
-$header-bgcolor: #c90202;
-$menu-bgcolor: #ea5056;
-$menu-label-color: #333;
+// *******************************
+// 例：PowerPointっぽいオレンジ
+// *******************************
+/*
+$primary: #ff5100;
+$link: #db4500;
+$header-bgcolor: darken($primary, 45%);
+$menu-bgcolor: darken($primary, 20%);
+$menu-label-color: #ccc;
+$logo-bgcolor: darken($primary, 25%);
+*/
 
+
+
+// *******************************
+// その他
+// *******************************
+// Bulmaの変数も指定可能
 $radius: 4px;
 
 // メニューが無い場合は↓に0pxを指定
 //$menu-width: 0px;
-
-// ヘッダが無い場合は↓に0pxを指定
-//$header-height: 0px;

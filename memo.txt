@@ -1,13 +1,13 @@
 Visual Studio Codeでの使い方
-    必要な拡張機能
-        npm, SCSS Intellisence
+    必要な拡張機能をインストール
+        npm
 
     最初にやること
         Ctrl + @  →  npm install
 
     毎回起動時にやること
         Shift + Ctrl + B  →  build-sass 実行
-        あとはbulmaster.scssを変更保存するたびに自動ビルドする
+        ※ bulmaster.scssを変更保存するたびに自動ビルドしてくれる
 
 ----------------------------------------------------------
 ★お約束
@@ -41,10 +41,12 @@ section.container
 JavaScriptでやっていること
     階層メニュークリック時のexpand（展開／折りたたみ）
     ページtopへ移動するボタンの表示と動き
-    ハンバーガーボタンのクリックとモーダルメニュー（tablet以下のとき）
-    block-ui（おまちください的なやつ）の表示／非表示
+    ハンバーガーボタンのクリックイベント
+    モーダルメニュークリックイベント（tablet以下のとき）
     メニューの縮小/復元
     Dropdownボタンのクリックイベント
+    block-ui（おまちください的なやつ）の表示／非表示
+    modal-cardの表示／非表示
 
     下記のelementはJSで動的に作っている
         ・モーダルメニュー（メニューのnodeをコピって複製）

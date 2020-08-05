@@ -17,8 +17,8 @@ const Bulmaster = (() => {
     let _$menu_rpsv;
     /** element メニュー表示アイコン */
     let _$icon_hamburger;
-    /** element lockUi */
-    let _$lockUi;
+    /** element blockUi */
+    let _$blockUi;
 
     let _menu_width;
 
@@ -58,7 +58,7 @@ const Bulmaster = (() => {
         elemB2.appendChild(elemB3);
         elemB1.appendChild(elemB2);
         document.body.appendChild(elemB1);
-        _$lockUi = elemB1;
+        _$blockUi = elemB1;
     };
 
 
@@ -134,10 +134,10 @@ const Bulmaster = (() => {
             <div>
                 MENU SWITCH
             </div>
-            <div class="switch is-marginless">
+            <div class='switch is-marginless'>
                 <label>
-                    <input type="checkbox" checked>
-                    <span class="lever"></span>
+                    <input type='checkbox' checked>
+                    <span class='lever'></span>
                 </label>
             </div>
             */}).toString().match(/(?:\/\*(?:[\s\S]*?)\*\/)/).pop().replace(/^\/\*/, '').replace(/\*\/$/, '');
@@ -232,6 +232,7 @@ const Bulmaster = (() => {
         if (_$icon_hamburger) {
             _$icon_hamburger.addEventListener('click', (e) => {
                 e.preventDefault();
+                document.documentElement.classList.add('is-clipped');
                 _$menu_rpsv.style.display = 'block';
                 // Responsiveメニュー 表示
                 setTimeout(() => {
@@ -246,6 +247,7 @@ const Bulmaster = (() => {
             // メニュー 消去（background click event）
             _$menu_rpsv.querySelector('.modal-background').addEventListener('click', (e) => {
                 e.preventDefault();
+                document.documentElement.classList.remove('is-clipped');
                 _$menu_rpsv.querySelector('.modal-background').style.opacity = '0';
                 // Responsiveメニュー 非表示
                 _$menu_rpsv.querySelector('menu').style.transform = `translateX(-${_menu_width}px)`;
@@ -284,7 +286,7 @@ const Bulmaster = (() => {
         /**
          * 初期化
          */
-        init: (() => {
+        init: () => {
             // element初期設定
             elementInit();
             // メニュー設定
@@ -293,15 +295,45 @@ const Bulmaster = (() => {
             scrollPageTop();
             // event handler登録
             addEvents();
-        }),
+        },
 
         /**
          * block-uiの表示/非表示
          */
-        showBlockUi: ((isVisible) => {
-            _$lockUi.style.display = isVisible ? 'block' : 'none';
-        }),
+        showBlockUi: (isVisible) => {
+            if (isVisible) {
+                document.documentElement.classList.add('is-clipped');
+                _$blockUi.style.display = 'block';
+            } else {
+                document.documentElement.classList.remove('is-clipped');
+                _$blockUi.style.display = 'none';
+            }
+        },
 
+        /**
+         * Modal Open/close
+         */
+        showModal: (id, isVisible) => {
+            const $target = document.getElementById(id);
+            if (!$target || !$target.classList.contains('modal')) {
+                return;
+            }
+            const $modalCard = $target.querySelector('.modal-card');
+            if (isVisible) {
+                 document.documentElement.classList.add('is-clipped');
+                $target.style.display = 'flex';
+                setTimeout(() => {
+                    $modalCard.style.opacity = '1';
+                }, 1);
+            } else {
+                $modalCard.style.opacity = '0';
+                setTimeout(() => {
+                    document.documentElement.classList.remove('is-clipped');
+                    $target.style.display = 'none';
+                }, 300);
+                // ↑ timeout値は、CSSの.modal-card transition の duration 値と合わせる
+            }
+        },
     };
 
 })();

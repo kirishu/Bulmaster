@@ -527,6 +527,121 @@
 
 
 
+            <div class="content">
+                <hr />
+                <h4 class="title is-4">
+                    modal
+                </h4>
+
+                <button class="button is-success" onclick="Bulmaster.showModal('modal_test01', true);">Launch card modal</button>
+
+                <div class="modal" id="modal_test01">
+                    <div class="modal-background"></div>
+                    <div class="modal-card">
+                        <header class="modal-card-head">
+                            <span class="modal-card-title">Modal title</span>
+                            <button class="delete" aria-label="close" onclick="Bulmaster.showModal('modal_test01', false);"></button>
+                        </header>
+                        <section class="modal-card-body">
+
+                                <div class="columns field">
+                                    <div class="column is-full">
+                                        <a href="https://bulma.io/documentation/components/modal/#variables" target="_blank">Modal#Variables</a>
+                                    </div>
+                                </div>
+
+
+                                <div class="columns field">
+                                    <div class="column is-7">
+                                        <label class="label">Email</label>
+                                        <div class="control">
+                                            <input class="input" type="text" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <div class="column is-5">
+                                        <label class="label">Password</label>
+                                        <div class="control">
+                                            <input class="input" type="password" placeholder="Password">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="columns field">
+                                    <div class="column">
+                                        <label class="label">Address</label>
+                                        <div class="control">
+                                            <input class="input" type="text" placeholder="Address">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="columns field">
+                                    <div class="column is-6">
+                                        <label class="label">City</label>
+                                        <div class="control">
+                                            <input class="input" type="text" placeholder="City">
+                                        </div>
+                                    </div>
+                                    <div class="column is-4">
+                                        <label class="label">State</label>
+                                        <div class="control">
+                                            <div class="select is-fullwidth">
+                                                <select>
+                                                    <option>is-fullwidth</option>
+                                                    <option>hoge</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="column is-2">
+                                        <label class="label">Zip</label>
+                                        <div class="control">
+                                            <input class="input" type="text" placeholder="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="columns field">
+                                    <div class="column">
+                                        <div class="control">
+                                            <label class="checkbox">
+                                                <input type="checkbox">
+                                                Agree to terms and conditions
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="columns field">
+                                    <div class="column">
+                                        <div class="control">
+                                            <label class="radio">
+                                                <input type="radio" name="question">
+                                                Radoio1
+                                            </label>
+                                            <label class="radio">
+                                                <input type="radio" name="question">
+                                                Radoio2
+                                            </label>
+                                            <label class="radio">
+                                                <input type="radio" name="question">
+                                                Radoio3
+                                            </label>
+                                            <label class="radio">
+                                                <input type="radio" name="question">
+                                                Radoio4
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                        </section>
+                        <footer class="modal-card-foot">
+                            <button class="button is-success">Save changes</button>
+                            <button class="button" onclick="Bulmaster.showModal('modal_test01', false);">Cancel</button>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+
+
 
 
         </section>

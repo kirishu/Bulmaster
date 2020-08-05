@@ -110,7 +110,7 @@
 
             <!-- *********************************** -->
             <div class="content">
-                <h4>fadein / <del>fadeout</del> (display: none &hArr; block &amp; keyframes)</h4>
+                <h4>fadein / <del>fadeout</del> (display: none &hArr; block, keyframes)</h4>
                 <style>
                     @keyframes displayFadeIn {
                         from { opacity: 0; }
@@ -146,6 +146,36 @@
                 </script>
                 <div id="anim_fade2" class="box"></div>
                 <button onclick="anim_fede2();">click</button>
+            </div>
+
+            <!-- *********************************** -->
+            <div class="content">
+                <h4>fadein / fadeout (display: none &hArr; block, setTimeout())</h4>
+                <style>
+                    #anim_fade21 {
+                        display: none;
+                        opacity: 0;
+                        transition: opacity 1.0s 0s ease-in-out;
+                    }
+                </style>
+                <script>
+                    function anim_fede21() {
+                        const elem = document.getElementById('anim_fade21');
+                        if (elem.style.display == 'block') {
+                            elem.style.opacity = '0';
+                            setTimeout(() => {
+                                elem.style.display = 'none';
+                            }, 1000);
+                        } else {
+                            elem.style.display = 'block';
+                            setTimeout(() => {
+                                elem.style.opacity = '1';
+                            }, 1);
+                        }
+                    }
+                </script>
+                <div id="anim_fade21" class="box"></div>
+                <button onclick="anim_fede21();">click</button>
             </div>
 
             <!-- *********************************** -->

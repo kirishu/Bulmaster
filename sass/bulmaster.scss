@@ -3,9 +3,9 @@
 
 // override variables of bulma
 // ※bulmaのimportを行う前に定義しておく
-$body-size: 14px;
-$modal-z: 900;
 $primary: hsl(204, 71%, 53%);
+$body-size: 14px;
+$modal-z: 1200;
 $family-primary: "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", YuGothic, Meiryo, sans-serif;
 $family-monospace: Menlo, Monaco, Consolas, "Courier New", monospace;
 $control-radius-small: 4px;
@@ -25,28 +25,27 @@ $z-menu: 1100;
 $z-block-ui: 9000;
 // colors
 $header-color: #fff;
-$header-bgcolor: #282d39;
+$header-bgcolor: darken($primary, 50%);
+$menu-bgcolor: darken($primary, 35%);
+$menu-hover-bgcolor: rgba(255,255,255,0.2);
+$menu-child-bgcolor: rgba(255,255,255,0.05);
+$menu-color: #fff;
+$menu-label-color: #7a7a7a;
+$menu-active-color:#fff;
+$logo-color: $menu-color;
+$logo-bgcolor: darken($primary, 40%);
 $icon-humburger-head-color: #888;
 $icon-humburger-head-hover-color: #fff;
 $icon-humburger-body-color: #555;
 $icon-humburger-body-hover-color: unset;
 $icon-move-top-color: #555;
-$menu-bgcolor: #2a3f54;
-$menu-hover-bgcolor: rgba(255,255,255,0.2);
-$menu-child-bgcolor: rgba(255,255,255,0.04);
-$menu-color: #fff;
-$menu-label-color: #7a7a7a;
-$menu-active-color:#fff;
 
-// // customize
-// @import "custom-sample.scss";
+// customize
+//@import "custom-sample.scss";
 
 // import bulma v0.9.0
 @import "../node_modules/bulma/bulma.sass";
 
-pre {
-    background-color: transparent !important;
-}
 
 // メニューul mixin
 // $is_child : 子メニューのときはtrue
@@ -179,7 +178,8 @@ menu {
     .logo {
         width: 100%;
         height: $header-height;
-        background-color: $header-bgcolor;
+        color: $logo-color;
+        background-color: $logo-bgcolor;
         display: flex;
         align-items: center;
         a {
@@ -446,7 +446,7 @@ main {
     }
 
     &:hover {
-        background-color: darken($menu-bgcolor, 20%);
+        background-color: $primary;
     }
 
     // @Responsiveness
@@ -454,7 +454,6 @@ main {
         display: none;
     }
 }
-
 
 
 // コンテナ
@@ -493,7 +492,6 @@ main {
     margin-bottom: 0 !important;
 }
 
-
 // ページ先頭ボタン
 // [JS auto generate]
 .icon-move-top {
@@ -501,12 +499,12 @@ main {
     bottom: 16px;
     right: 20px;
     color: $icon-move-top-color;
-    opacity: .5;
+    opacity: .2;
     visibility: hidden;     // visibilityを変更して出現させるのはJSで行う
     z-index: $z-icon-button;
     font-size: 2.25em;
     &:hover {
-        opacity: 1;
+        opacity: .5;
     }
 }
 
@@ -528,23 +526,9 @@ main {
     }
 }
 
-// Jumbotron style
-.jumbotron {
-    @extend .hero;
-    @extend .is-medium;
-    margin-bottom: 3rem;
-    .hero-body {
-        padding: 5rem 1.5rem 5rem 1.5rem;
-        h1.title {
-            font-size: 5rem !important;
-            font-weight: 400;
-        }
-    }
 
-    hr {
-        height: 1px;
-        opacity: .6;
-    }
+pre {
+    background-color: transparent !important;
 }
 
 // 単語で改行させる設定
@@ -561,27 +545,10 @@ main {
     white-space: pre-wrap !important;
 }
 
-// タブ付きグループパネル
-.group-panel {
-    border-radius: 6px;
-
-    // 直下にdivは2つだけ定義すること
-    > div:first-child {
-        background-color: $menu-bgcolor;
-        color: $menu-color;
-        border-radius: 6px;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-        padding: 0.5rem 2rem 0.5rem 1rem;
-        display: inline-flex;
-    }
-    > div:last-child {
-        border: solid 1px $menu-bgcolor;
-        border-radius: 6px;
-        border-top-left-radius: 0;
-        padding: 1.5rem;
-        background: whitesmoke;
-    }
+// モーダル
+.modal-card {
+    opacity: 0;         // JSのshowModal()へ変化する
+    transition: opacity 300ms 0s ease-in-out;
 }
 
 // *******************************
@@ -684,4 +651,52 @@ nav.header .dropdown {
             }
         }
      }
+}
+
+// *******************************
+// components
+// *******************************
+
+// Jumbotron style
+.jumbotron {
+    @extend .hero;
+    @extend .is-medium;
+    margin-bottom: 3rem;
+    .hero-body {
+        padding: 5rem 1.5rem 5rem 1.5rem;
+        h1.title {
+            font-size: 5rem !important;
+            font-weight: 400;
+        }
+    }
+
+    hr {
+        height: 1px;
+        opacity: .6;
+    }
+}
+
+// タブ付きグループパネル
+.group-panel {
+    border-radius: 6px;
+
+    // 直下にdivは2つだけ定義すること
+    > div:first-child {
+        // タブ
+        background-color: $menu-bgcolor;
+        color: $menu-color;
+        border-radius: 6px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        padding: 0.5rem 2rem 0.5rem 1rem;
+        display: inline-flex;
+    }
+    > div:last-child {
+        // コンテンツ
+        border: solid 1px $menu-bgcolor;
+        border-radius: 6px;
+        border-top-left-radius: 0;
+        padding: 1.5rem;
+        background: whitesmoke;
+    }
 }

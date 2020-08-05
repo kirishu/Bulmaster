@@ -1,5 +1,5 @@
 {
-    "name": "node-sass-build",
+    "name": "bulmaster-sass",
     "version": "0.0.0",
     "private": true,
     "devDependencies": {
