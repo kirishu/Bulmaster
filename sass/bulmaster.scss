@@ -650,8 +650,123 @@ nav.header .dropdown {
                 background-color: $primary;
             }
         }
-     }
+    }
 }
+
+// Line operation button
+@mixin line-operation-button-image($type, $color) {
+
+    $svg: '<svg xmlns="http://www.w3.org/2000/svg" ';
+    @if $type == UP {
+        $svg: $svg + 'viewBox="0 0 7 4" width="7" height="4">'
+            + '<path fill="' + $color + '" transform="matrix(1.1689513,0,0,0.77008265,-1.2377025e-6,0.91966795)" d="M 5.9882684,3.9835038 2.9941386,3.9917494 8.7381299e-6,3.999995 1.4899328,1.4028797 2.9798568,-1.1942356 4.4840626,1.3946341 Z" />';
+    } @else if $type == DOWN {
+        $svg: $svg + 'viewBox="0 0 7 4" width="7" height="4">'
+            + '<path fill="' + $color + '" transform="matrix(1.1689513,0,0,-0.77008265,-1.2377025e-6,3.0803346)" d="M 5.9882684,3.9835038 2.9941386,3.9917494 8.7381299e-6,3.999995 1.4899328,1.4028797 2.9798568,-1.1942356 4.4840626,1.3946341 Z" />';
+    } @else if $type == REMOVE {
+        $svg: $svg + 'viewBox="0 0 7 7" width="7" height="7" style="stroke:' + $color + ';stroke-width:2">'
+            + '<line x1="0" y1="0" x2="7" y2="7" />'
+            + '<line x1="7" y1="0" x2="0" y2="7" />';
+    }
+    $svg: $svg + '</svg>';
+
+    background-image: inline-svg($svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+@function inline-svg($string) {
+    @return url('data:image/svg+xml;utf8,#{url-encode($string)}');
+}
+@function url-encode($string) {
+    // 実際は#だけエンコできれば良いらしい
+    $map: ( "#": "%23", "[": "%5B", "]": "%5D" );
+    $new: $string;
+
+    @each $search, $replace in $map {
+        $new: str-replace($new, $search, $replace);
+    }
+
+    @return $new;
+}
+@function str-replace($string, $search, $replace: '') {
+    $index: str-index($string, $search);
+
+    @if $index {
+        @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    }
+
+    @return $string;
+}
+
+// 行制御ボタン
+.line-operation-button {
+    > div {
+        float: left;
+    }
+
+    a {
+        @extend .button;
+        @extend .is-outlined;
+        @extend .is-link;
+        @extend .is-small;
+        border-radius: 0;
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+    // 行UP
+    .up {
+        width: 28px;
+        height: 12px;
+        border-top-left-radius: 3px;
+        // 背景画像(SVG)
+        @include line-operation-button-image('UP', $primary);
+
+        &:hover, &:focus {
+            @include line-operation-button-image('UP', 'white');
+        }
+    }
+    // 行DOWN
+    .down {
+        width: 28px;
+        height: 12px;
+        border-top: 0;
+        border-bottom-left-radius: 3px;
+        // 背景画像(SVG)
+        @include line-operation-button-image('DOWN', $primary);
+
+        &:hover, &:focus {
+            @include line-operation-button-image('DOWN', 'white');
+        }
+    }
+    // 行REMOVE
+    .remove {
+        width: 20px;
+        height: 24px;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+        border-left: 0;
+        // 背景画像(SVG)
+        @include line-operation-button-image('REMOVE', $primary);
+
+        &:hover, &:focus {
+            @include line-operation-button-image('REMOVE', 'white');
+        }
+    }
+}
+
+// 行制御ボタン：上下移動の2つだけの場合
+.line-operation-button-noremove {
+    @extend .line-operation-button;
+    .up {
+        border-top-right-radius: 3px;
+    }
+    .down {
+        border-bottom-right-radius: 3px;
+    }
+}
+
 
 // *******************************
 // components
