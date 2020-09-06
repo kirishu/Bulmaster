@@ -1999,7 +1999,7 @@ fieldset[disabled] .line-operation-button-noremove a.is-danger.is-inverted,
 }
 
 .button.is-small, nav.header .navbtn, .line-operation-button a, .line-operation-button-noremove a {
-  border-radius: 2px;
+  border-radius: 4px;
   font-size: 0.75rem;
 }
 
@@ -2084,7 +2084,7 @@ fieldset[disabled] .line-operation-button-noremove a,
 }
 
 .buttons.are-small .button:not(.is-normal):not(.is-medium):not(.jumbotron):not(.is-large), .buttons.are-small nav.header .navbtn:not(.is-normal):not(.is-medium):not(.jumbotron):not(.is-large), nav.header .buttons.are-small .navbtn:not(.is-normal):not(.is-medium):not(.jumbotron):not(.is-large), .buttons.are-small .line-operation-button a:not(.is-normal):not(.is-medium):not(.jumbotron):not(.is-large), .line-operation-button .buttons.are-small a:not(.is-normal):not(.is-medium):not(.jumbotron):not(.is-large), .buttons.are-small .line-operation-button-noremove a:not(.is-normal):not(.is-medium):not(.jumbotron):not(.is-large), .line-operation-button-noremove .buttons.are-small a:not(.is-normal):not(.is-medium):not(.jumbotron):not(.is-large) {
-  border-radius: 2px;
+  border-radius: 4px;
   font-size: 0.75rem;
 }
 
@@ -5233,7 +5233,7 @@ button.dropdown-item.is-active {
 }
 
 .menu-list a {
-  border-radius: 2px;
+  border-radius: 4px;
   color: #4a4a4a;
   display: block;
   padding: 0.5em 0.75em;
@@ -12585,6 +12585,10 @@ nav.header .dropdown .dropdown-content a:hover {
   background-color: #3298dc;
 }
 
+.line-operation-button, .line-operation-button-noremove {
+  display: inline-flex;
+}
+
 .line-operation-button > div, .line-operation-button-noremove > div {
   float: left;
 }
@@ -12596,60 +12600,82 @@ nav.header .dropdown .dropdown-content a:hover {
   padding: 0;
 }
 
-.line-operation-button .up, .line-operation-button-noremove .up {
-  width: 28px;
-  height: 12px;
-  border-top-left-radius: 3px;
+.line-operation-button .lob-up, .line-operation-button-noremove .lob-up {
+  width: calc(1rem * 3);
+  font-size: calc(1rem / 2);
+  border-bottom: 0;
+  border-top-left-radius: 4px;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" width="7" height="4"><path fill="%233298dc" transform="matrix(1.1689513,0,0,0.77008265,-1.2377025e-6,0.91966795)" d="M 5.9882684,3.9835038 2.9941386,3.9917494 8.7381299e-6,3.999995 1.4899328,1.4028797 2.9798568,-1.1942356 4.4840626,1.3946341 Z" /></svg>');
   background-repeat: no-repeat;
   background-position: center center;
 }
 
-.line-operation-button .up:hover, .line-operation-button-noremove .up:hover, .line-operation-button .up:focus, .line-operation-button-noremove .up:focus {
+.line-operation-button .lob-up:hover, .line-operation-button-noremove .lob-up:hover {
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" width="7" height="4"><path fill="white" transform="matrix(1.1689513,0,0,0.77008265,-1.2377025e-6,0.91966795)" d="M 5.9882684,3.9835038 2.9941386,3.9917494 8.7381299e-6,3.999995 1.4899328,1.4028797 2.9798568,-1.1942356 4.4840626,1.3946341 Z" /></svg>');
   background-repeat: no-repeat;
   background-position: center center;
 }
 
-.line-operation-button .down, .line-operation-button-noremove .down {
-  width: 28px;
-  height: 12px;
-  border-top: 0;
-  border-bottom-left-radius: 3px;
+.line-operation-button .lob-up:active, .line-operation-button-noremove .lob-up:active {
+  background-color: white;
+}
+
+.line-operation-button .lob-down, .line-operation-button-noremove .lob-down {
+  width: calc(1rem * 3);
+  font-size: calc(1rem / 2);
+  border-bottom-left-radius: 4px;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" width="7" height="4"><path fill="%233298dc" transform="matrix(1.1689513,0,0,-0.77008265,-1.2377025e-6,3.0803346)" d="M 5.9882684,3.9835038 2.9941386,3.9917494 8.7381299e-6,3.999995 1.4899328,1.4028797 2.9798568,-1.1942356 4.4840626,1.3946341 Z" /></svg>');
   background-repeat: no-repeat;
   background-position: center center;
 }
 
-.line-operation-button .down:hover, .line-operation-button-noremove .down:hover, .line-operation-button .down:focus, .line-operation-button-noremove .down:focus {
+.line-operation-button .lob-down:hover, .line-operation-button-noremove .lob-down:hover {
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" width="7" height="4"><path fill="white" transform="matrix(1.1689513,0,0,-0.77008265,-1.2377025e-6,3.0803346)" d="M 5.9882684,3.9835038 2.9941386,3.9917494 8.7381299e-6,3.999995 1.4899328,1.4028797 2.9798568,-1.1942356 4.4840626,1.3946341 Z" /></svg>');
   background-repeat: no-repeat;
   background-position: center center;
 }
 
-.line-operation-button .remove, .line-operation-button-noremove .remove {
-  width: 20px;
-  height: 24px;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
+.line-operation-button .lob-down:active, .line-operation-button-noremove .lob-down:active {
+  background-color: white;
+}
+
+.line-operation-button .lob-remove, .line-operation-button-noremove .lob-remove {
+  width: calc(1rem * 1.5);
+  font-size: 1rem;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
   border-left: 0;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 7" width="7" height="7" style="stroke:%233298dc;stroke-width:2"><line x1="0" y1="0" x2="7" y2="7" /><line x1="7" y1="0" x2="0" y2="7" /></svg>');
   background-repeat: no-repeat;
   background-position: center center;
 }
 
-.line-operation-button .remove:hover, .line-operation-button-noremove .remove:hover, .line-operation-button .remove:focus, .line-operation-button-noremove .remove:focus {
+.line-operation-button .lob-remove:hover, .line-operation-button-noremove .lob-remove:hover {
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 7" width="7" height="7" style="stroke:white;stroke-width:2"><line x1="0" y1="0" x2="7" y2="7" /><line x1="7" y1="0" x2="0" y2="7" /></svg>');
   background-repeat: no-repeat;
   background-position: center center;
 }
 
-.line-operation-button-noremove .up {
-  border-top-right-radius: 3px;
+.line-operation-button .lob-remove:active, .line-operation-button-noremove .lob-remove:active {
+  background-color: white;
 }
 
-.line-operation-button-noremove .down {
-  border-bottom-right-radius: 3px;
+.line-operation-button.is-small .lob-up, nav.header .line-operation-button.navbtn .lob-up, nav.header .navbtn.line-operation-button-noremove .lob-up, .line-operation-button a.line-operation-button .lob-up, .line-operation-button-noremove a.line-operation-button .lob-up, .line-operation-button a.line-operation-button-noremove .lob-up, .line-operation-button-noremove a.line-operation-button-noremove .lob-up, .is-small.line-operation-button-noremove .lob-up, .line-operation-button.is-small .lob-down, nav.header .line-operation-button.navbtn .lob-down, nav.header .navbtn.line-operation-button-noremove .lob-down, .line-operation-button a.line-operation-button .lob-down, .line-operation-button-noremove a.line-operation-button .lob-down, .line-operation-button a.line-operation-button-noremove .lob-down, .line-operation-button-noremove a.line-operation-button-noremove .lob-down, .is-small.line-operation-button-noremove .lob-down {
+  width: calc(0.75rem * 3);
+  font-size: calc(0.75rem / 2);
+}
+
+.line-operation-button.is-small .lob-remove, nav.header .line-operation-button.navbtn .lob-remove, nav.header .navbtn.line-operation-button-noremove .lob-remove, .line-operation-button a.line-operation-button .lob-remove, .line-operation-button-noremove a.line-operation-button .lob-remove, .line-operation-button a.line-operation-button-noremove .lob-remove, .line-operation-button-noremove a.line-operation-button-noremove .lob-remove, .is-small.line-operation-button-noremove .lob-remove {
+  width: calc(0.75rem * 2);
+  font-size: 0.75rem;
+}
+
+.line-operation-button-noremove .lob-up {
+  border-top-right-radius: 4px;
+}
+
+.line-operation-button-noremove .lob-down {
+  border-bottom-right-radius: 4px;
 }
 
 .jumbotron {

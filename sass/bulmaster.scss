@@ -8,7 +8,7 @@ $body-size: 14px;
 $modal-z: 1200;
 $family-primary: "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", YuGothic, Meiryo, sans-serif;
 $family-monospace: Menlo, Monaco, Consolas, "Courier New", monospace;
-$control-radius-small: 4px;
+$radius-small: 4px;
 $column-gap: .25rem .5rem;
 $label-weight: 400;
 // ---------------------------
@@ -555,7 +555,9 @@ pre {
 // form parts
 // *******************************
 
+// ===============================
 // Switchコントロール (checkbox)
+// ===============================
 .switch {
     -webkit-tap-highlight-color: transparent;
     -webkit-user-select: none;
@@ -653,7 +655,10 @@ nav.header .dropdown {
     }
 }
 
+// ===============================
 // Line operation button
+// ===============================
+// Line operation button SVG
 @mixin line-operation-button-image($type, $color) {
 
     $svg: '<svg xmlns="http://www.w3.org/2000/svg" ';
@@ -678,6 +683,7 @@ nav.header .dropdown {
 @function inline-svg($string) {
     @return url('data:image/svg+xml;utf8,#{url-encode($string)}');
 }
+// URLエンコード関数
 @function url-encode($string) {
     // 実際は#だけエンコできれば良いらしい
     $map: ( "#": "%23", "[": "%5B", "]": "%5D" );
@@ -689,6 +695,7 @@ nav.header .dropdown {
 
     @return $new;
 }
+// 文字列置換関数
 @function str-replace($string, $search, $replace: '') {
     $index: str-index($string, $search);
 
@@ -701,6 +708,8 @@ nav.header .dropdown {
 
 // 行制御ボタン
 .line-operation-button {
+    display: inline-flex;
+
     > div {
         float: left;
     }
@@ -715,55 +724,75 @@ nav.header .dropdown {
         margin: 0;
         padding: 0;
     }
-    // 行UP
-    .up {
-        width: 28px;
-        height: 12px;
-        border-top-left-radius: 3px;
-        // 背景画像(SVG)
-        @include line-operation-button-image('UP', $primary);
 
-        &:hover, &:focus {
+    // 行UP
+    .lob-up {
+        width: calc(#{$size-normal} * 3);
+        font-size: calc(#{$size-normal} / 2);
+
+        border-bottom: 0;
+        border-top-left-radius: $radius-small;
+        @include line-operation-button-image('UP', $primary);
+        &:hover {
             @include line-operation-button-image('UP', 'white');
+        }
+        &:active {
+            background-color: white;
         }
     }
     // 行DOWN
-    .down {
-        width: 28px;
-        height: 12px;
-        border-top: 0;
-        border-bottom-left-radius: 3px;
-        // 背景画像(SVG)
-        @include line-operation-button-image('DOWN', $primary);
+    .lob-down {
+        width: calc(#{$size-normal} * 3);
+        font-size: calc(#{$size-normal} / 2);
 
-        &:hover, &:focus {
+        border-bottom-left-radius: $radius-small;
+        @include line-operation-button-image('DOWN', $primary);
+        &:hover {
             @include line-operation-button-image('DOWN', 'white');
+        }
+        &:active {
+            background-color: white;
         }
     }
     // 行REMOVE
-    .remove {
-        width: 20px;
-        height: 24px;
-        border-top-right-radius: 3px;
-        border-bottom-right-radius: 3px;
-        border-left: 0;
-        // 背景画像(SVG)
-        @include line-operation-button-image('REMOVE', $primary);
+    .lob-remove {
+        width: calc(#{$size-normal} * 1.5);
+        font-size: $size-normal;
 
-        &:hover, &:focus {
+        border-top-right-radius: $radius-small;
+        border-bottom-right-radius: $radius-small;
+        border-left: 0;
+        @include line-operation-button-image('REMOVE', $primary);
+        &:hover {
             @include line-operation-button-image('REMOVE', 'white');
         }
+        &:active {
+            background-color: white;
+        }
+    }
+
+    // .is-smallの時の大きさ
+    &.is-small {
+        .lob-up, .lob-down {
+            width: calc(#{$size-small} * 3);
+            font-size: calc(#{$size-small} / 2);
+        }
+        .lob-remove {
+            width: calc(#{$size-small} * 2);
+            font-size: $size-small;
+        }
+
     }
 }
 
 // 行制御ボタン：上下移動の2つだけの場合
 .line-operation-button-noremove {
     @extend .line-operation-button;
-    .up {
-        border-top-right-radius: 3px;
+    .lob-up {
+        border-top-right-radius: $radius-small;
     }
-    .down {
-        border-bottom-right-radius: 3px;
+    .lob-down {
+        border-bottom-right-radius: $radius-small;
     }
 }
 
