@@ -73,10 +73,38 @@
             </div>
         </nav>
 
+
+
         <section class="container">
+
+            <div class="content">
+                <h4 class="title is-4">
+                    基本
+                </h4>
+                        <pre>
+                            <code class="has-text-dark">
+&lt;div class="<span class="has-text-danger-dark">field</span>"&gt;
+    &lt;label class="label"&gt;Name&lt;/label&gt;
+    &lt;div class="<span class="has-text-danger-dark">control</span>"&gt;
+        &lt;input class="input" type="text" placeholder="Text input"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+<span class="has-text-danger-dark">field</span> は、margin-bottom: 0.75rem が設定
+<span class="has-text-danger-dark">control</span> は、position: relative が設定
+input, textarea の width は 100% が設定される
+select は width:100% ではないので、リストの文字幅がデフォルトとなる
+                            </code>
+                        </pre>
+
+            </div>
+
+
+
             <form>
 
                 <div class="content">
+                    <hr />
                     <h4 class="title is-4">
                         Vertical Form
                     </h4>
@@ -167,6 +195,9 @@
                     </div>
 
                 </div>
+
+
+
 
                 <div class="content">
                     <hr />
@@ -313,6 +344,31 @@
 
             <div class="content">
                 <hr />
+<h4 class="title is-4">
+    Grid Form
+</h4>
+<pre>
+                            <code class="has-text-dark">
+&lt;div class="columns <span class="has-text-danger-dark">field</span>"&gt;
+    &lt;div class="column is-9"&gt;
+        &lt;label class="label"&gt;Name&lt;/label&gt;
+        &lt;div class="<span class="has-text-danger-dark">control</span>"&gt;
+            &lt;input class="input" type="text"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="column is-3"&gt;
+        &lt;label class="label"&gt;金額&lt;/label&gt;
+        &lt;div class="<span class="has-text-danger-dark">control</span> <span class="has-text-success-dark">has-unit</span>"&gt;
+            &lt;input class="input has-text-right" type="text"&gt;
+            &lt;span class="button is-static"&gt;円&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+input の width は 100% がデフォルトなので、column の幅イッパイになる。
+
+                            </code>
+                        </pre>
 
                 <!-- Grid Form -->
                 <div class="group-panel">
@@ -322,6 +378,21 @@
                     <div>
 
                         <form>
+                            <div class="columns field">
+                                <div class="column is-9">
+                                    <label class="label">Name</label>
+                                    <div class="control">
+                                        <input class="input" type="text">
+                                    </div>
+                                </div>
+                                <div class="column is-3">
+                                    <label class="label">金額</label>
+                                    <div class="control has-unit">
+                                        <input class="input has-text-right" type="text">
+                                        <span class="button is-static">円</span>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="columns field">
                                 <div class="column is-7">
                                     <label class="label">Email</label>
@@ -401,6 +472,38 @@
                                     </div>
                                 </div>
                             </div>
+
+
+                            <div class="columns field">
+
+                                <div class="column is-3">
+                                    <label class="label">単位付きtext</label>
+                                    <div class="control has-unit">
+                                        <input class="input has-text-right" type="text">
+                                        <span class="button is-static">円</span>
+                                    </div>
+                                </div>
+
+                                <div class="column is-3">
+                                    <label class="label">半角もOK</label>
+                                    <div class="control has-unit">
+                                        <input class="input has-text-right" type="text">
+                                        <span class="button is-static">g</span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="columns field">
+                                <div class="column">
+                                    <button type="button" class="button is-primary">is-primary</button>
+                                    <button type="button" class="button is-primary is-outlined">is-outlined</button>
+                                </div>
+                            </div>
+
+
 
 
                         </form>
@@ -520,18 +623,18 @@
                             <!-- 行の移動ボタン -->
                             <div class="line-operation-button">
                                 <div>
-                                    <a class="lob-up" title="up"></a>
-                                    <a class="lob-down" title="down"></a>
+                                    <a class="line-up" title="up"></a>
+                                    <a class="line-down" title="down"></a>
                                 </div>
                                 <div>
-                                    <a class="lob-remove" title="remove"></a>
+                                    <a class="line-remove" title="remove"></a>
                                 </div>
                             </div>
 
                             <div class="line-operation-button-noremove">
                                 <div>
-                                    <a class="lob-up" title="up"></a>
-                                    <a class="lob-down" title="down"></a>
+                                    <a class="line-up" title="up"></a>
+                                    <a class="line-down" title="down"></a>
                                 </div>
                             </div>
 
@@ -545,23 +648,29 @@
 
                         <button class="button is-primary is-small">is-small</button>
                         <button class="button is-primary is-small is-outlined">is-outlined</button>
+                        <button class="button is-info is-small is-outlined">is-info</button>
+                        <button class="button is-success is-small is-outlined">is-sucess</button>
+                        <button class="button is-warning is-small is-outlined">is-warning</button>
+                        <button class="button is-danger is-small is-outlined">is-danger</button>
+                        <button class="button is-dark is-small is-outlined">is-dark</button>
+                        <a class="button is-primary is-small is-outlined">a.is-primary</a>
 
                         <!-- 行の移動ボタン -->
                         <div class="line-operation-button is-small">
                             <div>
-                                <a class="lob-up" title="up"></a>
-                                <a class="lob-down" title="down"></a>
+                                <a class="line-up" title="up"></a>
+                                <a class="line-down" title="down"></a>
                             </div>
                             <div>
-                                <a class="lob-remove" title="remove"></a>
+                                <a class="line-remove" title="remove"></a>
                             </div>
                         </div>
 
 
                         <div class="line-operation-button-noremove is-small">
                             <div>
-                                <a class="lob-up" title="up"></a>
-                                <a class="lob-down" title="down"></a>
+                                <a class="line-up" title="up"></a>
+                                <a class="line-down" title="down"></a>
                             </div>
                         </div>
                     </div>
@@ -688,6 +797,84 @@
             </div>
 
 
+
+
+            <div class="content">
+                <hr />
+                <h4 class="title is-4">
+                    readonly &amp; disabled
+                </h4>
+
+                <div class="field">
+                    <div class="control">
+                        <input class="input" type="text" value="あいうえお-ABCDEFG-1234567890" readonly>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control has-icons-left has-icons-right">
+                        <input class="input is-danger" type="email" value="hello@hogehoge.hoge" readonly>
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <span class="icon is-small is-right">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <div class="select">
+                            <select disabled>
+                                <option selected>あいうえお-ABCDEFG-1234567890</option>
+                                <option>With options</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <textarea class="textarea" readonly>あいうえお-ABCDEFG-1234567890</textarea>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <label class="checkbox">
+                            <input type="checkbox" disabled="disabled" checked="checked">
+                            I agree to the <a>terms and conditions</a>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <label class="radio">
+                            <input type="radio" name="question" checked disabled>
+                            Yes
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="question" disabled>
+                            No
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button class="button is-primary" disabled>Submit</button>
+                    </div>
+                    <div class="control">
+                        <button class="button is-primary is-light" disabled>Cancel</button>
+                    </div>
+                    <div class="control">
+                        <button class="button is-primary is-outlined" disabled>is-outlined</button>
+                    </div>
+                </div>
+
+            </div>
 
 
         </section>

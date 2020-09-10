@@ -1,6 +1,8 @@
 {
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
+
+    // bulmaster.scss を保存したら、bulmaster.css と bulmaster.min.css を生成するタスク
     "version": "2.0.0",
     "tasks": [
         {

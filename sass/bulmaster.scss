@@ -3,7 +3,7 @@
 
 // override variables of bulma
 // ※bulmaのimportを行う前に定義しておく
-$primary: hsl(204, 71%, 53%);
+$primary: hsl(204, 71%, 50%);
 $body-size: 14px;
 $modal-z: 1200;
 $family-primary: "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", YuGothic, Meiryo, sans-serif;
@@ -16,7 +16,7 @@ $label-weight: 400;
 // variables of this file
 $header-height: 52px;           // ヘッダ高さ
 $page-padding-bottom: 100px;    // ページpdding下
-$menu-width: 250px;             // メニュー幅
+$menu-width: 240px;             // メニュー幅
 $menu-width-shrink: 12px;       // switchコントロールで縮小されたときのメニュー幅
 $anime-duration: .3s;           // アニメーションの変化時間
 // z-index
@@ -25,7 +25,7 @@ $z-menu: 1100;
 $z-block-ui: 9000;
 // colors
 $header-color: #fff;
-$header-bgcolor: darken($primary, 50%);
+$header-bgcolor: darken($primary, 35%);
 $menu-bgcolor: darken($primary, 35%);
 $menu-hover-bgcolor: rgba(255,255,255,0.2);
 $menu-child-bgcolor: rgba(255,255,255,0.05);
@@ -456,7 +456,7 @@ main {
 }
 
 
-// コンテナ
+// コンテナ (bulma overrode)
 .container {
     margin-top: calc(#{$header-height} + 20px);
     max-width: unset !important;    // bulmaのResponsivenessを無視する
@@ -470,7 +470,7 @@ main {
     }
 }
 
-// コンテント
+// コンテント (bulma overrode)
 .content {
     margin: 0 !important;
     padding: 0 2rem 2rem 2rem;
@@ -487,7 +487,7 @@ main {
     }
 }
 
-// bulma override
+// control (bulma overrode)
 .control {
     margin-bottom: 0 !important;
 }
@@ -526,7 +526,7 @@ main {
     }
 }
 
-
+// (bulma overrode)
 pre {
     background-color: transparent !important;
 }
@@ -551,9 +551,58 @@ pre {
     transition: opacity 300ms 0s ease-in-out;
 }
 
+
 // *******************************
 // form parts
 // *******************************
+
+// .button (bulma overrode)
+@each $name, $pair in $colors {
+    $color: nth($pair, 1);
+    $color-invert: nth($pair, 2);
+    .button.is-#{$name} {
+        &:active {
+            // ※ ボタンをクリックしたときが分かるように
+            background-color: white;
+            border-color: $color;
+            color: $color;
+        }
+
+        // .button.is-outlined で、focusの時に色が付いたままになるのを打ち消す
+        //  ※ ボタンをクリックしたときが分かるように
+        //     またクリック後hoverが外れたら、背景は元のtransparentになるように
+        &.is-outlined {
+            background-color: white;
+            border-color: $color;
+            color: $color;
+            // ※この順番で書かなきゃダメ
+            &:focus {
+                background-color: white;
+                border-color: $color;
+                color: $color;
+            }
+            &:hover {
+                background-color: $color;
+                border-color: $color;
+                color: $color-invert;
+            }
+            &:active {
+                // focusと纏めてはいけない
+                background-color: white;
+                border-color: $color;
+                color: $color;
+            }
+        }
+    }
+}
+
+// .label (bulma overrode)
+.label:not(:last-child) {
+    margin-bottom: 0.2em;
+    margin-left: 0.2em;
+}
+
+
 
 // ===============================
 // Switchコントロール (checkbox)
@@ -717,7 +766,7 @@ nav.header .dropdown {
     a {
         @extend .button;
         @extend .is-outlined;
-        @extend .is-link;
+        @extend .is-primary;
         @extend .is-small;
         border-radius: 0;
         display: block;
@@ -726,7 +775,7 @@ nav.header .dropdown {
     }
 
     // 行UP
-    .lob-up {
+    .line-up {
         width: calc(#{$size-normal} * 3);
         font-size: calc(#{$size-normal} / 2);
 
@@ -736,12 +785,9 @@ nav.header .dropdown {
         &:hover {
             @include line-operation-button-image('UP', 'white');
         }
-        &:active {
-            background-color: white;
-        }
     }
     // 行DOWN
-    .lob-down {
+    .line-down {
         width: calc(#{$size-normal} * 3);
         font-size: calc(#{$size-normal} / 2);
 
@@ -750,12 +796,9 @@ nav.header .dropdown {
         &:hover {
             @include line-operation-button-image('DOWN', 'white');
         }
-        &:active {
-            background-color: white;
-        }
     }
     // 行REMOVE
-    .lob-remove {
+    .line-remove {
         width: calc(#{$size-normal} * 1.5);
         font-size: $size-normal;
 
@@ -766,18 +809,15 @@ nav.header .dropdown {
         &:hover {
             @include line-operation-button-image('REMOVE', 'white');
         }
-        &:active {
-            background-color: white;
-        }
     }
 
     // .is-smallの時の大きさ
     &.is-small {
-        .lob-up, .lob-down {
+        .line-up, .line-down {
             width: calc(#{$size-small} * 3);
             font-size: calc(#{$size-small} / 2);
         }
-        .lob-remove {
+        .line-remove {
             width: calc(#{$size-small} * 2);
             font-size: $size-small;
         }
@@ -788,14 +828,66 @@ nav.header .dropdown {
 // 行制御ボタン：上下移動の2つだけの場合
 .line-operation-button-noremove {
     @extend .line-operation-button;
-    .lob-up {
+    .line-up {
         border-top-right-radius: $radius-small;
     }
-    .lob-down {
+    .line-down {
         border-bottom-right-radius: $radius-small;
     }
 }
 
+// 単位付きtext
+.control.has-unit {
+    display: flex;
+
+    .input[type=text] {
+        flex-basis: auto;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    span.button.is-static {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-left-width: 0;
+    }
+}
+
+.input[type=text],
+.input[type=passsword],
+.input[type=email],
+.input[type=tel],
+.input[type=url],
+.textarea {
+    &:read-only {
+        background-color: whitesmoke;
+        border-color: $input-border-color;
+        box-shadow: none;
+        // &:active,
+        // &:hover,
+        // &:focus {
+        //     border-color: $input-border-color;
+        // }
+    }
+}
+
+.select {
+    select {
+        &:disabled {
+            background-color: whitesmoke;
+            border-color: $input-border-color;
+            color: $input-color;
+            opacity: 1.0;
+            // cursor: not-allowed;    // 禁止カーソルを表示しない修正
+            // > option {
+            //     color: $input-color;
+            // }
+        }
+    }
+    // &:not(.is-multiple):not(.is-loading)::after {
+    //     border: 0;
+    // }
+}
 
 // *******************************
 // components
