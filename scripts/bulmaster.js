@@ -47,6 +47,15 @@ const Bulmaster = (() => {
 
             // メニューのwidthを取得
             _menu_width = parseInt(window.getComputedStyle(_$menu).width, 10);
+        } else {
+            // menuがないとき
+            _menu_width = 0;
+            document.querySelector('main').style.marginLeft = '0';
+            const nav = document.querySelector('nav.header');
+            if (nav) {
+                console.log(nav);
+                nav.style.left = '0';
+            }
         }
 
         // block-ui element作成
@@ -129,18 +138,12 @@ const Bulmaster = (() => {
      * メニュー縮小switchの設定
      */
     const swtchMenuSetting = () => {
-        // メニュー縮小switchを動的に追加
-        const sw = (() => {/*
-            <div>
-                MENU SWITCH
-            </div>
+        const sw = `
+            <div>MENU SWITCH</div>
             <div class='switch is-marginless'>
-                <label>
-                    <input type='checkbox' checked>
-                    <span class='lever'></span>
-                </label>
+                <label><input type='checkbox' checked><span class='lever'></span></label>
             </div>
-            */}).toString().match(/(?:\/\*(?:[\s\S]*?)\*\/)/).pop().replace(/^\/\*/, '').replace(/\*\/$/, '');
+        `;
         const domli = _createElement('li', ['menu-label', 'menu-switch']);
         domli.innerHTML = sw;
         _$menu.querySelector('ul').appendChild(domli);
