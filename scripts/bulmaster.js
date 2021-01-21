@@ -8,7 +8,7 @@ const Bulmaster = (() => {
     /** 各種設定 */
     const _settings = {
         neverChileMenuClose: false,     // trueなら子メニューは常に開いたまま（expandしっぱなし）
-        showMenuHideSwitch: true,       // メニューを縮小するswitchの表示
+        shrinkMenuIcon: true,           // メニューを縮小するアイコンの表示
     };
 
     /** element <menu> */
@@ -126,28 +126,27 @@ const Bulmaster = (() => {
             _.addEventListener('click', _menuClickEvent, false);
         }, this);
 
-        // 表示制御switchの設定
-        if (_settings.showMenuHideSwitch) {
-            swtchMenuSetting();
+        // メニュー非表示の作成
+        if (_settings.shrinkMenuIcon) {
+            shrinkMenuSetting();
         }
 
         return;
     };
 
     /**
-     * メニュー縮小switchの設定
+     * メニュー非表示の作成
      */
-    const swtchMenuSetting = () => {
-        const sw = `
-            <div>MENU SWITCH</div>
-            <div class='switch is-marginless'>
-                <label><input type='checkbox' checked><span class='lever'></span></label>
-            </div>
+    const shrinkMenuSetting = () => {
+        // アイコンを追加
+        const html = `
+            <i class='fas fa-bars'></i>
+            <i class='fas fa-arrow-left'></i>
+            <span class='menu-text'>shrink</span>
         `;
-        const domli = _createElement('li', ['menu-label', 'menu-switch']);
-        domli.innerHTML = sw;
-        _$menu.querySelector('ul').appendChild(domli);
-        const shirinkSw = _$menu.querySelector(".switch input[type='checkbox']");
+        const domli = _createElement('div', ['shrink-menu-icon']);
+        domli.innerHTML = html;
+        const shirinkIcon = _$menu.querySelector('menu .menu-items').appendChild(domli);
 
         // 縮小メニューのオーバレイを動的に追加
         const shrink = document.createElement('div');
@@ -176,15 +175,12 @@ const Bulmaster = (() => {
                 }
                 _$menu.classList.remove('shrink-menu-width');
                 shrink.classList.remove('shrink');
-                shirinkSw.checked = true;
             }
         };
 
-        // メニュー縮小switch change event
-        shirinkSw.addEventListener('change', (e) => {
-            if (!shirinkSw.checked) {
-                doShrinkMenu(e, true);
-            }
+        // メニュー縮小 change event
+        shirinkIcon.addEventListener('click', (e) => {
+            doShrinkMenu(e, true);
         }, false);
 
         // shrinkのclick event

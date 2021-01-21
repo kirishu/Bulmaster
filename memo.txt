@@ -17,12 +17,13 @@ HTML内には・・・
     section.containerも1つだけであること
 
 main
-    余白無し
+    margin-left:メニュー幅
+    padding無し
     サイドメニューのresponseve設定
-    navやjumbotromなどはこの直下に置くこと
+    navやjumbotromなどはこの中に置くこと
 
 section.container
-    .container継承
+    bulmaの.containerを継承
     余白無し
     .unlimit-widthで、fullhdのときmax-widthなし
     bulmaの margin: 0 auto を打ち消している
@@ -30,7 +31,7 @@ section.container
       （画面幅いっぱいを使う）
 
 .content
-    .content継承
+    bulmaの.content継承
     左右下にpaddingがある（padding: 0 2rem 2rem 2rem;）
     :last-child に、padding-bottom:$page-padding-bottom;
 
@@ -52,7 +53,7 @@ JavaScriptでやっていること
         ・モーダルメニュー（メニューのnodeをコピって複製）
         ・ページtop移動ボタン
         ・block-ui
-        ・メニューの縮小switch
+        ・メニューの縮小アイコン
 
 CSSでやっていること
     メニュー、メイン、ヘッダのResponsive

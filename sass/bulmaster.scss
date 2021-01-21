@@ -17,7 +17,7 @@ $label-weight: 400;
 $header-height: 52px;           // ヘッダ高さ
 $page-padding-bottom: 100px;    // ページpdding下
 $menu-width: 240px;             // メニュー幅
-$menu-width-shrink: 12px;       // switchコントロールで縮小されたときのメニュー幅
+$menu-width-shrink: 12px;       // 縮小されたときのメニュー幅
 $anime-duration: .3s;           // アニメーションの変化時間
 // z-index
 $z-icon-button: 800;            // topへ移動やハンバーガなどのアイコンのz-index
@@ -43,9 +43,17 @@ $icon-move-top-color: #555;
 // customize
 //@import "custom-sample.scss";
 
-// import bulma v0.9.0
+// import bulma v0.9.1
 @import "../node_modules/bulma/bulma.sass";
 
+@mixin menu_icon {
+    // メニュー内のアイコン
+    width: 32px !important;
+    margin-right: 4px;
+    font-size: 1.33em;
+    line-height: .75em;
+    vertical-align: -.225em;
+}
 
 // メニューul mixin
 // $is_child : 子メニューのときはtrue
@@ -86,11 +94,7 @@ $icon-move-top-color: #555;
 
             // アイコン
             i, svg {
-                width: 32px !important;
-                margin-right: 4px;
-                font-size: 1.33em;
-                line-height: .75em;
-                vertical-align: -.225em;
+                @include menu_icon();
             }
 
             @if $is_child {
@@ -246,22 +250,6 @@ menu {
 
 } // end of menu
 
-
-// メニュー 表示/非表示 switch
-menu .menu-switch {
-    // @Responsiveness
-    @include until($desktop) {
-        display: none;
-    }
-
-    .switch {
-        margin: 1rem 0 0 0;
-        span {
-            margin: 0;
-        }
-    }
-}
-
 // ヘッダnav
 nav.header {
     @extend .navbar;
@@ -393,6 +381,36 @@ main {
     }
 }
 
+
+// ***************************
+// メニュー 非表示アイコン
+menu .shrink-menu-icon {
+    // @Responsiveness
+    @include until($desktop) {
+        display: none;
+    }
+
+    padding: 12px;
+    display: inline-block;
+    cursor: pointer;
+
+    i, svg {
+        @include menu_icon();
+    }
+    .fa-arrow-left {
+        display: none;
+    }
+    &:hover {
+        .fa-bars {
+            display: none;
+        }
+        .fa-arrow-left,
+        .menu-text {
+            color: $menu-color;
+            display: inherit;
+        }
+    }
+}
 // ***************************
 // shrink-menuに切り替わったときの設定
 // ***************************
@@ -863,11 +881,6 @@ nav.header .dropdown {
         background-color: whitesmoke;
         border-color: $input-border-color;
         box-shadow: none;
-        // &:active,
-        // &:hover,
-        // &:focus {
-        //     border-color: $input-border-color;
-        // }
     }
 }
 
@@ -878,15 +891,8 @@ nav.header .dropdown {
             border-color: $input-border-color;
             color: $input-color;
             opacity: 1.0;
-            // cursor: not-allowed;    // 禁止カーソルを表示しない修正
-            // > option {
-            //     color: $input-color;
-            // }
         }
     }
-    // &:not(.is-multiple):not(.is-loading)::after {
-    //     border: 0;
-    // }
 }
 
 // *******************************

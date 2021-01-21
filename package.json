@@ -3,8 +3,8 @@
     "version": "0.0.0",
     "private": true,
     "devDependencies": {
-        "bulma": "0.9.0",
-        "node-sass": "latest"
+        "bulma": "0.9.1",
+        "node-sass": "4.10.0"
     },
     "scripts": {
         "build-sass-normal": "node-sass -w sass/bulmaster.scss css/bulmaster.css --output-style expanded",
