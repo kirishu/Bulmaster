@@ -12444,6 +12444,10 @@ menu .menu-items div.menu-child > ul li.menu-label {
   color: #7a7a7a;
 }
 
+menu .menu-text {
+  color: #fff;
+}
+
 @media screen and (max-width: 1023px) {
   menu {
     display: none;
@@ -12567,7 +12571,6 @@ body > .icon-hamburger:hover {
 
 main {
   margin-left: 240px;
-  transition-duration: 0.3s;
 }
 
 @media screen and (max-width: 1023px) {
@@ -12598,6 +12601,10 @@ menu .shrink-menu-icon i, menu .shrink-menu-icon svg {
 
 menu .shrink-menu-icon .fa-arrow-left {
   display: none;
+}
+
+menu .shrink-menu-icon .menu-text {
+  color: unset;
 }
 
 menu .shrink-menu-icon:hover .fa-bars {
@@ -12668,16 +12675,20 @@ menu .shrink-menu-icon:hover .menu-text {
   }
 }
 
-.container {
-  margin-top: calc(52px + 20px);
+section.container {
+  margin-top: 0;
   max-width: unset !important;
   margin-left: 0 !important;
   margin-right: 0 !important;
 }
 
+nav.header + section.container {
+  margin-top: calc(52px + 20px);
+}
+
 @media screen and (max-width: 1023px) {
-  .container {
-    margin-top: 0;
+  section.container {
+    margin-top: 0 !important;
   }
 }
 

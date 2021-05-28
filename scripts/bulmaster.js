@@ -47,13 +47,14 @@ const Bulmaster = (() => {
 
             // メニューのwidthを取得
             _menu_width = parseInt(window.getComputedStyle(_$menu).width, 10);
+            // mainのアニメーション定義
+            document.querySelector('main').style.transitionDuration = window.getComputedStyle(_$menu).transitionDuration;
         } else {
             // menuがないとき
             _menu_width = 0;
             document.querySelector('main').style.marginLeft = '0';
             const nav = document.querySelector('nav.header');
             if (nav) {
-                console.log(nav);
                 nav.style.left = '0';
             }
         }
@@ -266,7 +267,7 @@ const Bulmaster = (() => {
                 });
             });
 
-            document.addEventListener('click', (e) => {
+            document.addEventListener('click', () => {
                 $dropbtns.forEach(_ => {
                     _.classList.remove('is-active');
                 });
@@ -275,7 +276,7 @@ const Bulmaster = (() => {
     };
 
     // DOMContentLoaded execute
-    window.addEventListener('DOMContentLoaded', (e) => {
+    window.addEventListener('DOMContentLoaded', () => {
         Bulmaster.init();
     });
 

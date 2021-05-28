@@ -243,6 +243,10 @@ menu {
         }
     }
 
+    .menu-text {
+        color: $menu-color;
+    }
+
     // @Responsiveness
     @include until($desktop) {
         display: none;
@@ -373,7 +377,6 @@ body > .icon-hamburger {
 // メイン
 main {
     margin-left: $menu-width;
-    transition-duration: $anime-duration;
 
     // @Responsiveness
     @include until($desktop) {
@@ -399,6 +402,9 @@ menu .shrink-menu-icon {
     }
     .fa-arrow-left {
         display: none;
+    }
+    .menu-text {
+        color: unset;
     }
     &:hover {
         .fa-bars {
@@ -475,8 +481,12 @@ menu .shrink-menu-icon {
 
 
 // コンテナ (bulma overrode)
-.container {
-    margin-top: calc(#{$header-height} + 20px);
+section.container {
+    margin-top: 0;
+    nav.header + & {
+        // navがあるときはヘッダの分だけ下げる（navが無いときとdesktop未満のときは0）
+        margin-top: calc(#{$header-height} + 20px);
+    }
     max-width: unset !important;    // bulmaのResponsivenessを無視する
 
     margin-left: 0 !important;      // 1408px以上のときにセンタリングされないように
@@ -484,7 +494,7 @@ menu .shrink-menu-icon {
 
     // @Responsiveness
     @include until($desktop) {
-        margin-top: 0;
+        margin-top: 0 !important;
     }
 }
 

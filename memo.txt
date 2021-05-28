@@ -9,6 +9,9 @@ Visual Studio Codeでの使い方
         Shift + Ctrl + B  →  build-sass 実行
         ※ bulmaster.scssを変更保存するたびに自動ビルドしてくれる
 
+    JSは手動でminifyする
+        uglifyjs -c -o .\scripts\bulmaster.min.js .\scripts\bulmaster.js
+
 ----------------------------------------------------------
 ★お約束
 HTML内には・・・
@@ -17,12 +20,14 @@ HTML内には・・・
     section.containerも1つだけであること
 
 main
+    全体に１つだけであること
     margin-left:メニュー幅
     padding無し
     サイドメニューのresponseve設定
     navやjumbotromなどはこの中に置くこと
 
 section.container
+    全体に１つだけであること
     bulmaの.containerを継承
     余白無し
     .unlimit-widthで、fullhdのときmax-widthなし
@@ -31,9 +36,14 @@ section.container
       （画面幅いっぱいを使う）
 
 .content
+    基本的にコンテンツはこの中に書く
     bulmaの.content継承
     左右下にpaddingがある（padding: 0 2rem 2rem 2rem;）
     :last-child に、padding-bottom:$page-padding-bottom;
+
+.menu
+    全体に１つだけであること
+
 
 
 コンテンツ内のz-indexは、900未満であること
@@ -45,6 +55,7 @@ JavaScriptでやっていること
     ハンバーガーボタンのクリックイベント
     モーダルメニュークリックイベント（tablet以下のとき）
     メニューの縮小/復元
+    mainのアニメーション（transition-duration）
     Dropdownボタンのクリックイベント
     block-ui（おまちください的なやつ）の表示／非表示
     modal-cardの表示／非表示
@@ -59,10 +70,10 @@ CSSでやっていること
     メニュー、メイン、ヘッダのResponsive
     ハンバーガーボタンの表示／非表示
     block-uiのstyle定義
+    アニメーション定義（ただしmainなどはJSでやっているものもある）
     その他独自element
 
 ----------------------------------------------------------
 ポリシーのようなもの
     Responsiveの定義はCSSで行い、JSは関与しないように
     JSはプリミティブなイベントを請け負う方針で
-
