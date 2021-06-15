@@ -12570,12 +12570,16 @@ body > .icon-hamburger:hover {
 }
 
 main {
+  margin-left: 0;
+}
+
+menu + main {
   margin-left: 240px;
 }
 
 @media screen and (max-width: 1023px) {
   main {
-    margin-left: 0;
+    margin-left: 0 !important;
   }
 }
 
@@ -12677,9 +12681,6 @@ menu .shrink-menu-icon:hover .menu-text {
 
 section.container {
   margin-top: 0;
-  max-width: unset !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
 }
 
 nav.header + section.container {
@@ -12690,6 +12691,12 @@ nav.header + section.container {
   section.container {
     margin-top: 0 !important;
   }
+}
+
+section.container.unlimit-width {
+  max-width: unset !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 .content {
@@ -12724,7 +12731,12 @@ nav.header + section.container {
 }
 
 .icon-move-top:hover {
-  opacity: .5;
+  opacity: .8;
+}
+
+.icon-move-top svg {
+  background-color: white !important;
+  width: unset !important;
 }
 
 .block-ui {
@@ -13290,7 +13302,6 @@ nav.header .dropdown .dropdown-content a:hover {
 }
 
 .jumbotron .hero-body h1.title {
-  font-size: 5rem !important;
   font-weight: 400;
 }
 
@@ -13319,4 +13330,8 @@ nav.header .dropdown .dropdown-content a:hover {
   border-top-left-radius: 0;
   padding: 1.5rem;
   background: whitesmoke;
+}
+
+.extra-large {
+  font-size: 5rem;
 }

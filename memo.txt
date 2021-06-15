@@ -19,31 +19,35 @@ HTML内には・・・
     mainタグは1つだけであること
     section.containerも1つだけであること
 
+menu
+    全体に１つだけであること
+    mainの前に書く
+
 main
     全体に１つだけであること
     margin-left:メニュー幅
     padding無し
     サイドメニューのresponseve設定
-    navやjumbotromなどはこの中に置くこと
+    nav、jumbotrom、section.containerなどはこの中に置くこと
 
 section.container
+    mainの中に書く
     全体に１つだけであること
+    ※section以外のタグは他にあってもOK
     bulmaの.containerを継承
-    余白無し
-    .unlimit-widthで、fullhdのときmax-widthなし
-    bulmaの margin: 0 auto を打ち消している
-    また、max-widthのresponsive設定も打ち消している
-      （画面幅いっぱいを使う）
+
+    .unlimit-width
+        余白無し
+        fullhdのときもmax-widthなし
+        bulmaの margin: 0 auto を打ち消している
+        また、max-widthのresponsive設定も打ち消している
+        （画面幅いっぱいを使う）
 
 .content
     基本的にコンテンツはこの中に書く
     bulmaの.content継承
     左右下にpaddingがある（padding: 0 2rem 2rem 2rem;）
     :last-child に、padding-bottom:$page-padding-bottom;
-
-.menu
-    全体に１つだけであること
-
 
 
 コンテンツ内のz-indexは、900未満であること

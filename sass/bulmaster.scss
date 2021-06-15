@@ -376,11 +376,16 @@ body > .icon-hamburger {
 
 // メイン
 main {
-    margin-left: $menu-width;
+    margin-left: 0;
+
+    // メニューがあるとき
+    menu + & {
+        margin-left: $menu-width;
+    }
 
     // @Responsiveness
     @include until($desktop) {
-        margin-left: 0;
+        margin-left: 0 !important;
     }
 }
 
@@ -487,14 +492,16 @@ section.container {
         // navがあるときはヘッダの分だけ下げる（navが無いときとdesktop未満のときは0）
         margin-top: calc(#{$header-height} + 20px);
     }
-    max-width: unset !important;    // bulmaのResponsivenessを無視する
-
-    margin-left: 0 !important;      // 1408px以上のときにセンタリングされないように
-    margin-right: 0 !important;     // 〃
 
     // @Responsiveness
     @include until($desktop) {
         margin-top: 0 !important;
+    }
+
+    &.unlimit-width {
+        max-width: unset !important;    // bulmaのResponsivenessを無視する
+        margin-left: 0 !important;      // 1408px以上のときにセンタリングされないように
+        margin-right: 0 !important;     // 〃
     }
 }
 
@@ -532,7 +539,11 @@ section.container {
     z-index: $z-icon-button;
     font-size: 2.25em;
     &:hover {
-        opacity: .5;
+        opacity: .8;
+    }
+    svg {
+        background-color: white !important;
+        width: unset !important;
     }
 }
 
@@ -917,7 +928,6 @@ nav.header .dropdown {
     .hero-body {
         padding: 5rem 1.5rem 5rem 1.5rem;
         h1.title {
-            font-size: 5rem !important;
             font-weight: 400;
         }
     }
@@ -951,4 +961,9 @@ nav.header .dropdown {
         padding: 1.5rem;
         background: whitesmoke;
     }
+}
+
+// is-1（3rem）より大きいフォント
+.extra-large {
+    font-size: 5rem;
 }
