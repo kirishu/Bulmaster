@@ -3,45 +3,42 @@
 
 // override variables of bulma
 // ※bulmaのimportを行う前に定義しておく
-$primary: hsl(204, 71%, 50%);
-$body-size: 14px;
-$modal-z: 1200;
-$family-primary: "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", YuGothic, Meiryo, sans-serif;
-$family-monospace: Menlo, Monaco, Consolas, "Courier New", monospace;
-$radius-small: 4px;
-$column-gap: .25rem .5rem;
-$label-weight: 400;
+$primary: hsl(204, 71%, 50%) !default;
+$body-size: 14px !default;
+$modal-z: 1200 !default;
+$family-primary: "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", YuGothic, Meiryo, sans-serif !default;
+$family-monospace: Menlo, Monaco, Consolas, "Courier New", monospace !default;
+$radius-small: 4px !default;
+$column-gap: .25rem .5rem !default;
+$label-weight: 400 !default;
 // ---------------------------
 
 // variables of this file
-$header-height: 52px;           // ヘッダ高さ
-$page-padding-bottom: 100px;    // ページpdding下
-$menu-width: 240px;             // メニュー幅
-$menu-width-shrink: 12px;       // 縮小されたときのメニュー幅
-$anime-duration: .3s;           // アニメーションの変化時間
+$header-height: 52px !default;           // ヘッダ高さ
+$page-padding-bottom: 100px !default;    // ページpdding下
+$menu-width: 240px !default;             // メニュー幅
+$menu-width-shrink: 12px !default;       // 縮小されたときのメニュー幅
+$anime-duration: .3s !default;           // アニメーションの変化時間
 // z-index
-$z-icon-button: 800;            // topへ移動やハンバーガなどのアイコンのz-index
-$z-menu: 1100;
-$z-block-ui: 9000;
+$z-icon-button: 800 !default;            // topへ移動やハンバーガなどのアイコンのz-index
+$z-menu: 1100 !default;
+$z-block-ui: 9000 !default;
 // colors
-$header-color: #fff;
-$header-bgcolor: darken($primary, 35%);
-$menu-bgcolor: darken($primary, 35%);
-$menu-hover-bgcolor: rgba(255,255,255,0.2);
-$menu-child-bgcolor: rgba(255,255,255,0.05);
-$menu-color: #fff;
-$menu-label-color: #7a7a7a;
-$menu-active-color:#fff;
-$logo-color: $menu-color;
-$logo-bgcolor: darken($primary, 40%);
-$icon-humburger-head-color: #888;
-$icon-humburger-head-hover-color: #fff;
-$icon-humburger-body-color: #555;
-$icon-humburger-body-hover-color: unset;
-$icon-move-top-color: #555;
-
-// customize
-//@import "custom-sample.scss";
+$header-color: #fff !default;
+$header-bgcolor: darken($primary, 35%) !default;
+$menu-bgcolor: darken($primary, 35%) !default;
+$menu-hover-bgcolor: rgba(255,255,255,0.2) !default;
+$menu-child-bgcolor: rgba(255,255,255,0.05) !default;
+$menu-color: #fff !default;
+$menu-label-color: #7a7a7a !default;
+$menu-active-color:#fff !default;
+$logo-color: $menu-color !default;
+$logo-bgcolor: darken($primary, 40%) !default;
+$icon-humburger-head-color: #888 !default;
+$icon-humburger-head-hover-color: #fff !default;
+$icon-humburger-body-color: #555 !default;
+$icon-humburger-body-hover-color: unset !default;
+$icon-move-top-color: #555 !default;
 
 // import bulma v0.9.1
 @import "../node_modules/bulma/bulma.sass";
@@ -247,6 +244,16 @@ menu {
         color: $menu-color;
     }
 
+    hr {
+        width: 90%;
+        display: block;
+        height: 1px;
+        background-color: $menu-label-color;
+        border: 0;
+        text-align: center;
+        margin: 1rem auto;
+    }
+
     // @Responsiveness
     @include until($desktop) {
         display: none;
@@ -390,7 +397,7 @@ main {
 }
 
 
-// ***************************
+// ===============================
 // メニュー 非表示アイコン
 menu .shrink-menu-icon {
     // @Responsiveness
@@ -422,9 +429,9 @@ menu .shrink-menu-icon {
         }
     }
 }
-// ***************************
+// ===============================
 // shrink-menuに切り替わったときの設定
-// ***************************
+// ===============================
 // shrink-menu幅
 .shrink-menu-width {
     @include from($desktop) {
@@ -584,16 +591,106 @@ pre {
     white-space: pre-wrap !important;
 }
 
+// ===============================
+// modal
+// ===============================
 // モーダル
 .modal-card {
     opacity: 0;         // JSのshowModal()へ変化する
     transition: opacity 300ms 0s ease-in-out;
 }
 
+// ===============================
+// dialog
+// ===============================
+.dialog {
+    @extend .modal;
+    z-index: 1300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 20px;
+    max-height: 90vh;
+    overflow: hidden;
 
-// *******************************
+    opacity: 0;
+    transition: opacity 300ms 0s ease-in-out;
+
+    .card {
+        opacity: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border-top: 8px solid #ccc;
+        background-color: #fafafa;
+        box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.2), 0 0px 0 1px rgba(10, 10, 10, 0.1);
+
+        .card-content {
+            @extend .modal-card-body;
+            overflow: auto;
+
+            pre {
+                font-size: 1em;
+                color: inherit !important;
+                font-family: inherit !important;
+                padding: 1em 0 0 0;
+            }
+        }
+        .card-footer {
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            background-color: #f2f2f2;
+
+            .card-footer-item {
+                padding: .5em .75em;
+                &:not(:last-child) {
+                    border-right: 1px solid #ccc;
+                }
+            }
+            a {
+                &:hover {
+                    background-color: #fafafa;
+                }
+            }
+        }
+
+    }
+
+}
+// ===============================
+// form field Elements
+// ===============================
+.field-text {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: $input-radius;
+    box-shadow: none;
+    font-size: 1rem;
+    min-height: 2.5em;
+    height: auto;
+    justify-content: flex-start;
+    line-height: 1.5;
+    padding-bottom: calc(0.5em - 1px);
+    padding-left: calc(0.75em - 1px);
+    padding-right: calc(0.75em - 1px);
+    padding-top: calc(0.5em - 1px);
+    position: relative;
+    vertical-align: top;
+    max-width: 100%;
+    width: 100%;
+    word-break: break-all;
+
+}
+
+// ===============================
 // form parts
-// *******************************
+// ===============================
 
 // .button (bulma overrode)
 @each $name, $pair in $colors {
@@ -722,8 +819,11 @@ pre {
         }
     }
 
-    &.is-marginless .lever {
-        margin: 0;
+    // &.is-marginless .lever {
+    //     margin: 0;
+    // }
+    &.is-marginless {
+        margin: 0 0 0 -10px !important;
     }
 }
 
@@ -916,9 +1016,9 @@ nav.header .dropdown {
     }
 }
 
-// *******************************
+// ===============================
 // components
-// *******************************
+// ===============================
 
 // Jumbotron style
 .jumbotron {

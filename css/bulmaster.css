@@ -151,7 +151,7 @@
 .image.is-3by5 .has-ratio, .image.is-9by16 img,
 .image.is-9by16 .has-ratio, .image.is-1by2 img,
 .image.is-1by2 .has-ratio, .image.is-1by3 img,
-.image.is-1by3 .has-ratio, .modal, .block-ui, .modal-background, .is-overlay, .hero-video {
+.image.is-1by3 .has-ratio, .modal, .block-ui, .dialog, .modal-background, .is-overlay, .hero-video {
   bottom: 0;
   left: 0;
   position: absolute;
@@ -5442,7 +5442,7 @@ button.dropdown-item.is-active {
   background-color: transparent;
 }
 
-.modal, .block-ui {
+.modal, .block-ui, .dialog {
   align-items: center;
   display: none;
   flex-direction: column;
@@ -5452,7 +5452,7 @@ button.dropdown-item.is-active {
   z-index: 1200;
 }
 
-.modal.is-active, .is-active.block-ui {
+.modal.is-active, .is-active.block-ui, .is-active.dialog {
   display: flex;
 }
 
@@ -5530,7 +5530,7 @@ button.dropdown-item.is-active {
   margin-right: 0.5em;
 }
 
-.modal-card-body {
+.modal-card-body, .dialog .card .card-content {
   -webkit-overflow-scrolling: touch;
   background-color: white;
   flex-grow: 1;
@@ -12448,6 +12448,16 @@ menu .menu-text {
   color: #fff;
 }
 
+menu hr {
+  width: 90%;
+  display: block;
+  height: 1px;
+  background-color: #7a7a7a;
+  border: 0;
+  text-align: center;
+  margin: 1rem auto;
+}
+
 @media screen and (max-width: 1023px) {
   menu {
     display: none;
@@ -12772,6 +12782,84 @@ pre {
 .modal-card {
   opacity: 0;
   transition: opacity 300ms 0s ease-in-out;
+}
+
+.dialog {
+  z-index: 1300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 20px;
+  max-height: 90vh;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 300ms 0s ease-in-out;
+}
+
+.dialog .card {
+  opacity: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-top: 8px solid #ccc;
+  background-color: #fafafa;
+  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.2), 0 0px 0 1px rgba(10, 10, 10, 0.1);
+}
+
+.dialog .card .card-content {
+  overflow: auto;
+}
+
+.dialog .card .card-content pre {
+  font-size: 1em;
+  color: inherit !important;
+  font-family: inherit !important;
+  padding: 1em 0 0 0;
+}
+
+.dialog .card .card-footer {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  background-color: #f2f2f2;
+}
+
+.dialog .card .card-footer .card-footer-item {
+  padding: .5em .75em;
+}
+
+.dialog .card .card-footer .card-footer-item:not(:last-child) {
+  border-right: 1px solid #ccc;
+}
+
+.dialog .card .card-footer a:hover {
+  background-color: #fafafa;
+}
+
+.field-text {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  box-shadow: none;
+  font-size: 1rem;
+  min-height: 2.5em;
+  height: auto;
+  justify-content: flex-start;
+  line-height: 1.5;
+  padding-bottom: calc(0.5em - 1px);
+  padding-left: calc(0.75em - 1px);
+  padding-right: calc(0.75em - 1px);
+  padding-top: calc(0.5em - 1px);
+  position: relative;
+  vertical-align: top;
+  max-width: 100%;
+  width: 100%;
+  word-break: break-all;
 }
 
 .button.is-white:active, nav.header .is-white.navbtn:active, .line-operation-button a.is-white:active, .line-operation-button-noremove a.is-white:active {
@@ -13160,8 +13248,8 @@ pre {
   background-color: #949494;
 }
 
-.switch.is-marginless .lever {
-  margin: 0;
+.switch.is-marginless {
+  margin: 0 0 0 -10px !important;
 }
 
 nav.header .dropdown .dropdown-content {
