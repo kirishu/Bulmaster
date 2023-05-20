@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>test dialog</title>
+    <link rel="stylesheet" href="../css/bulmaster.min.css" />
+    <script src="../scripts/font-awesome-5.13.0.all.min.js"></script>
+    <script src="../scripts/bulmaster.js"></script>
+    <script src="../scripts/adminConfig.js"></script>
+</head>
+
+<body>
+
+    <!-- main -->
+    <main>
+
+        <section class="container">
+            <form>
+
+                <div class="content">
+                    <hr />
+                    <button id="test01" type="button" class="button is-primary">test01</button>
+                </div>
+
+            </form>
+        </section>
+    </main>
+
+    <script>
+        const myPage = (function () {
+            window.addEventListener('DOMContentLoaded', () => {
+                // event handling
+                document.getElementById('test01').addEventListener('click', myPage.test01);
+            });
+
+
+            return {
+                test01: async () => {
+                    console.log("AAA");
+
+                    var ret = await adminConfig.confirmAsync('てすとでーす');
+                    if (!ret) {
+                        return;
+                    }
+                    console.log("BBB");
+
+                    var ret2 = await adminConfig.confirmAsync('てすとでーす２');
+                    if (!ret2) {
+                        return;
+                    }
+                    console.log("CCC");
+
+                    var ret3 = await adminConfig.msgboxAsync('さいごです');
+                    if (!ret3) {
+                        return;
+                    }
+                    console.log("DDD");
+
+                },
+            };
+
+        })();
+    </script>
+</body>
+
+</html>

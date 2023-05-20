@@ -140,11 +140,7 @@ const Bulmaster = (() => {
      */
     const shrinkMenuSetting = () => {
         // アイコンを追加
-        const html = `
-            <i class='fas fa-bars'></i>
-            <i class='fas fa-arrow-left'></i>
-            <span class='menu-text'>shrink</span>
-        `;
+        const html = "<i class='fas fa-bars'></i><i class='fas fa-arrow-left'></i><span class='menu-text'>shrink</span>";
         const domli = _createElement('div', ['shrink-menu-icon']);
         domli.innerHTML = html;
         const shirinkIcon = _$menu.querySelector('menu .menu-items').appendChild(domli);
@@ -312,6 +308,9 @@ const Bulmaster = (() => {
 
         /**
          * Modal Open/close
+         * @param {string} id elementのid
+         * @param {boolean} isVisible true=表示/false=非表示
+         * @returns void
          */
         showModal: (id, isVisible) => {
             const $target = document.getElementById(id);
@@ -333,6 +332,63 @@ const Bulmaster = (() => {
                 }, 300);
                 // ↑ timeout値は、CSSの.modal-card transition の duration 値と合わせる
             }
+        },
+
+        /**
+         * Dialog Open/Close
+         * @param {boolean} isVisible true=表示/false=非表示
+         * @param {string} msg メッセージ
+         * @param {boolean} isYesNo true=YesNoボタン/false=OKボタンのみ
+         * @param {object} func YesまたはOKボタンに割り当てる関数（OKのときはダイアログCloseも同時に呼ばれます）
+         * @returns bool
+         */
+        showDialog: (isVisible, msg, isYesNo, func) => {
+            const id = '__bulmaster_dialogbox__';
+            // 既存dialogの消去
+            if (document.getElementById(id)) {
+                const $elem = document.getElementById(id);
+                $elem.style.opacity = '0';
+                if (!!_dialogFunc) {
+                    $elem.querySelector('a').removeEventListener('click', _dialogFunc);
+                    _dialogFunc = null;
+                }
+                $elem.innerHTML = '';
+                $elem.remove();
+            }
+            if (!isVisible) {
+                return;
+            }
+
+            // 新規dialogの作成
+            let html = "<div class='card'><div class='card-content'><div class='content'><pre class='is-break-word'>"
+                     + msg
+                     + "</pre></div></div>"
+                     + "<footer class='card-footer'>";
+            if (isYesNo) {
+                // YesNo
+                html += "<a href='javascript:void(0)' class='card-footer-item'>Yes</a>"
+                      + "<a href='javascript:Bulmaster.showDialog(false)' class='card-footer-item'>No</a>";
+            } else {
+                // OK only
+                html += "<a href='javascript:Bulmaster.showDialog(false)' class='card-footer-item'>Ok</a>";
+            }
+            html += "</footer></div>";
+
+            const dom = _createElement('div', ['dialog']);
+            dom.id = id;
+            dom.innerHTML = html;
+            document.body.appendChild(dom);
+            if (!!func) {
+                _dialogFunc = func;
+                // 最初の<a>にイベントを割り当てる
+                document.getElementById(id).querySelector('a').addEventListener('click', _dialogFunc);
+            } else {
+                _dialogFunc = null;
+            }
+
+            setTimeout(() => {
+                document.getElementById(id).style.opacity = '1';
+            }, 10);
         },
     };
 
